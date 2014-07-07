@@ -4,3 +4,13 @@
 * sample generator
 * mutation/combination operators (provided as list?)
   * implemented as seq yields seq?
+* selection operators
+  * proportional to fitness?
+  * select random parents?
+  * elitism?
+* mutation
+  * T => T
+* supported chromosome types
+  * fixed length homogenous (Seq[T])
+    * cross over, spot mutation (requires () => T, or Chromosome => T)
+  * variable length homogenous (Stack[T])
