@@ -1,5 +1,5 @@
 package com.htmlism.spawningpool
 
 class Solver {
-  def solve: Set[Int] = Set(1, 2, 3)
+  def solve(seed: Traversable[Int]): Set[Int] = seed.toSet
 }
