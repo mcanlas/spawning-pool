@@ -1,3 +1,5 @@
 package com.htmlism.spawningpool
 
-class Solver
+class Solver {
+  def solve: Set[Int] = Set(1, 2, 3)
+}
