@@ -4,6 +4,6 @@ package object spawningpool {
   implicit object DefaultRandomIndexGenerator extends RandomIndexGenerator {
     private val rng = new util.Random
 
-    def index(size: Int) = rng.nextInt(size)
+    def randomIndex(size: Int) = rng.nextInt(size)
   }
 }
