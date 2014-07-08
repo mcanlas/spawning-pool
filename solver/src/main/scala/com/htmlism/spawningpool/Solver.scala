@@ -1,5 +1,6 @@
 package com.htmlism.spawningpool
 
+// TODO return futures
 class Solver(implicit rig: RandomIndexGenerator) {
   private val populationSize = 50
 
