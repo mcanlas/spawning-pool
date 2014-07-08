@@ -14,7 +14,7 @@ class SolverSpec extends Specification {
   "Given no initial population seed, the solver" should {
     "return solutions" in {
       val solver = new Solver(3)
-      implicit val generator = new ChromosomeIterator('cindy, 'sanda, 'mindy)
+      implicit val generator = new ChromosomeProvider('cindy, 'sanda, 'mindy)
 
       solver.solve === Set('cindy, 'sanda, 'mindy)
     }
