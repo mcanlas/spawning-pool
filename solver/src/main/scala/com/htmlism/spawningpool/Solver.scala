@@ -5,9 +5,12 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import scala.language.postfixOps
 
-class Solver(populationSize: Int = 50)(implicit rig: RandomIndexGenerator) {
+class Solver(populationSize: Int = 50, islandCount: Int = 4)(implicit rig: RandomIndexGenerator) {
   if (populationSize < 1)
     throw new IllegalArgumentException("must have a population size of one or greater")
+
+  if (islandCount < 1)
+    throw new IllegalArgumentException("must have an island count of one or greater")
 
   def solve[T](implicit src: Generator[T]): Future[Set[T]] = solve(Traversable.fill(populationSize)(src.generate))
 
