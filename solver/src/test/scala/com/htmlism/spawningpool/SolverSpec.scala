@@ -3,9 +3,11 @@ package com.htmlism.spawningpool
 import org.specs2.mutable.Specification
 
 class SolverSpec extends Specification {
+  private def fitness(symbol: Symbol) = 0
+
   "Given an initial population seed, the solver" should {
     "return the right solution" in {
-      val solver = new Solver
+      val solver = new Solver(fitness)
 
       solver.solveNow(Seq('chrono, 'marle, 'lucca)) === Set('chrono, 'marle, 'lucca)
     }
@@ -13,7 +15,7 @@ class SolverSpec extends Specification {
 
   "Given no initial population seed, the solver" should {
     "return solutions" in {
-      val solver = new Solver(populationSize = 3, islandCount = 1)
+      val solver = new Solver(fitness, populationSize = 3, islandCount = 1)
       implicit val generator = new ChromosomeProvider('cindy, 'sanda, 'mindy)
 
       solver.solveNow === Set('cindy, 'sanda, 'mindy)
