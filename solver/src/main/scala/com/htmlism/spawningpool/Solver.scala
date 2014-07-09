@@ -1,12 +1,19 @@
 package com.htmlism.spawningpool
 
-// TODO return futures
-class Solver(populationSize: Int = 50)(implicit rig: RandomIndexGenerator) {
-  def solve[T](implicit src: Generator[T]): Set[T] = solve(Traversable.fill(populationSize)(src.generate))
+import scala.concurrent._
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.duration._
 
-  def solve[T](seed: Traversable[T]): Set[T] =
+class Solver(populationSize: Int = 50)(implicit rig: RandomIndexGenerator) {
+  def solve[T](implicit src: Generator[T]): Future[Set[T]] = solve(Traversable.fill(populationSize)(src.generate))
+
+  def solve[T](seed: Traversable[T]): Future[Set[T]] =
     if (seed.isEmpty)
       throw new IllegalArgumentException("must provide a non-empty collection as a seed")
     else
-      seed.toSet
+      future { seed.toSet }
+
+  def solveNow[T](implicit src: Generator[T]): Set[T] = solveNow(Traversable.fill(populationSize)(src.generate))
+
+  def solveNow[T](seed: Traversable[T]): Set[T] = Await.result(solve(seed), 0 nanos)
 }

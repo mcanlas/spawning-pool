@@ -7,7 +7,7 @@ class SolverSpec extends Specification {
     "return the right solution" in {
       val solver = new Solver
 
-      solver.solve(Seq('chrono, 'marle, 'lucca)) === Set('chrono, 'marle, 'lucca)
+      solver.solveNow(Seq('chrono, 'marle, 'lucca)) === Set('chrono, 'marle, 'lucca)
     }
   }
 
@@ -16,7 +16,7 @@ class SolverSpec extends Specification {
       val solver = new Solver(3)
       implicit val generator = new ChromosomeProvider('cindy, 'sanda, 'mindy)
 
-      solver.solve === Set('cindy, 'sanda, 'mindy)
+      solver.solveNow === Set('cindy, 'sanda, 'mindy)
     }
   }
 }
