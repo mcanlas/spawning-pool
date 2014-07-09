@@ -12,13 +12,13 @@ class Solver(populationSize: Int = 50, islandCount: Int = 4)(implicit rig: Rando
   if (islandCount < 1)
     throw new IllegalArgumentException("must have an island count of one or greater")
 
-  def solve[T](implicit src: Generator[T]): Future[Set[T]] = future {
+  def solve[A](implicit src: Generator[A]): Future[Set[A]] = future {
     val islands = generateIslands { Vector.fill(populationSize)(src.generate) }
 
     fittestSolutions(islands)
   }
 
-  def solve[T](seed: Traversable[T]): Future[Set[T]] =
+  def solve[A](seed: Traversable[A]): Future[Set[A]] =
     if (seed.isEmpty)
       throw new IllegalArgumentException("must provide a non-empty collection as a seed")
     else
@@ -28,15 +28,15 @@ class Solver(populationSize: Int = 50, islandCount: Int = 4)(implicit rig: Rando
         fittestSolutions(islands)
       }
 
-  def solveNow[T](implicit src: Generator[T]): Set[T] = awaitResult(solve(src))
+  def solveNow[A](implicit src: Generator[A]): Set[A] = awaitResult(solve(src))
 
-  def solveNow[T](seed: Traversable[T]): Set[T] = awaitResult(solve(seed))
+  def solveNow[A](seed: Traversable[A]): Set[A] = awaitResult(solve(seed))
 
-  private def fittestSolutions[T](islands: Traversable[Vector[T]]): Set[T] = {
+  private def fittestSolutions[A](islands: Traversable[Vector[A]]): Set[A] = {
     islands.head.toSet // TODO test that islands > 1 affects results (using max)
   }
 
-  private def generateIslands[T](f: => Vector[T]) = Traversable.fill(islandCount)(f)
+  private def generateIslands[A](f: => Vector[A]) = Traversable.fill(islandCount)(f)
 
-  private def awaitResult[T](future: Future[T]) = Await.result(future, 0 nanos)
+  private def awaitResult[A](future: Future[A]) = Await.result(future, 0 nanos)
 }
