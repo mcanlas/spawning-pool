@@ -3,6 +3,7 @@ package com.htmlism.spawningpool
 import scala.concurrent._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
+import scala.language.postfixOps
 
 class Solver(populationSize: Int = 50)(implicit rig: RandomIndexGenerator) {
   if (populationSize < 1)
