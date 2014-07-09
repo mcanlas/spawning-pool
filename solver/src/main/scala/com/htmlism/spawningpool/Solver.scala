@@ -32,6 +32,16 @@ class Solver(populationSize: Int = 50, islandCount: Int = 4)(implicit rig: Rando
 
   def solveNow[A](seed: Traversable[A]): Set[A] = awaitResult(solve(seed))
 
+  private def fittestMember[A](population: Traversable[A]): Set[A] = ??? // reduces a population into a set
+
+  private def mutate[A](chromosome: A): A = ???
+
+  private def crossover[A](a: A, b: A): A = ???
+
+  private def sampleChromosome[A](chromosomes: Vector[A]): Vector[A] = ??? // consumes rig
+
+  private def evolvePopulation[A](chromosomes: Vector[A]): Vector[A] = ??? // recursive
+
   private def fittestSolutions[A](islands: Traversable[Vector[A]]): Set[A] = {
     islands.head.toSet // TODO test that islands > 1 affects results (using max)
   }
