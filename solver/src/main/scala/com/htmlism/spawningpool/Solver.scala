@@ -24,7 +24,7 @@ class Solver(populationSize: Int = 50, islandCount: Int = 4)(implicit rig: Rando
         seed.toSet
       }
 
-  def solveNow[T](implicit src: Generator[T]): Set[T] = awaitResult(solve(Traversable.fill(populationSize)(src.generate)))
+  def solveNow[T](implicit src: Generator[T]): Set[T] = awaitResult(solve(src))
 
   def solveNow[T](seed: Traversable[T]): Set[T] = awaitResult(solve(seed))
 
