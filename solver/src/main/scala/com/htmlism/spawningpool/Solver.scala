@@ -12,13 +12,17 @@ class Solver(populationSize: Int = 50, islandCount: Int = 4)(implicit rig: Rando
   if (islandCount < 1)
     throw new IllegalArgumentException("must have an island count of one or greater")
 
-  def solve[T](implicit src: Generator[T]): Future[Set[T]] = solve(Traversable.fill(populationSize)(src.generate))
+  def solve[T](implicit src: Generator[T]): Future[Set[T]] = {
+    solve(Traversable.fill(populationSize)(src.generate))
+  }
 
   def solve[T](seed: Traversable[T]): Future[Set[T]] =
     if (seed.isEmpty)
       throw new IllegalArgumentException("must provide a non-empty collection as a seed")
     else
-      future { seed.toSet }
+      future {
+        seed.toSet
+      }
 
   def solveNow[T](implicit src: Generator[T]): Set[T] = solveNow(Traversable.fill(populationSize)(src.generate))
 
