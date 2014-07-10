@@ -1,3 +1,3 @@
 package com.htmlism.spawningpool
 
-trait IndexedChromosome[T]
+trait IndexedChromosome[T] extends Chromosome
