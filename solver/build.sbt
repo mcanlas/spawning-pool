@@ -8,4 +8,4 @@ autoAPIMappings := true
 
 libraryDependencies += "org.specs2" %% "specs2" % "2.3.12" % "test"
 
-initialCommands in console := "import com.htmlism.spawningpool_"
+initialCommands in console := "import com.htmlism.spawningpool._"
