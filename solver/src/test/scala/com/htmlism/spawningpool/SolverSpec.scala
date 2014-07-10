@@ -7,7 +7,7 @@ class SolverSpec extends Specification {
 
   "Given an initial population seed, the solver" should {
     "return the right solution" in {
-      val solver = new Solver(fitness)
+      val solver = new Solver(fitness) : Solver[Symbol, Int] // intellij can't infer this implementation w/ a hint
 
       solver.solveNow(Seq('chrono, 'marle, 'lucca)) === Set('chrono, 'marle, 'lucca)
     }
