@@ -1,3 +1,9 @@
 package com.htmlism.spawningpool
 
-trait IndexedChromosome[T] extends Chromosome
+trait IndexedChromosome[A] extends Chromosome {
+  val genes: Seq[A]
+
+  def mutate = ??? // TODO implement spot mutation here
+
+  def crossover(mate: Chromosome) = ??? // TODO implement variable length crossover here
+}
