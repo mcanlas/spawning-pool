@@ -12,21 +12,18 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
   if (islandCount < 1)
     throw new IllegalArgumentException("must have an island count of one or greater")
 
-  def solve(implicit src: Generator[A]): Future[Set[A]] = future {
-    val islands = generateIslands { Vector.fill(populationSize)(src.generate) }
-
-    fittestSolutions(islands)
-  }
+  def solve(implicit src: Generator[A]): Future[Set[A]] =
+    future {
+      generateIslands { Vector.fill(populationSize)(src.generate) }
+    }.map(fittestSolutions)
 
   def solve(seed: Traversable[A]): Future[Set[A]] =
     if (seed.isEmpty)
       throw new IllegalArgumentException("must provide a non-empty collection as a seed")
     else
       future {
-        val islands = generateIslands { seed.toVector }
-
-        fittestSolutions(islands)
-      }
+        generateIslands { seed.toVector }
+      }.map(fittestSolutions)
 
   def solveNow(implicit src: Generator[A]): Set[A] = awaitResult(solve(src))
 
