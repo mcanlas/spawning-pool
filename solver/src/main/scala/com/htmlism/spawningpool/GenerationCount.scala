@@ -1,3 +1,5 @@
 package com.htmlism.spawningpool
 
-class GenerationCount(count: Int) extends TerminationCondition
+class GenerationCount(count: Int) extends TerminationCondition {
+  def shouldTerminate = ???
+}

@@ -1,3 +1,5 @@
 package com.htmlism.spawningpool
 
-trait TerminationCondition
+trait TerminationCondition {
+  def shouldTerminate: Boolean
+}

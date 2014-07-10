@@ -1,3 +1,5 @@
 package com.htmlism.spawningpool
 
-class TargetFitness[T](fitness: T) extends TerminationCondition
+class TargetFitness[T](fitness: T) extends TerminationCondition {
+  def shouldTerminate = ???
+}
