@@ -43,7 +43,8 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
   private def evolvePopulation(chromosomes: Vector[A]): Vector[A] = ??? // recursive
 
   private def fittestSolutions(islands: Traversable[Vector[A]]): Set[A] = {
-    islands.head.toSet // TODO test that islands > 1 affects results (using max)
+    // TODO needs evolution/selection
+    islands.fold(Vector.empty)((acc, pop) => acc ++ pop).toSet
   }
 
   private def generateIslands(f: => Vector[A]) = Traversable.fill(islandCount)(f)

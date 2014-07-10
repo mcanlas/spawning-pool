@@ -21,4 +21,13 @@ class SolverSpec extends Specification {
       solver.solveNow === Set('cindy, 'sanda, 'mindy)
     }
   }
+
+  "Having multiple islands" should {
+    "affect the results"  in {
+      val solver = new Solver(fitness, populationSize = 1, islandCount = 3)
+      implicit val generator = new ChromosomeProvider('cecil, 'rosa, 'kain)
+
+      solver.solveNow === Set('cecil, 'rosa, 'kain)
+    }
+  }
 }
