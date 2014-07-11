@@ -5,5 +5,5 @@ trait CombinatorialChromosome[A] extends HomogeneousChromosome[A] {
 
   val elements: Seq[A]
 
-  def sample = ??? // TODO given rig
+  def generateAllele = ??? // TODO given rig
 }
