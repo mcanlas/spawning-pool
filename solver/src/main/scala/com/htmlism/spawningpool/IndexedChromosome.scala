@@ -1,6 +1,6 @@
 package com.htmlism.spawningpool
 
-trait IndexedChromosome[A] extends Chromosome with HomogenousChromosome[A] {
+trait IndexedChromosome[A] extends Chromosome with HomogeneousChromosome[A] {
   val genes: Seq[A]
 
   def mutate = ??? // TODO implement spot mutation here

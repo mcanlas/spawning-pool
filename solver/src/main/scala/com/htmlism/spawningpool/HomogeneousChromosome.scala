@@ -1,6 +1,6 @@
 package com.htmlism.spawningpool
 
-trait HomogenousChromosome[A] {
+trait HomogeneousChromosome[A] {
   self: IndexedChromosome[A] =>
 
   def sample: A
