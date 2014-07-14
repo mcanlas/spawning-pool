@@ -9,8 +9,6 @@ package com.htmlism.spawningpool
   * */
 
 trait CombinatorialChromosome[A] extends HomogeneousChromosome[A] {
-  self: IndexedChromosome[A] =>
-
   def alleles: Seq[A]
 
   def generateAllele = ??? // TODO given rig
