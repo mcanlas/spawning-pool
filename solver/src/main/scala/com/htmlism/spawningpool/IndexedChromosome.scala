@@ -1,6 +1,10 @@
 package com.htmlism.spawningpool
 
-/** The base trait for chromosomes that are backed by a collection of some type A.
+/** The base trait for homogeneous chromosomes backed by a sequence.
+  *
+  * {{{
+  *   def genes: Seq[A]
+  * }}}
   *
   * This trait provides a default implementation for mutation. Mutation occurs by
   * replacing a random gene with a randomly generated allele.
@@ -8,7 +12,14 @@ package com.htmlism.spawningpool
   */
 
 trait IndexedChromosome[A] extends HomogeneousChromosome[A] {
-  val genes: Seq[A]
+  /** The sequence of genes that make up this chromosome.
+   *
+   * @return A collection of genes
+   */
+
+  def genes: Seq[A]
+
+  def apply(n: Int) = genes(n)
 
   def mutate: IndexedChromosome[A] = ??? // TODO implement spot mutation here
 
