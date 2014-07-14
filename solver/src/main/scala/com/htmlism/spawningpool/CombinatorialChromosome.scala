@@ -12,4 +12,6 @@ trait CombinatorialChromosome[A] extends HomogeneousChromosome[A] {
   def alleles: Seq[A]
 
   def generateAllele = ??? // TODO given rig
+
+  def randomAlleleIndex = new util.Random().nextInt(alleles.size)
 }

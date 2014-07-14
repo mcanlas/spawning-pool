@@ -30,4 +30,6 @@ trait IndexedChromosome[A] extends HomogeneousChromosome[A] {
   def mutate: IndexedChromosome[A] = ??? // TODO implement spot mutation here
 
   def crossover(mate: Chromosome): IndexedChromosome[A] = ??? // TODO implement variable length crossover here
+
+  def randomGeneIndex = new util.Random().nextInt(genes.size)
 }
