@@ -19,6 +19,12 @@ trait IndexedChromosome[A] extends HomogeneousChromosome[A] {
 
   def genes: Seq[A]
 
+  /** A gene at index n of the chromosome
+    *
+    * @param n The index of the gene
+    * @return A gene
+    */
+
   def apply(n: Int) = genes(n)
 
   def mutate: IndexedChromosome[A] = ??? // TODO implement spot mutation here
