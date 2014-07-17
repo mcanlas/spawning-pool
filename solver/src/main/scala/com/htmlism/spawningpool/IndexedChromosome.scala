@@ -4,6 +4,8 @@ package com.htmlism.spawningpool
   *
   * {{{
   *   def genes: Seq[A]
+  *
+  *   def construct(genes: Seq[A]): IndexedChromosome[A]
   * }}}
   *
   * This trait provides a default implementation for mutation. Mutation occurs by
@@ -19,6 +21,14 @@ trait IndexedChromosome[A] extends HomogeneousChromosome[A] {
 
   def genes: Seq[A]
 
+  /** A constructor for chromosomes of this type.
+    *
+    * @param genes The genes of the new chromosome
+    * @return A new chromosome
+    */
+
+  def construct(genes: Seq[A]): IndexedChromosome[A]
+
   /** A gene at index n of the chromosome
     *
     * @param n The index of the gene
@@ -27,7 +37,7 @@ trait IndexedChromosome[A] extends HomogeneousChromosome[A] {
 
   def apply(n: Int) = genes(n)
 
-  def mutate: IndexedChromosome[A] = ??? // TODO implement spot mutation here
+  def mutate: IndexedChromosome[A] = construct(genes.updated(randomGeneIndex, generateAllele))
 
   def crossover(mate: Chromosome): IndexedChromosome[A] = ??? // TODO implement variable length crossover here
 

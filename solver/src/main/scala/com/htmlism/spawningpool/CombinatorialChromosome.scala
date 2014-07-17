@@ -11,7 +11,7 @@ package com.htmlism.spawningpool
 trait CombinatorialChromosome[A] extends HomogeneousChromosome[A] {
   def alleles: Seq[A]
 
-  def generateAllele = ??? // TODO given rig
+  def generateAllele = alleles(randomAlleleIndex)
 
   def randomAlleleIndex = new util.Random().nextInt(alleles.size)
 }

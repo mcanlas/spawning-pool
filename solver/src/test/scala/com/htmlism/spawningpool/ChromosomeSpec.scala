@@ -8,11 +8,13 @@ class ChromosomeSpec extends Specification {
 
     "support mutation" in {
       chromosome.mutate === TspTour(Seq('NewYorkCity, 'Boston, 'Chicago))
-    }.pendingUntilFixed
+    }
   }
 }
 
 case class TspTour(genes: Seq[Symbol]) extends FixedLengthChromosome[Symbol] with CombinatorialChromosome[Symbol] {
+  def construct(genes: Seq[Symbol]) = TspTour(genes)
+
   def alleles = Seq('Boston)
 
   override def randomAlleleIndex = 0
