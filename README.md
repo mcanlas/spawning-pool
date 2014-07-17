@@ -11,4 +11,4 @@ References
 Colophon
 --------
 
-In the video game StarCraft, one of the foundational structures for the Zerg is the Spawning Pool.
+In the StarCraft video game series, one of the foundational structures for the Zerg is the Spawning Pool.
