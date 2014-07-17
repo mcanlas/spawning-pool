@@ -11,6 +11,6 @@ package com.htmlism.spawningpool
   *
   * */
 
-trait HomogeneousChromosome[A] extends Chromosome {
+trait HomogeneousChromosome[B, A] extends Chromosome[B] {
   def generateAllele: A
 }

@@ -10,13 +10,13 @@ package com.htmlism.spawningpool
   *
   * */
 
-trait Chromosome {
+trait Chromosome[A] {
   /** Produces a slightly modified chromosome.
     *
     * @return A chromosome
     */
 
-  def mutate: Chromosome
+  def mutate: A
 
   /** Produces a child chromosome given a mate. The child chromosome reflects
     * characteristics of both parent chromosomes.
@@ -25,5 +25,5 @@ trait Chromosome {
     * @return A child chromosome
     */
 
-  def crossover(mate: Chromosome): Chromosome
+  def crossover(mate: A): A
 }

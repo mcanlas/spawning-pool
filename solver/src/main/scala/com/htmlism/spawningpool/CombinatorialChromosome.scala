@@ -8,7 +8,7 @@ package com.htmlism.spawningpool
   *
   * */
 
-trait CombinatorialChromosome[A] extends HomogeneousChromosome[A] {
+trait CombinatorialChromosome[B, A] extends HomogeneousChromosome[B, A] {
   def alleles: Seq[A]
 
   def generateAllele = alleles(randomAlleleIndex)

@@ -12,7 +12,7 @@ class ChromosomeSpec extends Specification {
   }
 }
 
-case class TspTour(genes: Seq[Symbol]) extends FixedLengthChromosome[Symbol] with CombinatorialChromosome[Symbol] {
+case class TspTour(genes: Seq[Symbol]) extends FixedLengthChromosome[TspTour, Symbol] with CombinatorialChromosome[TspTour, Symbol] {
   def construct(genes: Seq[Symbol]) = TspTour(genes)
 
   def alleles = Seq('Boston)

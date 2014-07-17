@@ -12,8 +12,8 @@ package com.htmlism.spawningpool
   *
   * */
 
-trait VariableLengthChromosome[A] extends IndexedChromosome[A] {
-  override def mutate: VariableLengthChromosome[A] = {
+trait VariableLengthChromosome[B, A] extends IndexedChromosome[B, A] {
+  override def mutate: B = {
     // TODO given rig, choose add in n + 1, delete in n, or spot mutate
 
     ???
