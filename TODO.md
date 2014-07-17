@@ -1,3 +1,4 @@
+* document type parameters
 * support arbitrary types?
 * support arbitary fitness?
 * fitness min/maxer (implies ordered?)
