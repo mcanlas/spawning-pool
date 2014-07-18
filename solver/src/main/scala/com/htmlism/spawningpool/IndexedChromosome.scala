@@ -15,9 +15,9 @@ package com.htmlism.spawningpool
 
 trait IndexedChromosome[B, A] extends HomogeneousChromosome[B, A] {
   /** The sequence of genes that make up this chromosome.
-   *
-   * @return A collection of genes
-   */
+    *
+    * @return A collection of genes
+    */
 
   def genes: Seq[A]
 

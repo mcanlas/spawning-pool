@@ -8,7 +8,7 @@ package com.htmlism.spawningpool
   *   def crossover(mate: Chromosome): Chromosome
   * }}}
   *
-  * */
+  */
 
 trait Chromosome[A] {
   /** Produces a slightly modified chromosome.

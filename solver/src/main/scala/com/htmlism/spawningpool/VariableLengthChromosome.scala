@@ -10,7 +10,7 @@ package com.htmlism.spawningpool
   *  - Delete a random gene
   *  - Mutate a random gene (via [[IndexedChromosome]])
   *
-  * */
+  */
 
 trait VariableLengthChromosome[B, A] extends IndexedChromosome[B, A] {
   override def mutate: B = {
