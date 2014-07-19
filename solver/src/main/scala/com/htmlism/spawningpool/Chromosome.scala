@@ -8,6 +8,8 @@ package com.htmlism.spawningpool
   *   def crossover(mate: Chromosome): Chromosome
   * }}}
   *
+  * @tparam A The trait or class extending this trait
+  *
   */
 
 trait Chromosome[A] {
