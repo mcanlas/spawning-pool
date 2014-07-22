@@ -30,4 +30,16 @@ class SolverSpec extends Specification {
       solver.solveNow === Set('cecil, 'rosa, 'kain)
     }
   }
+
+  "The solver" should {
+    import Solver._
+
+    "select individuals at random" in {
+      implicit val rig = new DeterministicGenerator[Int](Seq(0)) with RandomIndexGenerator {
+        def randomIndex(size: Int) = nextElement
+      }
+
+      randomIndividual(Seq('arthas)) === 'arthas
+    }
+  }
 }
