@@ -9,8 +9,11 @@ package com.htmlism.spawningpool
   * (i.e. `Integer`, `Double`, etc.). A typical implementation for `generateAllele` would
   * involve a random number generator. For discrete spaces, inherit from [[CombinatorialChromosome]].
   *
+  * @tparam A The trait or class extending this trait
+  * @tparam B The type for a single gene
+  *
   * */
 
-trait HomogeneousChromosome[B, A] extends Chromosome[B] {
-  def generateAllele: A
+trait HomogeneousChromosome[A, B] extends Chromosome[A] {
+  def generateAllele: B
 }
