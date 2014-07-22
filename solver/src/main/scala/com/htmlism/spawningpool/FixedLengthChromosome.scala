@@ -7,7 +7,16 @@ package com.htmlism.spawningpool
   *
   */
 
-trait FixedLengthChromosome[A, B] extends IndexedChromosome[A, B] {
+trait FixedLengthChromosome[A <: FixedLengthChromosome[A, B], B] extends IndexedChromosome[A, B] {
   // an optimization given that both chromosomes are the same length
-  override def crossover(mate: A): A = ??? // TODO implement fixed ceiling crossover given rig
+  override def crossover(mate: A) = {
+    val childGenes = for (n <- 0 to genes.size - 1) yield {
+      if (randomThisParent)
+        this(n)
+      else
+        mate(n)
+    }
+
+    construct(childGenes)
+  }
 }

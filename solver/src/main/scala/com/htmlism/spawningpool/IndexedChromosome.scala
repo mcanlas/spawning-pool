@@ -42,9 +42,21 @@ trait IndexedChromosome[A, B] extends HomogeneousChromosome[A, B] {
 
   def mutate = construct(genes.updated(randomGeneIndex, generateAllele))
 
-  def crossover(mate: A) = ??? : A // TODO implement variable length crossover here
-
-  def randomThisParent: Boolean = ??? // TODO implement crossover parent picker
+  /** Randomly generates a gene index for mutation.
+    *
+    * @return A gene index
+    */
 
   def randomGeneIndex = new util.Random().nextInt(genes.size)
+
+  def crossover(mate: A) = ??? : A // TODO implement variable length crossover here
+
+  /** Randomly selects a parent for crossover.
+    *
+    * If the value is true, this chromosome's gene is selected. Otherwise, the mate's gene is selected.
+    *
+    * @return A parent, encoded via a boolean
+    */
+
+  def randomThisParent = new util.Random().nextBoolean()
 }
