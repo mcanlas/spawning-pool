@@ -41,5 +41,7 @@ trait IndexedChromosome[B, A] extends HomogeneousChromosome[B, A] {
 
   def crossover(mate: B) = ??? : B // TODO implement variable length crossover here
 
+  def randomThisParent: Boolean = ??? // TODO implement crossover parent picker
+
   def randomGeneIndex = new util.Random().nextInt(genes.size)
 }
