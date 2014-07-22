@@ -49,18 +49,22 @@ trait IndexedChromosome[A <: IndexedChromosome[A, B], B] extends HomogeneousChro
 
   def randomGeneIndex = new util.Random().nextInt(genes.size)
 
-  def crossover(mate: A): A = {
-    val childGenes = for (i <- 0 to Math.max(genes.size, mate.genes.size) - 1) yield {
+  def crossover(mate: A): A = crossoverRecursively(mate, Math.max(genes.size, mate.genes.size) - 1)
+
+  private def crossoverRecursively(mate: A, i: Int, acc: Seq[B] = Nil): A =
+    if (i == -1)
+      construct(acc)
+    else {
       val parent = if (randomThisParent) this else mate
 
-      if (parent.genes.isDefinedAt(i))
-        Some(parent(i))
-      else
-        None
-    }
+      val newAcc =
+        if (parent.genes.isDefinedAt(i))
+          parent(i) +: acc
+        else
+          acc
 
-    construct(childGenes.flatten)
-  }
+      crossoverRecursively(mate, i - 1, newAcc)
+    }
 
   /** Randomly selects a parent for crossover.
     *
