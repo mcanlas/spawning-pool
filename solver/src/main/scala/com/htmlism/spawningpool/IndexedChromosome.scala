@@ -3,23 +3,26 @@ package com.htmlism.spawningpool
 /** The base trait for homogeneous chromosomes backed by a sequence.
   *
   * {{{
-  *   def genes: Seq[A]
+  *   def genes: Seq[B]
   *
-  *   def construct(genes: Seq[A]): B
+  *   def construct(genes: Seq[B]): A
   * }}}
   *
   * This trait provides a default implementation for mutation. Mutation occurs by
   * replacing a random gene with a randomly generated allele.
   *
+  * @tparam A The trait or class extending this trait
+  * @tparam B The type for a single gene
+  *
   */
 
-trait IndexedChromosome[B, A] extends HomogeneousChromosome[B, A] {
+trait IndexedChromosome[A, B] extends HomogeneousChromosome[A, B] {
   /** The sequence of genes that make up this chromosome.
     *
     * @return A collection of genes
     */
 
-  def genes: Seq[A]
+  def genes: Seq[B]
 
   /** A constructor for chromosomes of this type.
     *
@@ -27,7 +30,7 @@ trait IndexedChromosome[B, A] extends HomogeneousChromosome[B, A] {
     * @return A new chromosome
     */
 
-  def construct(genes: Seq[A]): B
+  def construct(genes: Seq[B]): A
 
   /** A gene at index n of the chromosome
     *
@@ -39,7 +42,7 @@ trait IndexedChromosome[B, A] extends HomogeneousChromosome[B, A] {
 
   def mutate = construct(genes.updated(randomGeneIndex, generateAllele))
 
-  def crossover(mate: B) = ??? : B // TODO implement variable length crossover here
+  def crossover(mate: A) = ??? : A // TODO implement variable length crossover here
 
   def randomThisParent: Boolean = ??? // TODO implement crossover parent picker
 
