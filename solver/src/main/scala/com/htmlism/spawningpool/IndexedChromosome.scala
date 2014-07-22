@@ -16,7 +16,7 @@ package com.htmlism.spawningpool
   *
   */
 
-trait IndexedChromosome[A, B] extends HomogeneousChromosome[A, B] {
+trait IndexedChromosome[A <: IndexedChromosome[A, B], B] extends HomogeneousChromosome[A, B] {
   /** The sequence of genes that make up this chromosome.
     *
     * @return A collection of genes
@@ -49,7 +49,18 @@ trait IndexedChromosome[A, B] extends HomogeneousChromosome[A, B] {
 
   def randomGeneIndex = new util.Random().nextInt(genes.size)
 
-  def crossover(mate: A) = ??? : A // TODO implement variable length crossover here
+  def crossover(mate: A): A = {
+    val childGenes = for (i <- 0 to Math.max(genes.size, mate.genes.size) - 1) yield {
+      val parent = if (randomThisParent) this else mate
+
+      if (parent.genes.isDefinedAt(i))
+        Some(parent(i))
+      else
+        None
+    }
+
+    construct(childGenes.flatten)
+  }
 
   /** Randomly selects a parent for crossover.
     *

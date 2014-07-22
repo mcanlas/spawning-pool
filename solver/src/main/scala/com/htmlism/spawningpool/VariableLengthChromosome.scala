@@ -15,16 +15,18 @@ package com.htmlism.spawningpool
   *
   */
 
-trait VariableLengthChromosome[A, B] extends IndexedChromosome[A, B] {
+trait VariableLengthChromosome[A <: VariableLengthChromosome[A, B], B] extends IndexedChromosome[A, B] {
   import VariableLengthChromosome._
 
-  override def mutate: A = randomMutationOperation match { // TODO given rig, choose add in n + 1, delete in n, or spot mutate
+  override def mutate: A = randomMutationOperation match {
     case MutateGene => super.mutate
-    case AddGene    => ???
-    case RemoveGene => ???
+    case AddGene    => construct(genes.patch(randomNewGeneIndex, Seq(generateAllele), 0))
+    case RemoveGene => construct(genes.patch(randomGeneIndex, Nil, 1))
   }
 
   def randomMutationOperation = new util.Random().nextInt(3)
+
+  def randomNewGeneIndex = new util.Random().nextInt(genes.size + 1)
 }
 
 object VariableLengthChromosome {

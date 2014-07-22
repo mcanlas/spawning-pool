@@ -16,6 +16,8 @@ class ChromosomeSpec extends Specification {
       chromosome.crossover(asianTour) === TspTour(Seq('HongKong, 'LosAngeles, 'Beijing))
     }
   }
+
+  // TODO test variable length
 }
 
 case class TspTour(genes: Seq[Symbol]) extends FixedLengthChromosome[TspTour, Symbol] with CombinatorialChromosome[TspTour, Symbol] {
