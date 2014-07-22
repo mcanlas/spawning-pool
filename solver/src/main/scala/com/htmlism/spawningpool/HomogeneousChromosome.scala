@@ -19,5 +19,12 @@ package com.htmlism.spawningpool
   * */
 
 trait HomogeneousChromosome[A, B] extends Chromosome[A] {
+  /** Generates an allele.
+    *
+    * This method provides a source of values for genes during mutation.
+    *
+    * @return An allele.
+    */
+
   def generateAllele: B
 }
