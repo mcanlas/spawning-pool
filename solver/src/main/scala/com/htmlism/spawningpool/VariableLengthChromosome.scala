@@ -10,10 +10,13 @@ package com.htmlism.spawningpool
   *  - Delete a random gene
   *  - Mutate a random gene (via [[IndexedChromosome]])
   *
+  * @tparam A The trait or class extending this trait
+  * @tparam B The type for a single gene
+  *
   */
 
-trait VariableLengthChromosome[B, A] extends IndexedChromosome[B, A] {
-  override def mutate: B = {
+trait VariableLengthChromosome[A, B] extends IndexedChromosome[A, B] {
+  override def mutate: A = {
     // TODO given rig, choose add in n + 1, delete in n, or spot mutate
 
     ???
