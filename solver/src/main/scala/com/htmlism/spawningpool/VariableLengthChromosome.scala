@@ -19,7 +19,7 @@ trait VariableLengthChromosome[A, B] extends IndexedChromosome[A, B] {
   import VariableLengthChromosome._
 
   override def mutate: A = randomMutationOperation match { // TODO given rig, choose add in n + 1, delete in n, or spot mutate
-    case MutateGene => ???
+    case MutateGene => super.mutate
     case AddGene    => ???
     case RemoveGene => ???
   }
