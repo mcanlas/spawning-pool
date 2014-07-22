@@ -16,9 +16,19 @@ package com.htmlism.spawningpool
   */
 
 trait VariableLengthChromosome[A, B] extends IndexedChromosome[A, B] {
-  override def mutate: A = {
-    // TODO given rig, choose add in n + 1, delete in n, or spot mutate
+  import VariableLengthChromosome._
 
-    ???
+  override def mutate: A = randomMutationOperation match { // TODO given rig, choose add in n + 1, delete in n, or spot mutate
+    case MutateGene => ???
+    case AddGene    => ???
+    case RemoveGene => ???
   }
+
+  def randomMutationOperation = new util.Random().nextInt(3)
+}
+
+object VariableLengthChromosome {
+  val MutateGene = 0
+  val AddGene    = 1
+  val RemoveGene = 2
 }
