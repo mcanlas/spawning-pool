@@ -3,9 +3,9 @@ package com.htmlism.spawningpool
 /** The base trait for chromosomes that support mutation and crossover.
   *
   * {{{
-  *   def mutate: Chromosome
+  *   def mutate: A
   *
-  *   def crossover(mate: Chromosome): Chromosome
+  *   def crossover(mate: A): A
   * }}}
   *
   * @tparam A The trait or class extending this trait
