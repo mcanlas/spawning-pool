@@ -2,6 +2,10 @@ package com.htmlism.spawningpool
 
 /** A trait for chromosomes that support the generation of alleles.
   *
+  * {{{
+  *   def generateAllele: B
+  * }}}
+  *
   * Allele generation is used by the mutation operators found in [[IndexedChromosome]]
   * and [[VariableLengthChromosome]].
   *
