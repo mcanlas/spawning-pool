@@ -12,9 +12,19 @@ package com.htmlism.spawningpool
   * */
 
 trait CombinatorialChromosome[A, B] extends HomogeneousChromosome[A, B] {
+  /** A collection of possible values for genes
+    *
+    * @return A sequence of values
+    */
+
   def alleles: Seq[B]
 
   def generateAllele = alleles(randomAlleleIndex)
+
+  /** Randomly generates an allele index for mutation.
+    *
+    * @return An allele index
+    */
 
   def randomAlleleIndex = new util.Random().nextInt(alleles.size)
 }
