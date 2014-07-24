@@ -1,3 +1,4 @@
+* need drosophilia/helloworld
 * document type parameters
 * support arbitrary types?
 * support arbitary fitness?
