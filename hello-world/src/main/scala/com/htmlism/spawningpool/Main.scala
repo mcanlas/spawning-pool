@@ -20,3 +20,15 @@ class Phrase(val genes: Seq[Char]) extends FixedLengthChromosome[Phrase, Char] {
     */
   def construct(genes: Seq[Char]) = new Phrase(genes)
 }
+
+object PhraseFitness {
+  def fitnessFor(target: String)(phrase: Phrase) = (for (i <- 0 to target.length - 1) yield {
+    val targetInt    = target(i).toInt
+    val candidateInt = phrase(i).toInt
+
+    if (targetInt == candidateInt)
+      10
+    else
+      -2 * Math.abs(targetInt - candidateInt)
+  }).sum
+}
