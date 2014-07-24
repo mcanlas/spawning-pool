@@ -56,7 +56,7 @@ case class TspTour(genes: Seq[Symbol]) extends FixedLengthChromosome[TspTour, Sy
 
   override def randomAlleleIndex = 0
   override def randomGeneIndex = 1
-  override def randomThisParent = parents.nextElement
+  override def randomlyThisParent = parents.nextElement
 }
 
 case class StackOperations(genes: Seq[Symbol], override val randomMutationOperation: Int) extends VariableLengthChromosome[StackOperations, Symbol] with CombinatorialChromosome[StackOperations, Symbol] {
@@ -69,5 +69,5 @@ case class StackOperations(genes: Seq[Symbol], override val randomMutationOperat
   override def randomAlleleIndex = 0
   override def randomGeneIndex = 1
   override def randomNewGeneIndex = 4
-  override def randomThisParent = parents.nextElement
+  override def randomlyThisParent = parents.nextElement
 }

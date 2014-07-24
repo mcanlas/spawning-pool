@@ -55,7 +55,7 @@ trait IndexedChromosome[A <: IndexedChromosome[A, B], B] extends HomogeneousChro
     if (i == -1)
       construct(acc)
     else {
-      val parent = if (randomThisParent) this else mate
+      val parent = if (randomlyThisParent) this else mate
 
       val newAcc =
         if (parent.genes.isDefinedAt(i))
@@ -73,5 +73,5 @@ trait IndexedChromosome[A <: IndexedChromosome[A, B], B] extends HomogeneousChro
     * @return A parent, encoded via a boolean
     */
 
-  def randomThisParent = new util.Random().nextBoolean()
+  def randomlyThisParent = new util.Random().nextBoolean()
 }
