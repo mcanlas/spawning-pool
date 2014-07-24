@@ -1,3 +1,4 @@
+* explore spontaneous generation and how it links to fixed/variable length homogenous chromosomes
 * need drosophilia/helloworld
 * document type parameters
 * support arbitrary types?
