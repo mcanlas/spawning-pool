@@ -1,5 +1,5 @@
 package com.htmlism.spawningpool
 
-trait Generator[A] {
+trait ChromosomeGenerator[A] {
   def generate: A
 }

@@ -16,7 +16,7 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
   if (islandCount < 1)
     throw new IllegalArgumentException("must have an island count of one or greater")
 
-  def solve(implicit src: Generator[A]): Future[Set[A]] = evolveFrom { Vector.fill(populationSize)(src.generate) }
+  def solve(implicit src: ChromosomeGenerator[A]): Future[Set[A]] = evolveFrom { Vector.fill(populationSize)(src.generate) }
 
   def solve(seed: Traversable[A]): Future[Set[A]] =
     if (seed.isEmpty)
@@ -31,7 +31,7 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
     fittestSolutions(evolvedIslands)
   }
 
-  def solveNow(implicit src: Generator[A]): Set[A] = awaitResult(solve(src))
+  def solveNow(implicit src: ChromosomeGenerator[A]): Set[A] = awaitResult(solve(src))
 
   def solveNow(seed: Traversable[A]): Set[A] = awaitResult(solve(seed))
 
