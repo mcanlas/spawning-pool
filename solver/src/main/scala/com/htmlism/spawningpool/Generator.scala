@@ -1,5 +1,5 @@
 package com.htmlism.spawningpool
 
-trait Generator[T] {
-  def generate: T
+trait Generator[A] {
+  def generate: A
 }
