@@ -2,6 +2,8 @@ package com.htmlism.spawningpool
 
 object Main extends App {
   println("hello")
+
+  val solver = new Solver(PhraseFitness.fitnessFor("hello world"))
 }
 
 class Phrase(val genes: Seq[Char]) extends FixedLengthChromosome[Phrase, Char] {
