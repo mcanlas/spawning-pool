@@ -1,3 +1,4 @@
+* maybe keep everything in a solver class to unify the type, but then implement it using testable object methods
 * explore spontaneous generation and how it links to fixed/variable length homogenous chromosomes
 * need drosophilia/helloworld
   * sodoku??
