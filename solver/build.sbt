@@ -6,6 +6,6 @@ version := "0.0.1-SNAPSHOT"
 
 autoAPIMappings := true
 
-libraryDependencies += "org.specs2" %% "specs2" % "2.3.12" % "test"
+libraryDependencies += "org.specs2" %% "specs2" % "2.4.2" % "test"
 
 initialCommands in console := "import com.htmlism.spawningpool._"
