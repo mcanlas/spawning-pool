@@ -9,7 +9,7 @@ object Solver {
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexGenerator) = population(rig.randomIndex(population.size))
 }
 
-class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCount: Int = 4)(implicit order: Ordering[B], rig: RandomIndexGenerator) {
+class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCount: Int = 4)(implicit ordering: Ordering[B], rig: RandomIndexGenerator) {
   if (populationSize < 1)
     throw new IllegalArgumentException("must have a population size of one or greater")
 
