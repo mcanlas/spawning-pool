@@ -4,6 +4,8 @@ object Main extends App {
   println("hello")
 
   val solver = new Solver(PhraseFitness.fitnessFor("hello world"))
+
+//  solver.solveNow
 }
 
 class Phrase(val genes: Seq[Char]) extends FixedLengthChromosome[Phrase, Char] {
