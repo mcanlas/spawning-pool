@@ -20,3 +20,4 @@
     * cross over, spot mutation (requires () => T, or Chromosome => T)
   * variable length homogenous (Stack[T])
 * do termination conditions need operators? 'and' and 'or'
+* should the chromosome /value class/ and its constructors/factories be seperate?
