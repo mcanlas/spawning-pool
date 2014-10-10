@@ -8,7 +8,7 @@ object Main extends App {
 //  solver.solveNow
 }
 
-class Phrase(val genes: Seq[Char]) extends FixedLengthChromosome[Phrase, Char] {
+case class Phrase(genes: Seq[Char]) extends FixedLengthChromosome[Phrase, Char] {
   /** Generates an allele.
     *
     * This method provides a source of values for genes during mutation.
