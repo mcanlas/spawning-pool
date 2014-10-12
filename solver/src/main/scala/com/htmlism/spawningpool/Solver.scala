@@ -52,5 +52,5 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
 
   private def generateIslands(f: => Vector[A]) = Traversable.fill(islandCount)(f)
 
-  private def awaitResult[T](future: Future[T]) = Await.result(future, 0 nanos)
+  private def awaitResult[T](future: Future[T]) = Await.result(future, Duration.Inf)
 }
