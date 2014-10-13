@@ -3,9 +3,17 @@ package com.htmlism.spawningpool
 object Main extends App {
   println("hello")
 
+  implicit val generator = PhraseGenerator
+
   val solver = new Solver(PhraseFitness.fitnessFor("hello world"))
 
-//  solver.solveNow
+  val solutions = solver.solveNow
+
+  solutions.foreach(println)
+}
+
+object PhraseGenerator extends ChromosomeGenerator[Phrase] {
+  def generateChromosome = Phrase(Seq.fill(11)((new util.Random).nextPrintableChar()))
 }
 
 case class Phrase(genes: Seq[Char]) extends FixedLengthChromosome[Phrase, Char] {
