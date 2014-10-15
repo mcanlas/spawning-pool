@@ -11,13 +11,13 @@ object Solver {
     population.toVector
   } // TODO hard count countdown termination to zero
 
-  def tournamentSelect[A, B](fitness: A => B, population: Seq[A], size: Int)(implicit ord: Ordering[B]): A =
+  def tournamentSelect[A, B](size: Int)(implicit fitness: A => B, ord: Ordering[B], population: Seq[A]): A =
     if (size > 0)
-      tournamentSelect(fitness, population, size, randomIndividual(population))
+      tournamentSelect(size, randomIndividual(population))
     else
       throw new IllegalArgumentException("tournament size must be at least 1")
 
-  def tournamentSelect[A, B](fitness: A => B, population: Seq[A], size: Int, champion: A)(implicit ord: Ordering[B]): A =
+  def tournamentSelect[A, B](size: Int, champion: A)(implicit fitness: A => B, ord: Ordering[B], population: Seq[A]): A =
     if (size == 1)
       champion
     else {
