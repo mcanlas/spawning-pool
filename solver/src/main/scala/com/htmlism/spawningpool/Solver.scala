@@ -41,6 +41,8 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
   if (islandCount < 1)
     throw new IllegalArgumentException("must have an island count of one or greater")
 
+  lazy val fitness = memoize(fitnessFunction)
+
   def solve(implicit src: ChromosomeGenerator[A]): Future[Solutions] = evolveFrom { Vector.fill(populationSize)(src.generateChromosome) }
 
   def solve(seed: Traversable[A]): Future[Solutions] =
