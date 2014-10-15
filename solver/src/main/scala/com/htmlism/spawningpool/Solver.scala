@@ -7,7 +7,7 @@ import scala.concurrent.duration._
 object Solver {
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexGenerator): A = population(rig.randomIndex(population.size))
 
-  def evolvePopulation[A, B](implicit population: Seq[A], fitness: A => B): Vector[A] = {
+  def evolvePopulation[A, B](implicit fitness: A => B, population: Seq[A]): Vector[A] = {
     population.toVector
   } // TODO hard count countdown termination to zero
 
@@ -57,7 +57,7 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
   def evolveFrom(seeding: => Population) = future {
     val islands = generateIslands(seeding)
 
-    val evolvedIslands = islands.map { evolvePopulation(_, fitness) }
+    val evolvedIslands = islands.map { evolvePopulation(fitness, _) }
 
     fittestSolutions(evolvedIslands)
   }
