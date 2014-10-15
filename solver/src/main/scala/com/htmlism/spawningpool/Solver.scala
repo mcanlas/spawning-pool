@@ -11,6 +11,25 @@ object Solver {
     population.toVector
   } // TODO hard count countdown termination to zero
 
+  def tournamentSelect[A, B](fitnessFunction: A => B, population: Seq[A], size: Int)(implicit ord: Ordering[B]): A =
+    if (size > 0)
+      tournamentSelect(fitnessFunction, population, size, randomIndividual(population))
+    else
+      throw new IllegalArgumentException("tournament size must be at least 1")
+
+  def tournamentSelect[A, B](fitness: A => B, population: Seq[A], size: Int, champion: A)(implicit ord: Ordering[B]): A =
+    if (size == 1)
+      champion
+    else {
+      val challenger = randomIndividual(population)
+      val compare = ord.compare(fitness(champion), fitness(challenger))
+
+      if (compare < 0)
+        challenger
+      else
+        champion
+    }
+
   def awaitResult[A](future: Future[A]): A = Await.result(future, Duration.Inf)
 }
 
