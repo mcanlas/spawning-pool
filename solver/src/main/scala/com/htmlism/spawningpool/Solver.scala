@@ -8,7 +8,9 @@ import scala.language.postfixOps
 object Solver {
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexGenerator): A = population(rig.randomIndex(population.size))
 
-  def evolvePopulation[A](population: Vector[A]): Vector[A] = ??? // TODO hard count countdown termination to zero
+  def evolvePopulation[A](population: Vector[A]): Vector[A] = {
+    population
+  } // TODO hard count countdown termination to zero
 
   def sampleParent[A](population: Vector[A]): A = {
     val i = (new scala.util.Random).nextInt(population.size)
@@ -53,7 +55,7 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
   def evolveFrom(seeding: => Population) = future {
     val islands = generateIslands(seeding)
 
-    val evolvedIslands = islands
+    val evolvedIslands = islands.map { evolvePopulation }
 
     fittestSolutions(evolvedIslands)
   }
