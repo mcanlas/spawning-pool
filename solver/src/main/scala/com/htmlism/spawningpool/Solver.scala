@@ -11,6 +11,7 @@ object Solver {
 
 class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCount: Int = 4)(implicit ordering: Ordering[B], rig: RandomIndexGenerator) {
   type Population = Vector[A]
+  type Solutions  = Set[A]
 
   if (populationSize < 1)
     throw new IllegalArgumentException("must have a population size of one or greater")
@@ -18,9 +19,9 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
   if (islandCount < 1)
     throw new IllegalArgumentException("must have an island count of one or greater")
 
-  def solve(implicit src: ChromosomeGenerator[A]): Future[Set[A]] = evolveFrom { Vector.fill(populationSize)(src.generateChromosome) }
+  def solve(implicit src: ChromosomeGenerator[A]): Future[Solutions] = evolveFrom { Vector.fill(populationSize)(src.generateChromosome) }
 
-  def solve(seed: Traversable[A]): Future[Set[A]] =
+  def solve(seed: Traversable[A]): Future[Solutions] =
     if (seed.isEmpty)
       throw new IllegalArgumentException("must provide a non-empty collection as a seed")
     else evolveFrom { seed.toVector }
@@ -33,11 +34,11 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
     fittestSolutions(evolvedIslands)
   }
 
-  def solveNow(implicit src: ChromosomeGenerator[A]): Set[A] = awaitResult(solve(src))
+  def solveNow(implicit src: ChromosomeGenerator[A]): Solutions = awaitResult(solve(src))
 
-  def solveNow(seed: Traversable[A]): Set[A] = awaitResult(solve(seed))
+  def solveNow(seed: Traversable[A]): Solutions = awaitResult(solve(seed))
 
-  private def fittestMember(population: Traversable[A]): Set[A] = ??? // reduces a population into a set
+  private def fittestMember(population: Traversable[A]): Solutions = ??? // reduces a population into a set
 
   private def mutate(chromosome: A): A = ???
 
@@ -47,7 +48,7 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
 
   private def evolvePopulation(chromosomes: Population): Population = ??? // recursive
 
-  private def fittestSolutions(islands: Traversable[Population]): Set[A] = {
+  private def fittestSolutions(islands: Traversable[Population]): Solutions = {
     // TODO needs evolution/selection
     islands.fold(Vector.empty)((acc, pop) => acc ++ pop).toSet
   }
