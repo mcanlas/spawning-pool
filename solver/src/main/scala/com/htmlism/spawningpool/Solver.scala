@@ -18,17 +18,6 @@ object Solver {
   }
 
   def awaitResult[A](future: Future[A]): A = Await.result(future, Duration.Inf)
-
-  def memoize[A, B](f: A => B): A => B = {
-    val cache = collection.mutable.Map[A, B]()
-
-    { key =>
-      if (!cache.contains(key))
-        cache(key) = f(key)
-
-      cache(key)
-    }
-  }
 }
 
 class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCount: Int = 4)(implicit ordering: Ordering[B], rig: RandomIndexGenerator) {
