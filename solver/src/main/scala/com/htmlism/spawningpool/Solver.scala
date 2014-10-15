@@ -7,8 +7,8 @@ import scala.concurrent.duration._
 object Solver {
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexGenerator): A = population(rig.randomIndex(population.size))
 
-  def evolvePopulation[A](population: Vector[A]): Vector[A] = {
-    population
+  def evolvePopulation[A](population: Seq[A]): Vector[A] = {
+    population.toVector
   } // TODO hard count countdown termination to zero
 
   def awaitResult[A](future: Future[A]): A = Await.result(future, Duration.Inf)
