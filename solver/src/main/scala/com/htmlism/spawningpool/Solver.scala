@@ -8,6 +8,8 @@ import scala.language.postfixOps
 object Solver {
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexGenerator): A = population(rig.randomIndex(population.size))
 
+  def evolvePopulation[A](population: Vector[A]): Vector[A] = ??? // TODO hard count countdown termination to zero
+
   def awaitResult[A](future: Future[A]): A = Await.result(future, Duration.Inf)
 }
 
@@ -49,8 +51,6 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
   private def crossover(a: A, b: A): A = ???
 
   private def sampleChromosome(chromosomes: Population): Population = ??? // consumes rig
-
-  private def evolvePopulation(chromosomes: Population): Population = ??? // recursive
 
   private def fittestSolutions(islands: Traversable[Population]): Solutions = {
     // TODO needs evolution/selection
