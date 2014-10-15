@@ -49,14 +49,6 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
 
   def solveNow(seed: Traversable[A]): Solutions = awaitResult(solve(seed))
 
-  private def fittestMember(population: Traversable[A]): Solutions = ??? // reduces a population into a set
-
-  private def mutate(chromosome: A): A = ???
-
-  private def crossover(a: A, b: A): A = ???
-
-  private def sampleChromosome(chromosomes: Population): Population = ??? // consumes rig
-
   private def fittestSolutions(islands: Traversable[Population]): Solutions = {
     // TODO needs evolution/selection
     islands.fold(Vector.empty)((acc, pop) => acc ++ pop).toSet
