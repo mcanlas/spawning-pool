@@ -35,11 +35,11 @@ class SolverSpec extends Specification {
     import Solver._
 
     "select individuals at random" in {
-      implicit val rig = new DeterministicGenerator[Int](Seq(0)) with RandomIndexGenerator {
+      val rig = new DeterministicGenerator[Int](Seq(0)) with RandomIndexGenerator {
         def randomIndex(size: Int) = nextElement
       }
 
-      randomIndividual(Seq('arthas)) === 'arthas
+      randomIndividual(Seq('arthas))(rig) === 'arthas
     }
   }
 }
