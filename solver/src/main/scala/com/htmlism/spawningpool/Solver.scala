@@ -6,9 +6,9 @@ import scala.concurrent.duration._
 import scala.language.postfixOps
 
 object Solver {
-  def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexGenerator) = population(rig.randomIndex(population.size))
+  def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexGenerator): A = population(rig.randomIndex(population.size))
 
-  def awaitResult[A](future: Future[A]) = Await.result(future, Duration.Inf)
+  def awaitResult[A](future: Future[A]): A = Await.result(future, Duration.Inf)
 }
 
 class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCount: Int = 4)(implicit ordering: Ordering[B], rig: RandomIndexGenerator) {
