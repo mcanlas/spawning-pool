@@ -13,7 +13,8 @@ object Solver {
 
   def tournamentSelect[A, B](size: Int)(implicit fitness: A => B, ord: Ordering[B], population: Seq[A]): A =
     if (size > 0)
-      tournamentSelect(size, randomIndividual(population))
+      // TODO something about predef being difficult, need solution context
+      tournamentSelect(size, randomIndividual(population))(fitness, ord, population)
     else
       throw new IllegalArgumentException("tournament size must be at least 1")
 
@@ -29,6 +30,13 @@ object Solver {
       else
         champion
     }
+
+  def bearChild[A <: Chromosome[A], B](implicit fitness: A => B, ord: Ordering[B], population: Seq[A]): A = {
+    // TODO something about predef being difficult, need solution context
+    val child = tournamentSelect(2)(fitness, ord, population) crossover tournamentSelect(2)(fitness, ord, population)
+
+    child.mutate
+  }
 
   def awaitResult[A](future: Future[A]): A = Await.result(future, Duration.Inf)
 }
