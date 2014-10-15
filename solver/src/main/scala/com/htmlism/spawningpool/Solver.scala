@@ -7,7 +7,7 @@ import scala.concurrent.duration._
 object Solver {
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexGenerator): A = population(rig.randomIndex(population.size))
 
-  def evolvePopulation[A](population: Seq[A]): Vector[A] = {
+  def evolvePopulation[A, B](implicit population: Seq[A], fitness: A => B): Vector[A] = {
     population.toVector
   } // TODO hard count countdown termination to zero
 
@@ -26,7 +26,7 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
   if (islandCount < 1)
     throw new IllegalArgumentException("must have an island count of one or greater")
 
-  lazy val fitness = memoize(fitnessFunction)
+  implicit lazy val fitness = memoize(fitnessFunction)
 
   def solve(implicit src: ChromosomeGenerator[A]): Future[Solutions] = evolveFrom { Vector.fill(populationSize)(src.generateChromosome) }
 
@@ -38,7 +38,7 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
   def evolveFrom(seeding: => Population) = future {
     val islands = generateIslands(seeding)
 
-    val evolvedIslands = islands.map { evolvePopulation }
+    val evolvedIslands = islands.map { evolvePopulation(_, fitness) }
 
     fittestSolutions(evolvedIslands)
   }
