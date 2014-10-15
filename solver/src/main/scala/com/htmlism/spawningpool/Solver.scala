@@ -7,9 +7,13 @@ import scala.language.postfixOps
 
 object Solver {
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexGenerator) = population(rig.randomIndex(population.size))
+
+  def awaitResult[A](future: Future[A]) = Await.result(future, Duration.Inf)
 }
 
 class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCount: Int = 4)(implicit ordering: Ordering[B], rig: RandomIndexGenerator) {
+  import com.htmlism.spawningpool.Solver._
+
   type Population = Vector[A]
   type Solutions  = Set[A]
 
@@ -54,6 +58,4 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
   }
 
   private def generateIslands(f: => Population) = Traversable.fill(islandCount)(f)
-
-  private def awaitResult[T](future: Future[T]) = Await.result(future, Duration.Inf)
 }
