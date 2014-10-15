@@ -10,6 +10,8 @@ object Solver {
 }
 
 class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCount: Int = 4)(implicit ordering: Ordering[B], rig: RandomIndexGenerator) {
+  type Population = Vector[A]
+
   if (populationSize < 1)
     throw new IllegalArgumentException("must have a population size of one or greater")
 
@@ -23,7 +25,7 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
       throw new IllegalArgumentException("must provide a non-empty collection as a seed")
     else evolveFrom { seed.toVector }
 
-  def evolveFrom(seeding: => Vector[A]) = future {
+  def evolveFrom(seeding: => Population) = future {
     val islands = generateIslands(seeding)
 
     val evolvedIslands = islands
@@ -41,16 +43,16 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
 
   private def crossover(a: A, b: A): A = ???
 
-  private def sampleChromosome(chromosomes: Vector[A]): Vector[A] = ??? // consumes rig
+  private def sampleChromosome(chromosomes: Population): Population = ??? // consumes rig
 
-  private def evolvePopulation(chromosomes: Vector[A]): Vector[A] = ??? // recursive
+  private def evolvePopulation(chromosomes: Population): Population = ??? // recursive
 
-  private def fittestSolutions(islands: Traversable[Vector[A]]): Set[A] = {
+  private def fittestSolutions(islands: Traversable[Population]): Set[A] = {
     // TODO needs evolution/selection
     islands.fold(Vector.empty)((acc, pop) => acc ++ pop).toSet
   }
 
-  private def generateIslands(f: => Vector[A]) = Traversable.fill(islandCount)(f)
+  private def generateIslands(f: => Population) = Traversable.fill(islandCount)(f)
 
   private def awaitResult[T](future: Future[T]) = Await.result(future, Duration.Inf)
 }
