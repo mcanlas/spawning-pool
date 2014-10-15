@@ -12,11 +12,6 @@ object Solver {
     population
   } // TODO hard count countdown termination to zero
 
-  def sampleParent[A](population: Vector[A]): A = {
-    val i = (new scala.util.Random).nextInt(population.size)
-    population(i)
-  }
-
   def awaitResult[A](future: Future[A]): A = Await.result(future, Duration.Inf)
 }
 
