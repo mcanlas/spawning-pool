@@ -7,23 +7,23 @@ import scala.concurrent.duration._
 object Solver {
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexGenerator): A = population(rig.randomIndex(population.size))
 
-  def evolvePopulation[A, B](implicit fitness: A => B, ord: Ordering[B], population: Seq[A]): Vector[A] = {
-    population.toVector
+  def evolvePopulation[A, B](implicit context: SolutionContext[A, B]): Vector[A] = {
+    context.population.toVector
   } // TODO hard count countdown termination to zero
 
-  def tournamentSelect[A, B](size: Int)(implicit fitness: A => B, ord: Ordering[B], population: Seq[A]): A =
+  def tournamentSelect[A, B](size: Int)(implicit ctx: SolutionContext[A, B]): A =
     if (size > 0)
       // TODO something about predef being difficult, need solution context
-      tournamentSelect(size, randomIndividual(population))(fitness, ord, population)
+      tournamentSelect(size, randomIndividual(ctx.population))
     else
       throw new IllegalArgumentException("tournament size must be at least 1")
 
-  def tournamentSelect[A, B](size: Int, champion: A)(implicit fitness: A => B, ord: Ordering[B], population: Seq[A]): A =
+  def tournamentSelect[A, B](size: Int, champion: A)(implicit ctx: SolutionContext[A, B]): A =
     if (size == 1)
       champion
     else {
-      val challenger = randomIndividual(population)
-      val compare = ord.compare(fitness(champion), fitness(challenger))
+      val challenger = randomIndividual(ctx.population)
+      val compare = ctx.ordering.compare(ctx.fitness(champion), ctx.fitness(challenger))
 
       if (compare < 0)
         challenger
@@ -31,9 +31,9 @@ object Solver {
         champion
     }
 
-  def bearChild[A <: Chromosome[A], B](implicit fitness: A => B, ord: Ordering[B], population: Seq[A]): A = {
+  def bearChild[A <: Chromosome[A], B](implicit ctx: SolutionContext[A, B]): A = {
     // TODO something about predef being difficult, need solution context
-    val child = tournamentSelect(2)(fitness, ord, population) crossover tournamentSelect(2)(fitness, ord, population)
+    val child = tournamentSelect(2) crossover tournamentSelect(2)
 
     child.mutate
   }
@@ -53,8 +53,6 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
   if (islandCount < 1)
     throw new IllegalArgumentException("must have an island count of one or greater")
 
-  implicit lazy val fitness = memoize(fitnessFunction)
-
   def solve(implicit src: ChromosomeGenerator[A]): Future[Solutions] = evolveFrom { Vector.fill(populationSize)(src.generateChromosome) }
 
   def solve(seed: Traversable[A]): Future[Solutions] =
@@ -65,7 +63,7 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
   def evolveFrom(seeding: => Population) = Future {
     val islands = generateIslands(seeding)
 
-    val evolvedIslands = islands.map { evolvePopulation(fitness, ordering, _) }
+    val evolvedIslands = islands.map { p => evolvePopulation(SolutionContext(fitnessFunction, ordering, p)) }
 
     fittestSolutions(evolvedIslands)
   }
@@ -80,4 +78,14 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
   }
 
   private def generateIslands(f: => Population) = Traversable.fill(islandCount)(f)
+}
+
+object SolutionContext {
+  def apply[A, B](fitness: A => B, ordering: Ordering[B], population: Seq[A]) = {
+    new SolutionContext(memoize(fitness), ordering, population)
+  }
+}
+
+class SolutionContext[A, B](val fitness: A => B, val ordering: Ordering[B], val population: Seq[A]) {
+  def withPopulation(newPopulation: Seq[A]) = new SolutionContext(fitness, ordering, newPopulation)
 }
