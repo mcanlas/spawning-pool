@@ -62,7 +62,7 @@ class Solver[A, B](fitnessFunction: A => B, populationSize: Int = 50, islandCoun
       throw new IllegalArgumentException("must provide a non-empty collection as a seed")
     else evolveFrom { seed.toVector }
 
-  def evolveFrom(seeding: => Population) = future {
+  def evolveFrom(seeding: => Population) = Future {
     val islands = generateIslands(seeding)
 
     val evolvedIslands = islands.map { evolvePopulation(fitness, ordering, _) }
