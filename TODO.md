@@ -1,4 +1,5 @@
 * consider external operators so that value classes need not extend a trait
+  * gut chromosome methods
 * too many implicits, may need a SolutionContext/EvolutionContext
 * maybe keep everything in a solver class to unify the type, but then implement it using testable object methods
 * explore spontaneous generation and how it links to fixed/variable length homogenous chromosomes
