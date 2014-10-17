@@ -5,7 +5,7 @@ object Main extends App {
 
   implicit val generator = PhraseGenerator
 
-  val solver = new Solver(PhraseFitness.fitnessFor("hello world"))
+  val solver = new Solver(PhraseFitness.fitnessFor("hello world"), PhraseEvolver)
 
   val solutions = solver.solveNow
 
@@ -43,4 +43,10 @@ object PhraseFitness {
     else
       -2 * Math.abs(targetInt - candidateInt)
   }).sum
+}
+
+object PhraseEvolver extends Evolver[Phrase] {
+  def mutate(chromosome: Phrase) = chromosome
+
+  def crossover(firstParent: Phrase, secondParent: Phrase) = firstParent
 }

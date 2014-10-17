@@ -5,9 +5,15 @@ import org.specs2.mutable.Specification
 class SolverSpec extends Specification {
   private def fitness(symbol: Symbol) = 0
 
+  private val evolver = new Evolver[Symbol] {
+    def mutate(chromosome: Symbol) = chromosome
+
+    def crossover(firstParent: Symbol, secondParent: Symbol) = firstParent
+  }
+
   "Given an initial population seed, the solver" should {
     "return the right solution" in {
-      val solver = new Solver(fitness) : Solver[Symbol, Int] // intellij can't infer this implementation w/o a hint
+      val solver = new Solver(fitness, evolver) : Solver[Symbol, Int] // intellij can't infer this implementation w/o a hint
 
       solver.solveNow(Seq('chrono, 'marle, 'lucca)) === Set('chrono, 'marle, 'lucca)
     }
@@ -15,7 +21,7 @@ class SolverSpec extends Specification {
 
   "Given no initial population seed, the solver" should {
     "return solutions" in {
-      val solver = new Solver(fitness, populationSize = 3, islandCount = 1)
+      val solver = new Solver(fitness, evolver, populationSize = 3, islandCount = 1)
       implicit val generator = new ChromosomeProvider('cindy, 'sandy, 'mindy)
 
       solver.solveNow === Set('cindy, 'sandy, 'mindy)
@@ -24,7 +30,7 @@ class SolverSpec extends Specification {
 
   "Having multiple islands" should {
     "affect the results"  in {
-      val solver = new Solver(fitness, populationSize = 1, islandCount = 3)
+      val solver = new Solver(fitness, evolver, populationSize = 1, islandCount = 3)
       implicit val generator = new ChromosomeProvider('cecil, 'rosa, 'kain)
 
       solver.solveNow === Set('cecil, 'rosa, 'kain)
