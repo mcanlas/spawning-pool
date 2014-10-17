@@ -8,7 +8,7 @@ object Solver {
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexGenerator): A = population(rig.randomIndex(population.size))
 
   def evolvePopulation[A, B](implicit ctx: SolutionContext[A, B]): Vector[A] = {
-    ctx.population.toVector
+    Vector.fill(ctx.population.size)(bearChild)
   } // TODO hard count countdown termination to zero
 
   def tournamentSelect[A, B](size: Int)(implicit ctx: SolutionContext[A, B]): A =
