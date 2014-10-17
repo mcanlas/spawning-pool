@@ -23,7 +23,7 @@ case class Phrase(genes: Seq[Char]) extends FixedLengthChromosome[Phrase, Char] 
     *
     * @return An allele.
     */
-  def generateAllele = (new util.Random).nextInt(Char.MaxValue.toInt).toChar
+  def generateAllele = (new util.Random).nextPrintableChar()
 
   /** A constructor for chromosomes of this type.
     *
