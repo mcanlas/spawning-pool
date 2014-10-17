@@ -17,13 +17,15 @@ object PhraseGenerator extends ChromosomeGenerator[Phrase] {
 }
 
 case class Phrase(genes: Seq[Char]) extends FixedLengthChromosome[Phrase, Char] {
+  private val rng = new util.Random
+
   /** Generates an allele.
     *
     * This method provides a source of values for genes during mutation.
     *
     * @return An allele.
     */
-  def generateAllele = (new util.Random).nextPrintableChar()
+  def generateAllele = rng.nextPrintableChar()
 
   /** A constructor for chromosomes of this type.
     *
