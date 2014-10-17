@@ -30,7 +30,7 @@ object Solver {
         champion
     }
 
-  def bearChild[A <: Chromosome[A], B](implicit ctx: SolutionContext[A, B]): A = {
+  def bearChild[A, B](implicit ctx: SolutionContext[A, B]): A = {
     val child = ctx.evolver.crossover(tournamentSelect(2), tournamentSelect(2))
 
     ctx.evolver.mutate(child)
