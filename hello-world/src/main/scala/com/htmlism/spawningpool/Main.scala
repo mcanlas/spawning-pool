@@ -46,7 +46,7 @@ object PhraseFitness {
 }
 
 object PhraseEvolver extends Evolver[Phrase] {
-  def mutate(chromosome: Phrase) = chromosome
+  def mutate(chromosome: Phrase) = chromosome.mutate
 
-  def crossover(firstParent: Phrase, secondParent: Phrase) = firstParent
+  def crossover(firstParent: Phrase, secondParent: Phrase) = firstParent.crossover(secondParent)
 }
