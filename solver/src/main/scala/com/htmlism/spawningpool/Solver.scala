@@ -66,17 +66,18 @@ class Solver[A, B](fitnessFunction: A => B, evolver: Evolver[A], populationSize:
     // intellij losing type information
     val evolvedIslands = islands.map { p => evolvePopulation(SolutionContext(fitness, evolver, p)): Vector[A] }
 
-    fittestSolutions(evolvedIslands)
+    val bestSolutions = evolvedIslands.map { p =>
+      val byFitness = p.groupBy(fitness)
+
+      byFitness(byFitness.keys.max)
+    }
+
+    bestSolutions.foldLeft(Set.empty[A])((acc, sols) => acc ++ sols)
   }
 
   def solveNow(implicit src: ChromosomeGenerator[A]): Solutions = awaitResult(solve(src))
 
   def solveNow(seed: Traversable[A]): Solutions = awaitResult(solve(seed))
-
-  private def fittestSolutions(islands: Traversable[Population]): Solutions = {
-    // TODO needs evolution/selection
-    islands.fold(Vector.empty)((acc, pop) => acc ++ pop).toSet
-  }
 
   private def generateIslands(f: => Population) = Traversable.fill(islandCount)(f)
 }
