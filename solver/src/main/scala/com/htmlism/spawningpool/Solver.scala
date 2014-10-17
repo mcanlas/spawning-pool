@@ -40,7 +40,10 @@ object Solver {
   def bearChild[A, B](implicit ctx: SolutionContext[A, B]): A = {
     val child = ctx.evolver.crossover(tournamentSelect(2), tournamentSelect(2))
 
-    ctx.evolver.mutate(child)
+    if ((new scala.util.Random).nextDouble < .01)
+      ctx.evolver.mutate(child)
+    else
+      child
   }
 
   def awaitResult[A](future: Future[A]): A = Await.result(future, Duration.Inf)
