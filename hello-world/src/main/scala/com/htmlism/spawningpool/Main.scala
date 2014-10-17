@@ -1,8 +1,6 @@
 package com.htmlism.spawningpool
 
 object Main extends App {
-  println("hello")
-
   implicit val generator = PhraseGenerator
 
   val solver = new Solver(PhraseFitness.fitnessFor("hello world"), PhraseEvolver, 5000, 10)
