@@ -63,7 +63,8 @@ class Solver[A, B](fitnessFunction: A => B, evolver: Evolver[A], populationSize:
   private def evolveFrom(seeding: => Population) = Future {
     val islands = generateIslands(seeding)
 
-    val evolvedIslands = islands.map { p => evolvePopulation(SolutionContext(fitness, evolver, p)) }
+    // intellij losing type information
+    val evolvedIslands = islands.map { p => evolvePopulation(SolutionContext(fitness, evolver, p)): Vector[A] }
 
     fittestSolutions(evolvedIslands)
   }
