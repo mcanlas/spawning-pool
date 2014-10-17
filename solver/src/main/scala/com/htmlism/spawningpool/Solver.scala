@@ -3,13 +3,20 @@ package com.htmlism.spawningpool
 import scala.concurrent._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
+import scala.annotation.tailrec
 
 object Solver {
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexGenerator): A = population(rig.randomIndex(population.size))
 
-  def evolvePopulation[A, B](implicit ctx: SolutionContext[A, B]): Vector[A] = {
-    Vector.fill(ctx.population.size)(bearChild)
-  } // TODO hard count countdown termination to zero
+  @tailrec
+  def evolvePopulation[A, B](implicit ctx: SolutionContext[A, B]): Seq[A] =
+    if (ctx.generations >= 10)
+      ctx.population
+    else {
+      val newPopulation = Vector.fill(ctx.population.size)(bearChild)
+
+      evolvePopulation(ctx.increment(newPopulation))
+    }
 
   def tournamentSelect[A, B](size: Int)(implicit ctx: SolutionContext[A, B]): A =
     if (size > 0)
@@ -64,7 +71,7 @@ class Solver[A, B](fitnessFunction: A => B, evolver: Evolver[A], populationSize:
     val islands = generateIslands(seeding)
 
     // intellij losing type information
-    val evolvedIslands = islands.map { p => evolvePopulation(SolutionContext(fitness, evolver, p)): Vector[A] }
+    val evolvedIslands = islands.map { p => evolvePopulation(SolutionContext(fitness, evolver, p)): Seq[A] }
 
     val bestSolutions = evolvedIslands.map { p =>
       val byFitness = p.groupBy(fitness)
