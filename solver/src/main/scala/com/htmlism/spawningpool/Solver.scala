@@ -63,7 +63,7 @@ class Solver[A, B](fitnessFunction: A => B, evolver: Evolver[A], populationSize:
   def evolveFrom(seeding: => Population) = Future {
     val islands = generateIslands(seeding)
 
-    val evolvedIslands = islands.map { p => evolvePopulation(SolutionContext(fitnessFunction, p)) }
+    val evolvedIslands = islands.map { p => evolvePopulation(SolutionContext(fitnessFunction, evolver, p)) }
 
     fittestSolutions(evolvedIslands)
   }
