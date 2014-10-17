@@ -31,9 +31,9 @@ object Solver {
     }
 
   def bearChild[A <: Chromosome[A], B](implicit ctx: SolutionContext[A, B]): A = {
-    val child = tournamentSelect(2) crossover tournamentSelect(2)
+    val child = ctx.evolver.crossover(tournamentSelect(2), tournamentSelect(2))
 
-    child.mutate
+    ctx.evolver.mutate(child)
   }
 
   def awaitResult[A](future: Future[A]): A = Await.result(future, Duration.Inf)
