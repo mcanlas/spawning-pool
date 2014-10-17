@@ -64,14 +64,19 @@ class Solver[A, B](fitness: A => B, evolver: Evolver[A], populationSize: Int = 5
   if (islandCount < 1)
     throw new IllegalArgumentException("must have an island count of one or greater")
 
-  def solve(implicit src: ChromosomeGenerator[A]): Future[Solutions] = evolveFrom { Vector.fill(populationSize)(src.generateChromosome) }
+  def solve(implicit src: ChromosomeGenerator[A]): Future[Solutions] = Future {
+    evolveFrom { Vector.fill(populationSize)(src.generateChromosome) }
+  }
 
-  def solve(seed: Traversable[A]): Future[Solutions] =
+  def solve(seed: Traversable[A]): Future[Solutions] = Future {
     if (seed.isEmpty)
       throw new IllegalArgumentException("must provide a non-empty collection as a seed")
-    else evolveFrom { seed.toVector }
+    else evolveFrom {
+      seed.toVector
+    }
+  }
 
-  private def evolveFrom(seeding: => Population) = Future {
+  private def evolveFrom(seeding: => Population) = {
     val islands = generateIslands(seeding)
 
     val evolvedIslands =
