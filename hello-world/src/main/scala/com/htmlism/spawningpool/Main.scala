@@ -5,7 +5,7 @@ object Main extends App {
 
   implicit val generator = PhraseGenerator
 
-  val solver = new Solver(PhraseFitness.fitnessFor("hello world"), PhraseEvolver)
+  val solver = new Solver(PhraseFitness.fitnessFor("hello world"), PhraseEvolver, 5000, 10)
 
   val solutions = solver.solveNow
 
