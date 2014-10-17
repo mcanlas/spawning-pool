@@ -2,7 +2,7 @@ package com.htmlism.spawningpool
 
 object SolutionContext {
   def apply[A, B](fitness: A => B, evolver: Evolver[A], population: Seq[A])(implicit ordering: Ordering[B]) = {
-    new SolutionContext(memoize(fitness), evolver, population)
+    new SolutionContext(fitness, evolver, population)
   }
 }
 

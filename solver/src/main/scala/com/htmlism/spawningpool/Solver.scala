@@ -45,6 +45,8 @@ class Solver[A, B](fitnessFunction: A => B, evolver: Evolver[A], populationSize:
   type Population = Vector[A]
   type Solutions  = Set[A]
 
+  private val fitness = memoize(fitnessFunction)
+
   if (populationSize < 1)
     throw new IllegalArgumentException("must have a population size of one or greater")
 
@@ -61,7 +63,7 @@ class Solver[A, B](fitnessFunction: A => B, evolver: Evolver[A], populationSize:
   private def evolveFrom(seeding: => Population) = Future {
     val islands = generateIslands(seeding)
 
-    val evolvedIslands = islands.map { p => evolvePopulation(SolutionContext(fitnessFunction, evolver, p)) }
+    val evolvedIslands = islands.map { p => evolvePopulation(SolutionContext(fitness, evolver, p)) }
 
     fittestSolutions(evolvedIslands)
   }
