@@ -13,7 +13,6 @@ object Solver {
 
   def tournamentSelect[A, B](size: Int)(implicit ctx: SolutionContext[A, B]): A =
     if (size > 0)
-      // TODO something about predef being difficult, need solution context
       tournamentSelect(size, randomIndividual(ctx.population))
     else
       throw new IllegalArgumentException("tournament size must be at least 1")
@@ -32,7 +31,6 @@ object Solver {
     }
 
   def bearChild[A <: Chromosome[A], B](implicit ctx: SolutionContext[A, B]): A = {
-    // TODO something about predef being difficult, need solution context
     val child = tournamentSelect(2) crossover tournamentSelect(2)
 
     child.mutate
