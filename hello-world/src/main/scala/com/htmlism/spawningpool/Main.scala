@@ -5,7 +5,11 @@ object Main extends App {
 
   val solver = new Solver(PhraseFitness.fitnessFor("hello world"), PhraseEvolver, 5000, 10)
 
+  val before = System.currentTimeMillis()
   val solutions = solver.solveNow
+  val after = System.currentTimeMillis()
+
+  println(s"evolution took ${after - before} milliseconds")
 
   solutions.foreach(println)
 }
