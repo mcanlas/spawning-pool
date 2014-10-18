@@ -74,14 +74,18 @@ class Solver[A, B](fitness: A => B, evolver: Evolver[A], populationSize: Int = 5
 
     val evolvedIslands =
       islands.zipWithIndex.map { case (p, i) =>
-        evolvePopulation(SolutionContext(i, fitness, evolver, p))
-      }.map { ctx =>
-      val byFitness = ctx.population.groupBy(ctx.fitness)
+        val calc = Future {
+          evolvePopulation(SolutionContext(i, fitness, evolver, p))
+        }
 
-      byFitness(byFitness.keys.max)
-    }
+        calc.map { ctx =>
+          val byFitness = ctx.population.groupBy(ctx.fitness)
 
-    evolvedIslands.foldLeft(Set.empty[A])((acc, sols) => acc ++ sols)
+          byFitness(byFitness.keys.max)
+        }
+      }
+
+    evolvedIslands.foldLeft(Set.empty[A])((acc, sols) => acc ++ awaitResult(sols))
   }
 
   def solveNow(implicit src: ChromosomeGenerator[A]): Solutions = awaitResult(solve(src))
