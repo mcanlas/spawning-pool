@@ -25,6 +25,7 @@ object Solver {
     else
       throw new IllegalArgumentException("tournament size must be at least 1")
 
+  @tailrec
   def tournamentSelect[A, B](size: Int, champion: A)(implicit ctx: SolutionContext[A, B]): A =
     if (size == 1)
       champion
@@ -32,10 +33,9 @@ object Solver {
       val challenger = randomIndividual(ctx.population)
       val compare = ctx.ordering.compare(ctx.fitness(champion), ctx.fitness(challenger))
 
-      if (compare < 0)
-        challenger
-      else
-        champion
+      val nextChampion = if (compare < 0) challenger else champion
+
+      tournamentSelect(size - 1, nextChampion)
     }
 
   def bearChild[A, B](implicit ctx: SolutionContext[A, B]): A = {
