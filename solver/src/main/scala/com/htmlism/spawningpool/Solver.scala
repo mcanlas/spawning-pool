@@ -76,7 +76,7 @@ class Solver[A, B](fitnessFunction: A => B, evolver: Evolver[A], populationSize:
     // intellij losing type information
     val evolvedIslands =
       islands.zipWithIndex.map { case (p, i) =>
-        evolvePopulation(SolutionContext(fitness, evolver, p)): Seq[A]
+        evolvePopulation(SolutionContext(i, fitness, evolver, p)): Seq[A]
       }
 
     val bestSolutions = evolvedIslands.map { p =>
