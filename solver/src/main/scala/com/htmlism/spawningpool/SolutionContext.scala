@@ -6,6 +6,6 @@ object SolutionContext {
   }
 }
 
-class SolutionContext[A, B](val id: Int, val fitness: A => B, val evolver: Evolver[A], val population: Seq[A], val generations: Int)(implicit val ordering: Ordering[B]) {
-  def increment(newPopulation: Seq[A]) = new SolutionContext(id, fitness, evolver, newPopulation, generations + 1): SolutionContext[A, B]
+class SolutionContext[A, B](val islandId: Int, val fitness: A => B, val evolver: Evolver[A], val population: Seq[A], val generations: Int)(implicit val ordering: Ordering[B]) {
+  def increment(newPopulation: Seq[A]) = new SolutionContext(islandId, fitness, evolver, newPopulation, generations + 1): SolutionContext[A, B]
 }
