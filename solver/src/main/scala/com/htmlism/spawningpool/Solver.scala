@@ -26,7 +26,7 @@ object Solver {
       throw new IllegalArgumentException("tournament size must be at least 1")
 
   @tailrec
-  def tournamentSelect[A, B](size: Int, champion: A)(implicit ctx: SolutionContext[A, B]): A =
+  private def tournamentSelect[A, B](size: Int, champion: A)(implicit ctx: SolutionContext[A, B]): A =
     if (size == 1)
       champion
     else {
