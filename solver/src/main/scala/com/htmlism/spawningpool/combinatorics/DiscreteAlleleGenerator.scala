@@ -1,4 +1,6 @@
-package com.htmlism.spawningpool
+package com.htmlism.spawningpool.combinatorics
+
+import com.htmlism.spawningpool.AlleleGenerator
 
 trait DiscreteAlleleGenerator[A] extends AlleleGenerator[A] {
   def generateAllele: A

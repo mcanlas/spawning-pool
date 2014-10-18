@@ -1,5 +1,6 @@
 package com.htmlism.spawningpool
 
+import com.htmlism.spawningpool.combinatorics.{VariableLengthChromosome, FixedLengthChromosome, CombinatorialChromosome}
 import org.specs2.mutable.Specification
 
 class ChromosomeSpec extends Specification {

@@ -1,5 +1,7 @@
 package com.htmlism.spawningpool
 
+import com.htmlism.spawningpool.combinatorics.{FixedLengthChromosome, ChromosomeGenerator}
+
 object Main extends App {
   implicit val generator = PhraseGenerator
 

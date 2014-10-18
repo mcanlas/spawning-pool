@@ -1,4 +1,6 @@
-package com.htmlism.spawningpool
+package com.htmlism.spawningpool.combinatorics
+
+import com.htmlism.spawningpool.combinatorics.IndexedChromosome
 
 /** The base trait for homogeneous chromosomes of a fixed length.
   *

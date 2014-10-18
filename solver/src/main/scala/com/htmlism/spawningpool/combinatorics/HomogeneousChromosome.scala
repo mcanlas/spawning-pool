@@ -1,4 +1,4 @@
-package com.htmlism.spawningpool
+package com.htmlism.spawningpool.combinatorics
 
 /** A trait for chromosomes that support the generation of alleles.
   *

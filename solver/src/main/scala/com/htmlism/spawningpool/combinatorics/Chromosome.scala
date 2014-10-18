@@ -1,4 +1,4 @@
-package com.htmlism.spawningpool
+package com.htmlism.spawningpool.combinatorics
 
 /** The base trait for chromosomes that support mutation and crossover.
   *

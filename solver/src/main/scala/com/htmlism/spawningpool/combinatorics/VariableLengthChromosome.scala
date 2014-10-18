@@ -1,4 +1,6 @@
-package com.htmlism.spawningpool
+package com.htmlism.spawningpool.combinatorics
+
+import com.htmlism.spawningpool.combinatorics.IndexedChromosome
 
 /** The base trait for homogeneous chromosomes of variable length.
   *
@@ -16,7 +18,7 @@ package com.htmlism.spawningpool
   */
 
 trait VariableLengthChromosome[A <: VariableLengthChromosome[A, B], B] extends IndexedChromosome[A, B] {
-  import VariableLengthChromosome._
+  import com.htmlism.spawningpool.combinatorics.VariableLengthChromosome._
 
   override def mutate: A = randomMutationOperation match {
     case MutateGene => super.mutate

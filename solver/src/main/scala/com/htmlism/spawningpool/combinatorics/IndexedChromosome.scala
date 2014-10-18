@@ -1,4 +1,4 @@
-package com.htmlism.spawningpool
+package com.htmlism.spawningpool.combinatorics
 
 /** The base trait for homogeneous chromosomes backed by a sequence.
   *
