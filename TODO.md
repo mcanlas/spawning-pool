@@ -1,3 +1,4 @@
+* one discrete set should be able to yield a tuple of (evolver, generator)
 * consider external operators so that value classes need not extend a trait
   * gut chromosome methods
 * explore spontaneous generation and how it links to fixed/variable length homogenous chromosomes
