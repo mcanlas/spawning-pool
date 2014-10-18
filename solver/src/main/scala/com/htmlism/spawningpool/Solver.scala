@@ -13,6 +13,7 @@ object Solver {
     if (ctx.generations >= 10)
       ctx.population
     else {
+      println(s"island ${ctx.id} generating children for generation ${ctx.generations}")
       val newPopulation = Vector.fill(ctx.population.size)(bearChild)
 
       evolvePopulation(ctx.increment(newPopulation))
