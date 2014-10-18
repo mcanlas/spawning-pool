@@ -50,13 +50,11 @@ object Solver {
   def awaitResult[A](future: Future[A]): A = Await.result(future, Duration.Inf)
 }
 
-class Solver[A, B](fitnessFunction: A => B, evolver: Evolver[A], populationSize: Int = 50, islandCount: Int = 4)(implicit ordering: Ordering[B], rig: RandomIndexGenerator) {
+class Solver[A, B](fitness: A => B, evolver: Evolver[A], populationSize: Int = 50, islandCount: Int = 4)(implicit ordering: Ordering[B], rig: RandomIndexGenerator) {
   import com.htmlism.spawningpool.Solver._
 
   type Population = Vector[A]
   type Solutions  = Set[A]
-
-  private val fitness = memoize(fitnessFunction)
 
   if (populationSize < 1)
     throw new IllegalArgumentException("must have a population size of one or greater")
