@@ -9,9 +9,9 @@ object Solver {
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexGenerator): A = population(rig.randomIndex(population.size))
 
   @tailrec
-  def evolvePopulation[A, B](implicit ctx: SolutionContext[A, B]): Seq[A] =
+  def evolvePopulation[A, B](implicit ctx: SolutionContext[A, B]): SolutionContext[A, B] =
     if (ctx.generations >= 10)
-      ctx.population
+      ctx
     else {
       println(s"island ${ctx.id} generating children for generation ${ctx.generations}")
       val newPopulation = Vector.fill(ctx.population.size)(bearChild)
@@ -74,14 +74,13 @@ class Solver[A, B](fitnessFunction: A => B, evolver: Evolver[A], populationSize:
   private def evolveFrom(seeding: => Population) = Future {
     val islands = generateIslands(seeding)
 
-    // intellij losing type information
     val evolvedIslands =
       islands.zipWithIndex.map { case (p, i) =>
-        evolvePopulation(SolutionContext(i, fitness, evolver, p)): Seq[A]
+        evolvePopulation(SolutionContext(i, fitness, evolver, p))
       }
 
-    val bestSolutions = evolvedIslands.map { p =>
-      val byFitness = p.groupBy(fitness)
+    val bestSolutions = evolvedIslands.map { ctx =>
+      val byFitness = ctx.population.groupBy(ctx.fitness)
 
       byFitness(byFitness.keys.max)
     }
