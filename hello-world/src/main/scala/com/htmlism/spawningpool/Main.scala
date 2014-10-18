@@ -15,7 +15,9 @@ object Main extends App {
 }
 
 object PhraseGenerator extends ChromosomeGenerator[Phrase] {
-  def generateChromosome = Phrase(Seq.fill(11)((new util.Random).nextPrintableChar()))
+  private val rng = new util.Random
+
+  def generateChromosome = Phrase(Seq.fill(11)(rng.nextPrintableChar()))
 }
 
 case class Phrase(genes: Seq[Char]) extends FixedLengthChromosome[Phrase, Char] {
