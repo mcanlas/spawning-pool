@@ -89,5 +89,5 @@ class Solver[A, B](fitnessFunction: A => B, evolver: Evolver[A], populationSize:
 
   def solveNow(seed: Traversable[A]): Solutions = awaitResult(solve(seed))
 
-  private def generateIslands(f: => Population) = Traversable.fill(islandCount)(f)
+  private def generateIslands(f: => Population) = Iterable.fill(islandCount)(f)
 }
