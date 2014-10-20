@@ -7,7 +7,7 @@ class SolverSpec extends Specification {
     import Solver._
 
     "select individuals at random" in {
-      val rig = new DeterministicGenerator[Int](Seq(0)) with RandomIndexGenerator {
+      val rig = new DeterministicProvider[Int](Seq(0)) with RandomIndexGenerator {
         def randomIndex(size: Int) = nextElement
       }
 

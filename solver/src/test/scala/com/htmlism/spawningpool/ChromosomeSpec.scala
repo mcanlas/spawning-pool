@@ -49,7 +49,7 @@ class ChromosomeSpec extends Specification {
 }
 
 case class TspTour(genes: Seq[Symbol]) extends FixedLengthChromosome[TspTour, Symbol] with CombinatorialChromosome[TspTour, Symbol] {
-  private val parents = new DeterministicGenerator[Boolean](Seq(false, true, false))
+  private val parents = new DeterministicProvider[Boolean](Seq(false, true, false))
 
   def construct(genes: Seq[Symbol]) = TspTour(genes)
 
@@ -61,7 +61,7 @@ case class TspTour(genes: Seq[Symbol]) extends FixedLengthChromosome[TspTour, Sy
 }
 
 case class StackOperations(genes: Seq[Symbol], override val randomMutationOperation: Int) extends VariableLengthChromosome[StackOperations, Symbol] with CombinatorialChromosome[StackOperations, Symbol] {
-  private val parents = new DeterministicGenerator[Boolean](Seq(true, false, true, false, true))
+  private val parents = new DeterministicProvider[Boolean](Seq(true, false, true, false, true))
 
   def alleles = Seq('conquer)
 
