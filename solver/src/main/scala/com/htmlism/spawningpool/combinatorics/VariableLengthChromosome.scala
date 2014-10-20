@@ -1,7 +1,5 @@
 package com.htmlism.spawningpool.combinatorics
 
-import com.htmlism.spawningpool.combinatorics.IndexedChromosome
-
 /** The base trait for homogeneous chromosomes of variable length.
   *
   * This trait augments the default mutation operator specified by [[IndexedChromosome]]

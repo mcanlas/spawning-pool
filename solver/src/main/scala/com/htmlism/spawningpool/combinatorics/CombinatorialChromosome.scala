@@ -1,7 +1,5 @@
 package com.htmlism.spawningpool.combinatorics
 
-import com.htmlism.spawningpool.combinatorics.HomogeneousChromosome
-
 /** A trait for chromosomes that support the generation of alleles from a collection of values.
   *
   * {{{
