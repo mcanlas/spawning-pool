@@ -1,3 +1,4 @@
+* http://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html
 * one discrete set should be able to yield a tuple of (evolver, generator)
 * consider external operators so that value classes need not extend a trait
   * gut chromosome methods
