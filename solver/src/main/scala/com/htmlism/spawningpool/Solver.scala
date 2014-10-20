@@ -76,6 +76,10 @@ class Solver[A, B](fitness: A => B, evolver: Evolver[A], populationSize: Int = 5
     }
   }
 
+  def solveNow(implicit src: ChromosomeGenerator[A]): Solutions = awaitResult(solve(src))
+
+  def solveNow(seed: Traversable[A]): Solutions = awaitResult(solve(seed))
+
   private def evolveFrom(seeding: => Population) = {
     val islands = generateIslands(seeding)
 
@@ -94,10 +98,6 @@ class Solver[A, B](fitness: A => B, evolver: Evolver[A], populationSize: Int = 5
 
     evolvedIslands.foldLeft(Set.empty[A])((acc, sols) => acc ++ awaitResult(sols))
   }
-
-  def solveNow(implicit src: ChromosomeGenerator[A]): Solutions = awaitResult(solve(src))
-
-  def solveNow(seed: Traversable[A]): Solutions = awaitResult(solve(seed))
 
   private def generateIslands(f: => Population) = Iterable.fill(islandCount)(f)
 }
