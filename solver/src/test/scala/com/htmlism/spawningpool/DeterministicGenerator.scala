@@ -1,6 +1,6 @@
 package com.htmlism.spawningpool
 
-class DeterministicGenerator[T](private var elements: Traversable[T]) {
+class DeterministicGenerator[A](private var elements: Traversable[A]) {
   def nextElement =
     if (elements.isEmpty)
       throw new NoSuchElementException

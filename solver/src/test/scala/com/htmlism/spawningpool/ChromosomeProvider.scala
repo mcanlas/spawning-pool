@@ -2,8 +2,8 @@ package com.htmlism.spawningpool
 
 import com.htmlism.spawningpool.combinatorics.ChromosomeGenerator
 
-class ChromosomeProvider[T](chromosomes: Traversable[T]) extends DeterministicGenerator[T](chromosomes) with ChromosomeGenerator[T] {
-  def this(chromosomes: T*) = this(chromosomes)
+class ChromosomeProvider[A](chromosomes: Traversable[A]) extends DeterministicGenerator[A](chromosomes) with ChromosomeGenerator[A] {
+  def this(chromosomes: A*) = this(chromosomes)
 
   def generateChromosome = nextElement
 }
