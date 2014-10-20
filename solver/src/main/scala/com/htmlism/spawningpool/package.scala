@@ -1,7 +1,7 @@
 package com.htmlism
 
 package object spawningpool {
-  implicit object DefaultRandomIndexGenerator extends RandomIndexGenerator {
+  implicit object DefaultRandomIndexProvider extends RandomIndexProvider {
     private val rng = new util.Random
 
     def randomIndex(size: Int) = rng.nextInt(size)

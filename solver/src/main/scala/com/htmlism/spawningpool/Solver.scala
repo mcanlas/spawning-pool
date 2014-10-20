@@ -8,7 +8,7 @@ import scala.concurrent.duration._
 import scala.annotation.tailrec
 
 object Solver {
-  def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexGenerator): A = population(rig.randomIndex(population.size))
+  def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexProvider): A = population(rig.randomIndex(population.size))
 
   @tailrec
   def evolvePopulation[A, B](implicit ctx: SolutionContext[A, B]): SolutionContext[A, B] =
@@ -52,7 +52,7 @@ object Solver {
   def awaitResult[A](future: Future[A]): A = Await.result(future, Duration.Inf)
 }
 
-class Solver[A, B](fitness: A => B, evolver: Evolver[A], populationSize: Int = 50, islandCount: Int = 4)(implicit ordering: Ordering[B], rig: RandomIndexGenerator) {
+class Solver[A, B](fitness: A => B, evolver: Evolver[A], populationSize: Int = 50, islandCount: Int = 4)(implicit ordering: Ordering[B], rig: RandomIndexProvider) {
   import com.htmlism.spawningpool.Solver._
 
   type Population = Vector[A]

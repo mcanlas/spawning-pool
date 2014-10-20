@@ -1,5 +1,5 @@
 package com.htmlism.spawningpool
 
-trait RandomIndexGenerator {
+trait RandomIndexProvider {
   def randomIndex(size: Int): Int
 }
