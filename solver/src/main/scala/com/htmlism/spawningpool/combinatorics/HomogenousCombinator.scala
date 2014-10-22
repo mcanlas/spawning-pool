@@ -1,6 +1,6 @@
 package com.htmlism.spawningpool.combinatorics
 
-object HomogenousEvolver {
+object HomogenousCombinator {
   def fixed[A](alleles: Seq[A], size: Int) = ???
 
   def variable[A](alleles: Seq[A], upperBound: Int) = ???
