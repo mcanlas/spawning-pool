@@ -5,3 +5,7 @@ object HomogenousCombinator {
 
   def variable[A](alleles: Seq[A], upperBound: Int) = ???
 }
+
+trait HomogenousCombinator[A, B] {
+  def build(chromosomes: Traversable[B]): A
+}
