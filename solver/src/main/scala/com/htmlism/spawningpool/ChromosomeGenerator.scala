@@ -1,4 +1,4 @@
-package com.htmlism.spawningpool.combinatorics
+package com.htmlism.spawningpool
 
 trait ChromosomeGenerator[A] {
   def generateChromosome: A

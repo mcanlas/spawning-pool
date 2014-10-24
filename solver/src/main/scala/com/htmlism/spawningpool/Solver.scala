@@ -1,7 +1,5 @@
 package com.htmlism.spawningpool
 
-import com.htmlism.spawningpool.combinatorics.ChromosomeGenerator
-
 import scala.concurrent._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
