@@ -7,7 +7,7 @@ This framework enables the search and generation of solutions encoded as some ch
 
 Because genetic algorithms are computationally intensive, this framework uses *futures* to perform evolution concurrently.
 
-This framework also features helper classes for chromosomes that are homogenous collections of some type (i.e. a string of characters or a tour of cities).
+This framework also features helper classes for chromosomes that are homogenous collections of some type (e.g. a string of characters or a tour of cities).
 
 References
 ----------
