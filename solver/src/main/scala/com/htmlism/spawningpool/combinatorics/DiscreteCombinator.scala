@@ -10,6 +10,4 @@ object DiscreteCombinator {
 
 class DiscreteCombinator[A, B](builder: Traversable[B] => A, val alleles: Seq[B])(implicit rip: RandomIndexProvider) extends DiscreteAlleleGenerator[B] with HomogenousCombinator[A, B] {
   def randomIndex(size: Int) = rip.randomIndex(size)
-
-  def build(chromosomes: Traversable[B]) = builder(chromosomes)
 }

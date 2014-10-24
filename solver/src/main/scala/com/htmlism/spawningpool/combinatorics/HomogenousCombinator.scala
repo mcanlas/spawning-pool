@@ -7,5 +7,4 @@ object HomogenousCombinator {
 }
 
 trait HomogenousCombinator[A, B] {
-  def build(chromosomes: Traversable[B]): A
 }
