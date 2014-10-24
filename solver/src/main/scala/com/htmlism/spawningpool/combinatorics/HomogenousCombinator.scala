@@ -9,4 +9,7 @@ object HomogenousCombinator {
 }
 
 trait HomogenousCombinator[A] extends AlleleGenerator[A] with ChromosomeGenerator[Seq[A]] with Evolver[Seq[A]] {
+  def mutate(chromosome: Seq[A]) = ???
+
+  def crossover(firstParent: Seq[A], secondParent: Seq[A]) = ???
 }
