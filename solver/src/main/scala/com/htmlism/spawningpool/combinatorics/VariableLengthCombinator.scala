@@ -1,9 +1,13 @@
 package com.htmlism.spawningpool.combinatorics
 
-import com.htmlism.spawningpool.Evolver
-
-trait VariableLengthCombinator[A <: VariableLengthChromosome[A, _]] extends Evolver[A] {
+class VariableLengthCombinator[A] extends DiscreteCombinator[A] {
   def mutate(chromosome: A) = ???
 
   def crossover(firstParent: A, secondParent: A) = ???
+
+  def alleles = ???
+
+  def generateChromosome = ???
+
+  def randomIndex(size: Int) = ???
 }
