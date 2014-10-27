@@ -6,4 +6,4 @@ object DiscreteCombinator {
   def variable[A](elements: Seq[A], upperBound: Int) = ???
 }
 
-trait DiscreteCombinator[A] extends DiscreteAlleleGenerator[A] with HomogenousCombinator[A]
+trait DiscreteCombinator[A <: Seq[B], B] extends DiscreteAlleleGenerator[B] with HomogenousCombinator[A, B]

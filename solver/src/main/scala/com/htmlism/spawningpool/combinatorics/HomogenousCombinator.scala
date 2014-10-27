@@ -8,8 +8,8 @@ object HomogenousCombinator {
   def variable[A](alleles: Seq[A], upperBound: Int) = ???
 }
 
-trait HomogenousCombinator[A] extends AlleleGenerator[A] with ChromosomeGenerator[Seq[A]] with Evolver[Seq[A]] {
-  def mutate(chromosome: Seq[A]) = ???
+trait HomogenousCombinator[A <: Seq[B], B] extends AlleleGenerator[B] with ChromosomeGenerator[A] with Evolver[A] {
+  def mutate(chromosome: A) = ???
 
-  def crossover(firstParent: Seq[A], secondParent: Seq[A]) = ???
+  def crossover(firstParent: A, secondParent: A) = ???
 }
