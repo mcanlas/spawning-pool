@@ -1,13 +1,13 @@
 package com.htmlism.spawningpool.combinatorics
 
-class DiscreteFixedLengthCombinator[A <: Seq[B], B] extends DiscreteCombinator[A, B] {
+class DiscreteFixedLengthCombinator[A <: Seq[B], B] extends FixedLengthCombinator[A, B] with DiscreteAlleleGenerator[B] {
   override def mutate(chromosome: A) = ???
 
   override def crossover(firstParent: A, secondParent: A) = ???
 
   def alleles = ???
 
-  def generateChromosome = ???
+  override def generateChromosome = ???
 
   def randomIndex(size: Int) = ???
 }
