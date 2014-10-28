@@ -17,4 +17,4 @@ References
 Colophon
 --------
 
-In the *StarCraft* video game series, one of the foundational structures for the Zerg is the **Spawning Pool**.
+The *StarCraft* video game series features the Zerg, an alien species adept at rapid evolution and genetic manipulation. One of the foundational structures for the Zerg is the **Spawning Pool**.
