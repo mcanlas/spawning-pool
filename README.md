@@ -1,7 +1,7 @@
 spawning-pool
 =============
 
-A framework for genetic algorithms in Scala
+A framework for genetic algorithms in Scala.
 
 This framework enables the search and generation of solutions encoded as some chromosome type `A` over a fitness landscape defined by some ordinal type `B` (usually `Int` or `Double`), all in a generic manner typical of Scala libaries.
 
