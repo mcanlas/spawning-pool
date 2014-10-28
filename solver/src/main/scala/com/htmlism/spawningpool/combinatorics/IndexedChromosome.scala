@@ -1,5 +1,7 @@
 package com.htmlism.spawningpool.combinatorics
 
+import scala.annotation.tailrec
+
 /** The base trait for homogeneous chromosomes backed by a sequence.
   *
   * {{{
@@ -51,6 +53,7 @@ trait IndexedChromosome[A <: IndexedChromosome[A, B], B] extends HomogeneousChro
 
   def crossover(mate: A): A = crossoverRecursively(mate, Math.max(genes.size, mate.genes.size) - 1)
 
+  @tailrec
   private def crossoverRecursively(mate: A, i: Int, acc: Seq[B] = Nil): A =
     if (i == -1)
       construct(acc)
