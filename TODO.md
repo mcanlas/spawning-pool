@@ -1,3 +1,4 @@
+* push all random activities into traits, and then have the default random provider extend all of them
 * http://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html
 * one discrete set should be able to yield a tuple of (evolver, generator)
 * consider external operators so that value classes need not extend a trait
