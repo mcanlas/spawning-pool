@@ -1,7 +1,7 @@
 lazy val solver = project
 
-lazy val `hello-world` = project
+lazy val `example-hello-world` = project
   .dependsOn(solver)
 
-lazy val `traveling-salesman` = project
+lazy val `example-traveling-salesman` = project
   .dependsOn(solver)
