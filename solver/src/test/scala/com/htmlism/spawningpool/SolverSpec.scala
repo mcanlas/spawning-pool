@@ -7,8 +7,10 @@ class SolverSpec extends Specification {
     import Solver._
 
     "select individuals at random" in {
-      val rig = new DeterministicProvider[Int](Seq(0)) with RandomIndexProvider {
-        def randomIndex(size: Int) = nextElement
+      val rig = new RandomIndexProvider {
+        val iterator = Iterable(0).iterator
+
+        def randomIndex(size: Int) = iterator.next()
       }
 
       randomIndividual(Seq('arthas))(rig) === 'arthas
