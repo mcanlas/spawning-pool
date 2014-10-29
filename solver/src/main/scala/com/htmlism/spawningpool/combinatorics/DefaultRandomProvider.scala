@@ -6,4 +6,6 @@ trait DefaultRandomProvider extends
   GeneIndexProvider with
   MutationMethodProvider {
   private val rng = new util.Random
+
+  def randomDiscreteAlleleIndex(size: Int) = rng.nextInt(size)
 }

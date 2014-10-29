@@ -1,9 +1,7 @@
 package com.htmlism.spawningpool.combinatorics
 
-import com.htmlism.spawningpool.RandomIndexProvider
-
-trait DiscreteAlleleGenerator[A] extends AlleleGenerator[A] with RandomIndexProvider {
+trait DiscreteAlleleGenerator[A] extends AlleleGenerator[A] with DiscreteAlleleIndexProvider {
   def alleles: Seq[A]
 
-  def generateAllele: A = alleles(randomIndex(alleles.size))
+  def generateAllele: A = alleles(randomDiscreteAlleleIndex(alleles.size))
 }
