@@ -1,6 +1,6 @@
 package com.htmlism.spawningpool
 
-import com.htmlism.spawningpool.combinatorics.FixedLengthChromosome
+import com.htmlism.spawningpool.combinatorics.{ FixedLengthCombinator, AlleleGenerator, FixedLengthChromosome }
 
 object Main extends App {
   implicit val generator = PhraseGenerator
@@ -20,6 +20,14 @@ object PhraseGenerator extends ChromosomeGenerator[Phrase] {
   private val rng = new util.Random
 
   def generateChromosome = Phrase(Seq.fill(11)(rng.nextInt(256).toChar))
+}
+
+object CombinatorialPhraseGenerator
+  extends FixedLengthCombinator[Char, Vector[Char]]
+  with AlleleGenerator[Char] {
+  private val rng = new util.Random
+
+  def generateAllele = rng.nextInt(256).toChar
 }
 
 case class Phrase(genes: Seq[Char]) extends FixedLengthChromosome[Phrase, Char] {
