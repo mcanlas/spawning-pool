@@ -5,7 +5,7 @@ trait FixedLengthCombinator[A] extends HomogenousCombinator[A, Seq[A]] {
 
   def size: Int
 
-  def generateChromosome: B = HomogenousCombinator.SequenceFactory.fill(size)(generateAllele)
+  def generateChromosome: B = fill(size)(generateAllele)
 
   override def crossover(firstParent: B, secondParent: B) = ???
 }
