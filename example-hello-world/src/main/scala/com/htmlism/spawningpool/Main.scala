@@ -27,6 +27,8 @@ object CombinatorialPhraseGenerator
   with AlleleGenerator[Char] {
   private val rng = new util.Random
 
+  val size = 11
+
   def generateAllele = rng.nextInt(256).toChar
 }
 
