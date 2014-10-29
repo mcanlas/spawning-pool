@@ -8,6 +8,4 @@ class DiscreteVariableLengthCombinator[A <: Seq[B], B] extends VariableLengthCom
   def alleles = ???
 
   override def generateChromosome = ???
-
-  def randomIndex(size: Int) = ???
 }

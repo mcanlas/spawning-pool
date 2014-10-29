@@ -8,6 +8,4 @@ class DiscreteFixedLengthCombinator[A <: Seq[B], B] extends FixedLengthCombinato
   def alleles = ???
 
   override def generateChromosome = ???
-
-  def randomIndex(size: Int) = ???
 }
