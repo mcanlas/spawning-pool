@@ -1,5 +1,7 @@
 package com.htmlism.spawningpool
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 import com.htmlism.spawningpool.combinatorics.{ FixedLengthCombinator, AlleleGenerator, FixedLengthChromosome }
 
 object Main extends App {

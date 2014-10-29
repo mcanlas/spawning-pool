@@ -1,7 +1,6 @@
 package com.htmlism.spawningpool
 
 import scala.concurrent._
-import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import scala.annotation.tailrec
 
@@ -62,11 +61,11 @@ class Solver[A, B](fitness: A => B, evolver: Evolver[A], populationSize: Int = 5
   if (islandCount < 1)
     throw new IllegalArgumentException("must have an island count of one or greater")
 
-  def solve(implicit src: ChromosomeGenerator[A]): Future[Solutions] = Future {
+  def solve(implicit src: ChromosomeGenerator[A], ec: ExecutionContext): Future[Solutions] = Future {
     evolveFrom { Vector.fill(populationSize)(src.generateChromosome) }
   }
 
-  def solve(seed: Traversable[A]): Future[Solutions] = Future {
+  def solve(seed: Traversable[A])(implicit ec: ExecutionContext): Future[Solutions] = Future {
     if (seed.isEmpty)
       throw new IllegalArgumentException("must provide a non-empty collection as a seed")
     else evolveFrom {
@@ -74,11 +73,11 @@ class Solver[A, B](fitness: A => B, evolver: Evolver[A], populationSize: Int = 5
     }
   }
 
-  def solveNow(implicit src: ChromosomeGenerator[A]): Solutions = awaitResult(solve(src))
+  def solveNow(implicit src: ChromosomeGenerator[A], ec: ExecutionContext): Solutions = awaitResult(solve)
 
-  def solveNow(seed: Traversable[A]): Solutions = awaitResult(solve(seed))
+  def solveNow(seed: Traversable[A])(implicit ec: ExecutionContext): Solutions = awaitResult(solve(seed))
 
-  private def evolveFrom(seeding: => Population) = {
+  private def evolveFrom(seeding: => Population)(implicit ec: ExecutionContext) = {
     val islands = generateIslands(seeding)
 
     val evolvedIslands =
