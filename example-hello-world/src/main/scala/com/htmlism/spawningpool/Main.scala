@@ -23,7 +23,7 @@ object PhraseGenerator extends ChromosomeGenerator[Phrase] {
 }
 
 object CombinatorialPhraseGenerator
-  extends FixedLengthCombinator[Char, Vector[Char]]
+  extends FixedLengthCombinator[Char]
   with AlleleGenerator[Char] {
   private val rng = new util.Random
 

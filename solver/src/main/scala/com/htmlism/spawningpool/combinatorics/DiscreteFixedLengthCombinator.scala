@@ -1,7 +1,7 @@
 package com.htmlism.spawningpool.combinatorics
 
-class DiscreteFixedLengthCombinator[A, B <: Seq[A]](val alleles: Seq[A], val size: Int)
-  extends FixedLengthCombinator[A, B]
+class DiscreteFixedLengthCombinator[A](val alleles: Seq[A], val size: Int)
+  extends FixedLengthCombinator[A]
   with DiscreteAlleleGenerator[A]
   with DefaultRandomProvider {
 }
