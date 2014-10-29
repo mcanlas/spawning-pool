@@ -2,12 +2,12 @@ package com.htmlism.spawningpool.combinatorics
 
 import com.htmlism.spawningpool.{ ChromosomeGenerator, Evolver }
 
-trait HomogenousCombinator[A <: Seq[B], B] extends AlleleGenerator[B]
-  with ChromosomeGenerator[A]
-  with Evolver[A]
+trait HomogenousCombinator[A, B <: Seq[A]] extends AlleleGenerator[A]
+  with ChromosomeGenerator[B]
+  with Evolver[B]
   with GeneIndexProvider
   with CrossoverParentProvider {
-  def mutate(chromosome: A) = ???
+  def mutate(chromosome: B) = ???
 
-  def crossover(firstParent: A, secondParent: A) = ???
+  def crossover(firstParent: B, secondParent: B) = ???
 }

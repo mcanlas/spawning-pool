@@ -1,9 +1,9 @@
 package com.htmlism.spawningpool.combinatorics
 
-trait FixedLengthCombinator[A <: Seq[B], B] extends HomogenousCombinator[A, B] {
-  override def mutate(chromosome: A) = ???
+trait FixedLengthCombinator[A, B <: Seq[A]] extends HomogenousCombinator[A, B] {
+  override def mutate(chromosome: B) = ???
 
-  override def crossover(firstParent: A, secondParent: A) = ???
+  override def crossover(firstParent: B, secondParent: B) = ???
 
   def generateChromosome = ???
 }

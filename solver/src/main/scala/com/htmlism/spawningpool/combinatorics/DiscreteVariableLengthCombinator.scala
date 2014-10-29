@@ -1,5 +1,5 @@
 package com.htmlism.spawningpool.combinatorics
 
-class DiscreteVariableLengthCombinator[A <: Seq[B], B] extends VariableLengthCombinator[A, B] with DiscreteAlleleGenerator[B] with DefaultRandomProvider {
+class DiscreteVariableLengthCombinator[A, B <: Seq[A]] extends VariableLengthCombinator[A, B] with DiscreteAlleleGenerator[A] with DefaultRandomProvider {
   def alleles = ???
 }
