@@ -1,3 +1,4 @@
+* maybe tsp can be rethought as a list of edges, and fitness is sorted by the longest unbreaking tour (the "power" of the tour)
 * for tsp, free combinatorial spot mutate probably performs very differently than the swap mutator; test both
 * push all random activities into traits, and then have the default random provider extend all of them
 * http://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html
