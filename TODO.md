@@ -1,3 +1,4 @@
+* for tsp, free combinatorial spot mutate probably performs very differently than the swap mutator; test both
 * push all random activities into traits, and then have the default random provider extend all of them
 * http://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html
 * one discrete set should be able to yield a tuple of (evolver, generator)
