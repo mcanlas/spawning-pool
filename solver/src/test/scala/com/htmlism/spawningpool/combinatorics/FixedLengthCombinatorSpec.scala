@@ -3,13 +3,13 @@ package com.htmlism.spawningpool.combinatorics
 import org.specs2.mutable.Specification
 
 class FixedLengthCombinatorSpec extends Specification {
-  "A fixed-length generator" should {
+  "A fixed-length combinator" should {
     val size = 3
 
-    val generator = new FixedTestCombinator(size)
+    val combinator = new FixedTestCombinator(size)
 
-    val firstChromosome  = generator.generateChromosome
-    val secondChromosome = generator.generateChromosome
+    val firstChromosome  = combinator.generateChromosome
+    val secondChromosome = combinator.generateChromosome
 
     "generate chromosomes of a fixed length" in {
       firstChromosome.length  === size
