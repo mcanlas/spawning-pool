@@ -9,7 +9,7 @@ trait HomogenousCombinator[A] extends AlleleGenerator[A]
   with CrossoverParentProvider {
   type B = Seq[A]
 
-  def mutate(chromosome: B) = ???
+  def mutate(chromosome: B) = chromosome.updated(nextGeneIndex(chromosome.size), generateAllele)
 
   def crossover(firstParent: B, secondParent: B) = ???
 

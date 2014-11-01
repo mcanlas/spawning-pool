@@ -11,6 +11,8 @@ class FixedLengthCombinatorSpec extends Specification {
     val firstChromosome  = combinator.generateChromosome
     val secondChromosome = combinator.generateChromosome
 
+    val mutatedChromosome = combinator.mutate(firstChromosome)
+
     "generate chromosomes of a fixed length" in {
       firstChromosome.length  === size
       secondChromosome.length === size
@@ -20,19 +22,23 @@ class FixedLengthCombinatorSpec extends Specification {
       firstChromosome  === Seq('luigi, 'bowser, 'peach)
       secondChromosome === Seq('mario, 'luigi, 'bowser)
     }
+
+    "support spot mutation" in {
+      mutatedChromosome === Seq('luigi, 'mario, 'peach)
+    }
   }
 }
 
 class FixedTestCombinator(val size: Int)
   extends FixedLengthCombinator[Symbol]
   with DiscreteAlleleGenerator[Symbol] {
-  private val alleleIndexes = Iterable(1, 3, 2, 0, 1, 3).iterator
+  private val alleleIndexes = Iterable(1, 3, 2, 0, 1, 3, 0).iterator
 
   def alleles: Seq[Symbol] = Seq('mario, 'luigi, 'peach, 'bowser)
 
   def nextAlleleIndex(size: Int) = alleleIndexes.next()
 
-  def nextGeneIndex(size: Int) = ???
+  def nextGeneIndex(unused: Int) = 1
 
   override def fill(unused: Int) = List.fill(size)
 }
