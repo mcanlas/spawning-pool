@@ -1,7 +1,7 @@
 package com.htmlism.spawningpool.combinatorics
 
 trait DefaultRandomProvider extends
-  DiscreteAlleleIndexProvider with
+  AlleleIndexProvider with
   CrossoverParentProvider with
   GeneIndexProvider with
   MutationMethodProvider {
