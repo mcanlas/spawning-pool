@@ -11,7 +11,7 @@ class DiscreteAlleleGeneratorSpec extends Specification {
 
         val alleles = Seq('alpha, 'beta, 'gamma)
 
-        def randomDiscreteAlleleIndex(size: Int) = rng.next()
+        def nextAlleleIndex(size: Int) = rng.next()
       }
 
       generator.generateAllele === 'gamma

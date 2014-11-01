@@ -7,5 +7,5 @@ trait DefaultRandomProvider extends
   MutationMethodProvider {
   private val rng = new util.Random
 
-  def randomDiscreteAlleleIndex(size: Int) = rng.nextInt(size)
+  def nextAlleleIndex(size: Int) = rng.nextInt(size)
 }

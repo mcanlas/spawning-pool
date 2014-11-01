@@ -30,7 +30,7 @@ class FixedTestCombinator(val size: Int)
 
   def alleles: Seq[Symbol] = Seq('mario, 'luigi, 'peach, 'bowser)
 
-  def randomDiscreteAlleleIndex(size: Int) = alleleIndexes.next()
+  def nextAlleleIndex(size: Int) = alleleIndexes.next()
 
   override def fill(size: Int) = List.fill(size)
 }
