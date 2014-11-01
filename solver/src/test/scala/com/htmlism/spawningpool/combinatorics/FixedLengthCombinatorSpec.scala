@@ -6,3 +6,8 @@ class FixedLengthCombinatorSpec extends Specification {
   "A fixed-length generator" should {
   }
 }
+
+// TODO drop the abstract and attempt to implement this in intellij
+abstract class FixedTestCombinator
+  extends HomogenousCombinator[Symbol, Vector[Symbol]]
+  with DiscreteAlleleGenerator[Symbol]
