@@ -1,8 +1,6 @@
 package com.htmlism.spawningpool.combinatorics
 
-trait FixedLengthCombinator[A] extends HomogenousCombinator[A, Seq[A]] {
-  private type B = Seq[A]
-
+trait FixedLengthCombinator[A] extends HomogenousCombinator[A] {
   def size: Int
 
   def generateChromosome: B = fill(size)(generateAllele)
