@@ -34,5 +34,5 @@ class FixedTestCombinator(val size: Int)
 
   def nextGeneIndex(size: Int) = ???
 
-  override def fill(size: Int) = List.fill(size)
+  override def fill(unused: Int) = List.fill(size)
 }
