@@ -2,7 +2,7 @@ package com.htmlism.spawningpool
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-import com.htmlism.spawningpool.combinatorics.{ FixedLengthCombinator, AlleleGenerator, FixedLengthChromosome }
+import com.htmlism.spawningpool.combinatorics._
 
 object Main extends App {
   implicit val generator = PhraseGenerator
@@ -26,7 +26,8 @@ object PhraseGenerator extends ChromosomeGenerator[Phrase] {
 
 object CombinatorialPhraseGenerator
   extends FixedLengthCombinator[Char]
-  with AlleleGenerator[Char] {
+  with AlleleGenerator[Char]
+  with DefaultRandomProvider {
   private val rng = new util.Random
 
   val size = 11

@@ -32,5 +32,7 @@ class FixedTestCombinator(val size: Int)
 
   def nextAlleleIndex(size: Int) = alleleIndexes.next()
 
+  def nextGeneIndex(size: Int) = ???
+
   override def fill(size: Int) = List.fill(size)
 }

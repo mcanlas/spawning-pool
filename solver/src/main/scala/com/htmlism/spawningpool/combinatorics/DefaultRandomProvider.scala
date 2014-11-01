@@ -8,4 +8,6 @@ trait DefaultRandomProvider extends
   private val rng = new util.Random
 
   def nextAlleleIndex(size: Int) = rng.nextInt(size)
+
+  def nextGeneIndex(size: Int) = rng.nextInt(size)
 }
