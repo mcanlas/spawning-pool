@@ -11,7 +11,11 @@ trait HomogenousCombinator[A] extends AlleleGenerator[A]
 
   def mutate(chromosome: B) = chromosome.updated(nextGeneIndex(chromosome.size), generateAllele)
 
-  def crossover(firstParent: B, secondParent: B) = ???
+  def crossover(firstParent: B, secondParent: B) = {
+    val size = Math.max(firstParent.size, secondParent.size)
+
+    ???
+  }
 
   def fill(size: Int): (=> A) => Seq[A] = Vector.fill[A](size)
 }
