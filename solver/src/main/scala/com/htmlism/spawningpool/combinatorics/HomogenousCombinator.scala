@@ -9,9 +9,9 @@ trait HomogenousCombinator[A] extends AlleleGenerator[A]
   with CrossoverParentProvider {
   type B = Seq[A]
 
-  def mutate(chromosome: B) = chromosome.updated(nextGeneIndex(chromosome.size), generateAllele)
+  def mutate(chromosome: B): B = chromosome.updated(nextGeneIndex(chromosome.size), generateAllele)
 
-  def crossover(firstParent: B, secondParent: B) = {
+  def crossover(firstParent: B, secondParent: B): B = {
     val size = Math.max(firstParent.size, secondParent.size)
 
     (0 until size).flatMap { i =>
