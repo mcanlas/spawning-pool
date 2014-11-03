@@ -1,23 +1,9 @@
 package com.htmlism.spawningpool
 
-import com.htmlism.spawningpool.combinatorics.{VariableLengthChromosome, FixedLengthChromosome, CombinatorialChromosome}
+import com.htmlism.spawningpool.combinatorics.{ VariableLengthChromosome, CombinatorialChromosome }
 import org.specs2.mutable.Specification
 
 class ChromosomeSpec extends Specification {
-  "A fixed-length chromosome" should {
-    val chromosome = TspTour(Seq('NewYorkCity, 'LosAngeles, 'Chicago))
-
-    "support mutation" in {
-      chromosome.mutate === TspTour(Seq('NewYorkCity, 'Boston, 'Chicago))
-    }
-
-    "support crossover" in {
-      val asianTour = TspTour(Seq('HongKong, 'Tokyo, 'Beijing))
-
-      chromosome.crossover(asianTour) === TspTour(Seq('HongKong, 'LosAngeles, 'Beijing))
-    }
-  }
-
   "A variable-length chromosome" should {
     import VariableLengthChromosome._
 
@@ -46,18 +32,6 @@ class ChromosomeSpec extends Specification {
       firstStack.crossover(secondStack).genes === Seq('subtract, 'log, 'multiply, 'modulus)
     }
   }
-}
-
-case class TspTour(genes: Seq[Symbol]) extends FixedLengthChromosome[TspTour, Symbol] with CombinatorialChromosome[TspTour, Symbol] {
-  private val parents = Iterable(false, true, false).iterator
-
-  def construct(genes: Seq[Symbol]) = TspTour(genes)
-
-  def alleles = Seq('Boston)
-
-  override def randomAlleleIndex = 0
-  override def randomGeneIndex = 1
-  override def randomlyThisParent = parents.next()
 }
 
 case class StackOperations(genes: Seq[Symbol], override val randomMutationOperation: Int) extends VariableLengthChromosome[StackOperations, Symbol] with CombinatorialChromosome[StackOperations, Symbol] {
