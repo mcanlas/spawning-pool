@@ -49,7 +49,7 @@ object Solver {
   def awaitResult[A](future: Future[A]): A = Await.result(future, Duration.Inf)
 }
 
-class Solver[A, B](fitness: A => B, evolver: Evolver[A], populationSize: Int = 50, islandCount: Int = 4)(implicit ordering: Ordering[B], rig: RandomIndexProvider) {
+class Solver[A, B](fitness: A => B, populationSize: Int = 50, islandCount: Int = 4)(implicit evolver: Evolver[A], ordering: Ordering[B], rig: RandomIndexProvider) {
   import com.htmlism.spawningpool.Solver._
 
   type Population = Vector[A]

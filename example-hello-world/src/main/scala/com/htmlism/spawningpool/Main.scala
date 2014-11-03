@@ -7,7 +7,7 @@ import com.htmlism.spawningpool.combinatorics._
 object Main extends App {
   implicit val generator = CombinatorialPhraseGenerator
 
-  val solver = new Solver(PhraseFitness.fitnessFor("hello world"), CombinatorialPhraseGenerator, 5000, 10)
+  val solver = new Solver(PhraseFitness.fitnessFor("hello world"), 5000, 10)
 
   val before = System.currentTimeMillis()
   val solutions = solver.solveNow
