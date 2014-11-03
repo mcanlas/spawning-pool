@@ -10,4 +10,6 @@ trait DefaultRandomProvider extends
   def nextAlleleIndex(size: Int) = rng.nextInt(size)
 
   def nextGeneIndex(size: Int) = rng.nextInt(size)
+
+  def nextUseFirstParent = rng.nextBoolean()
 }
