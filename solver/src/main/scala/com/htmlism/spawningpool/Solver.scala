@@ -9,7 +9,7 @@ object Solver {
 
   @tailrec
   def evolvePopulation[A, B](implicit ctx: SolutionContext[A, B]): SolutionContext[A, B] =
-    if (ctx.generations >= 10)
+    if (ctx.generations >= 20)
       ctx
     else {
       println(s"island ${ctx.islandId} generating children for generation ${ctx.generations}")
