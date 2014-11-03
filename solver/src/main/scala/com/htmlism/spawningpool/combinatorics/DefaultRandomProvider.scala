@@ -12,4 +12,6 @@ trait DefaultRandomProvider extends
   def nextGeneIndex(size: Int) = rng.nextInt(size)
 
   def nextUseFirstParent = rng.nextBoolean()
+
+  def nextMutationMethod = rng.nextInt(3)
 }
