@@ -5,9 +5,9 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import com.htmlism.spawningpool.combinatorics._
 
 object Main extends App {
-  implicit val generator = PhraseGenerator
+  implicit val generator = CombinatorialPhraseGenerator
 
-  val solver = new Solver(PhraseFitness.fitnessFor("hello world"), PhraseEvolver, 5000, 10)
+  val solver = new Solver(PhraseFitness.fitnessFor("hello world"), CombinatorialPhraseGenerator, 5000, 10)
 
   val before = System.currentTimeMillis()
   val solutions = solver.solveNow
@@ -55,7 +55,7 @@ case class Phrase(genes: Seq[Char]) extends FixedLengthChromosome[Phrase, Char] 
 }
 
 object PhraseFitness {
-  def fitnessFor(target: String)(phrase: Phrase) = (for (i <- 0 to target.length - 1) yield {
+  def fitnessFor(target: String)(phrase: Seq[Char]) = (for (i <- 0 to target.length - 1) yield {
     val targetInt    = target(i).toInt
     val candidateInt = phrase(i).toInt
 
