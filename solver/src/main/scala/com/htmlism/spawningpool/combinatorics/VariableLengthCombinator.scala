@@ -1,6 +1,10 @@
 package com.htmlism.spawningpool.combinatorics
 
-trait VariableLengthCombinator[A] extends HomogenousCombinator[A] with MutationMethodProvider {
+trait VariableLengthCombinator[A]
+  extends HomogenousCombinator[A]
+  with MutationMethodProvider {
+  def maximumSize: Int
+
   def generateChromosome: B = ???
 
   override def mutate(chromosome: B) = ???
