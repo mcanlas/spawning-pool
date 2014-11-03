@@ -14,7 +14,14 @@ trait HomogenousCombinator[A] extends AlleleGenerator[A]
   def crossover(firstParent: B, secondParent: B) = {
     val size = Math.max(firstParent.size, secondParent.size)
 
-    ???
+    (0 until size).flatMap { i =>
+      val parent = if (nextUseFirstParent) firstParent else secondParent
+
+      if (parent.isDefinedAt(i))
+        parent(i) :: Nil
+      else
+        Nil
+    }
   }
 
   def fill(size: Int): (=> A) => Seq[A] = Vector.fill[A](size)
