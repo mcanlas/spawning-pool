@@ -18,12 +18,6 @@ object Main extends App {
   solutions.foreach(println)
 }
 
-object PhraseGenerator extends ChromosomeGenerator[Phrase] {
-  private val rng = new util.Random
-
-  def generateChromosome = Phrase(Seq.fill(11)(rng.nextInt(256).toChar))
-}
-
 object CombinatorialPhraseGenerator
   extends FixedLengthCombinator[Char]
   with AlleleGenerator[Char]
@@ -33,25 +27,6 @@ object CombinatorialPhraseGenerator
   val size = 11
 
   def generateAllele = rng.nextInt(256).toChar
-}
-
-case class Phrase(genes: Seq[Char]) extends FixedLengthChromosome[Phrase, Char] {
-  private val rng = new util.Random
-
-  /** Generates an allele.
-    *
-    * This method provides a source of values for genes during mutation.
-    *
-    * @return An allele.
-    */
-  def generateAllele = rng.nextInt(256).toChar
-
-  /** A constructor for chromosomes of this type.
-    *
-    * @param genes The genes of the new chromosome
-    * @return A new chromosome
-    */
-  def construct(genes: Seq[Char]) = new Phrase(genes)
 }
 
 object PhraseFitness {
@@ -64,10 +39,4 @@ object PhraseFitness {
     else
       -2 * Math.abs(targetInt - candidateInt)
   }).sum
-}
-
-object PhraseEvolver extends Evolver[Phrase] {
-  def mutate(chromosome: Phrase) = chromosome.mutate
-
-  def crossover(firstParent: Phrase, secondParent: Phrase) = firstParent.crossover(secondParent)
 }
