@@ -26,6 +26,10 @@ class FixedLengthCombinatorSpec extends Specification {
     "support spot mutation" in {
       mutatedChromosome === Seq('luigi, 'mario, 'peach)
     }
+
+    "support crossover" in {
+      combinator.crossover(firstChromosome, secondChromosome) === Seq('mario, 'luigi, 'peach)
+    }
   }
 }
 
@@ -33,6 +37,7 @@ class FixedTestCombinator(val size: Int)
   extends FixedLengthCombinator[Symbol]
   with DiscreteAlleleGenerator[Symbol] {
   private val alleleIndexes = Iterable(1, 3, 2, 0, 1, 3, 0).iterator
+  private val parents = Iterable(false, false, true).iterator
 
   def alleles: Seq[Symbol] = Seq('mario, 'luigi, 'peach, 'bowser)
 
@@ -40,7 +45,7 @@ class FixedTestCombinator(val size: Int)
 
   def nextGeneIndex(unused: Int) = 1
 
-  def nextUseFirstParent = ???
+  def nextUseFirstParent = parents.next()
 
   override def fill(unused: Int) = List.fill(size)
 }
