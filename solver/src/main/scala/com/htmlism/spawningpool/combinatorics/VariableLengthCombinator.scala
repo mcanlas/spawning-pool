@@ -8,6 +8,7 @@ object VariableLengthCombinator {
 
 trait VariableLengthCombinator[A]
   extends HomogenousCombinator[A]
+  with LengthProvider
   with MutationMethodProvider {
   def maximumSize: Int
 

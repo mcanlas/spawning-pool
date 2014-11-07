@@ -4,6 +4,7 @@ trait DefaultRandomProvider extends
   AlleleIndexProvider with
   CrossoverParentProvider with
   GeneIndexProvider with
+  LengthProvider with
   MutationMethodProvider {
   private val rng = new util.Random
 
@@ -14,4 +15,6 @@ trait DefaultRandomProvider extends
   def nextUseFirstParent = rng.nextBoolean()
 
   def nextMutationMethod = rng.nextInt(3)
+
+  def nextLength(size: Int) = rng.nextInt(size)
 }
