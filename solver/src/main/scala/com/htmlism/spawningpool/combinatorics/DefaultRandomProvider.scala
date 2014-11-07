@@ -1,5 +1,9 @@
 package com.htmlism.spawningpool.combinatorics
 
+/**
+ * This trait implements all of the combinatorial providers using Scala's random number generator.
+ */
+
 trait DefaultRandomProvider extends
   AlleleIndexProvider with
   CrossoverParentProvider with
