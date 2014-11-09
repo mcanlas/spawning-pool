@@ -1,6 +1,6 @@
 package com.htmlism.spawningpool
 
-object Main extends App {
+object CityRunner extends App {
 }
 
 class TourCombinator
