@@ -7,7 +7,6 @@ package com.htmlism.spawningpool.combinatorics
   */
 
 trait FixedLengthCombinator[A] extends HomogenousCombinator[A] {
-   Vector.empty.iterator
   def size: Int
 
   def generateChromosome: B = fill(size)(generateAllele)
