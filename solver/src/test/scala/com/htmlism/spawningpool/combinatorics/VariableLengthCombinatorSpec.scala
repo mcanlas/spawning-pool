@@ -15,6 +15,12 @@ class VariableLengthCombinatorSpec extends Specification {
       secondChromosome.length === 3
       thirdChromosome.length  === 5
     }
+
+    "generate chromosomes of the provided alleles" in {
+      firstChromosome  === Seq('GoGo)
+      secondChromosome === Seq('HoneyLemon, 'Baymax, 'Fred)
+      thirdChromosome  === Seq('Hiro, 'Wasabi, 'GoGo, 'Baymax, 'HoneyLemon)
+    }
   }
 }
 
