@@ -12,7 +12,7 @@ trait VariableLengthCombinator[A]
   with MutationMethodProvider {
   def maximumSize: Int
 
-  def generateChromosome: B = ???
+  def generateChromosome: B = fill(nextLength(maximumSize))(generateAllele)
 
   override def mutate(chromosome: B) = ???
 
