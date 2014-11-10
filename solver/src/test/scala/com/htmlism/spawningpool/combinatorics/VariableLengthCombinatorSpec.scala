@@ -21,4 +21,6 @@ class VariableTestCombinator
   def nextUseFirstParent: Boolean = ???
 
   def nextGeneIndex(size: Int): Int = ???
+
+  def nextLength(maximum: Int): Int = ???
 }
