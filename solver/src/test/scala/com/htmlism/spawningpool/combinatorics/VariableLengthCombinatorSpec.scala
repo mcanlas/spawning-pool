@@ -10,6 +10,10 @@ class VariableLengthCombinatorSpec extends Specification {
     val secondChromosome = combinator.generateChromosome
     val thirdChromosome  = combinator.generateChromosome
 
+    lazy val firstMutation   = combinator.mutate(firstChromosome)
+    lazy val secondMutation  = combinator.mutate(firstChromosome)
+    lazy val thirdtMutation  = combinator.mutate(firstChromosome)
+
     "generate chromosomes of differing lengths" in {
       firstChromosome.length  === 1
       secondChromosome.length === 3
