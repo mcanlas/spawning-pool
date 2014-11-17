@@ -8,6 +8,7 @@ object VariableLengthCombinator {
 
 trait VariableLengthCombinator[A]
   extends HomogenousCombinator[A]
+  with VariationProvider
   with LengthProvider
   with MutationMethodProvider {
   import com.htmlism.spawningpool.combinatorics.VariableLengthCombinator._
@@ -18,7 +19,7 @@ trait VariableLengthCombinator[A]
 
   override def mutate(chromosome: B) = nextMutationMethod match {
     case MutateGene => super.mutate(chromosome)
-    case AddGene    => ???
+    case AddGene    => chromosome.patch(nextGeneIndexForInsertion(chromosome.size), Seq(generateAllele), 0)
     case RemoveGene => ???
   }
 }

@@ -46,4 +46,7 @@ class VariableTestCombinator
 
   private val lengths = Iterable(1, 3, 5).iterator
   def nextLength(maximum: Int) = lengths.next()
+
+  // variation
+  def nextGeneIndexForInsertion(size: Int): Int = 0
 }

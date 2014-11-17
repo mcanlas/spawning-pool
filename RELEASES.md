@@ -2,6 +2,7 @@
 
 * added variation provider
 * unhid working variable crossover implementation
+* implemented add gene mutation
 
 ## 0.0.1
 
