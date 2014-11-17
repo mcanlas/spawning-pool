@@ -9,6 +9,7 @@ trait DefaultRandomProvider extends
   CrossoverParentProvider with
   GeneIndexProvider with
   LengthProvider with
+  VariationProvider with
   MutationMethodProvider {
   private val rng = new util.Random
 
@@ -21,4 +22,7 @@ trait DefaultRandomProvider extends
   def nextMutationMethod = rng.nextInt(3)
 
   def nextLength(size: Int) = rng.nextInt(size)
+
+  // variation
+  def nextGeneIndexForInsertion(size: Int) = rng.nextInt(size)
 }
