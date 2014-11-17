@@ -12,6 +12,7 @@ package com.htmlism.spawningpool.combinatorics
   *
   */
 
+@deprecated("Chromosome manipulation should happen via evolvers and combinators", "0.0.2")
 trait Chromosome[A] {
   /** Produces a slightly modified chromosome.
     *

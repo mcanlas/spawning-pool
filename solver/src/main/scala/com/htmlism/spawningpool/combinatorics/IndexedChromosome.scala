@@ -18,6 +18,7 @@ import scala.annotation.tailrec
   *
   */
 
+@deprecated("Chromosome manipulation should happen via evolvers and combinators", "0.0.2")
 trait IndexedChromosome[A <: IndexedChromosome[A, B], B] extends HomogeneousChromosome[A, B] {
   /** The sequence of genes that make up this chromosome.
     *

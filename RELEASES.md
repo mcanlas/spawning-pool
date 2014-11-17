@@ -4,6 +4,7 @@
 * unhid working variable crossover implementation
 * implemented add gene mutation
 * implemented remove gene mutation
+* deprecated old world chromosome model
 
 ## 0.0.1
 

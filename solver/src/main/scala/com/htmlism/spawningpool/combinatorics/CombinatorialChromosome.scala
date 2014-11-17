@@ -11,6 +11,7 @@ package com.htmlism.spawningpool.combinatorics
   *
   * */
 
+@deprecated("Chromosome manipulation should happen via evolvers and combinators", "0.0.2")
 trait CombinatorialChromosome[A, B] extends HomogeneousChromosome[A, B] {
   /** A collection of possible values for genes
     *

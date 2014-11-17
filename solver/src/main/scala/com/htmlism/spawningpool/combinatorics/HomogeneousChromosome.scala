@@ -18,6 +18,7 @@ package com.htmlism.spawningpool.combinatorics
   *
   * */
 
+@deprecated("Chromosome manipulation should happen via evolvers and combinators", "0.0.2")
 trait HomogeneousChromosome[A, B] extends Chromosome[A] {
   /** Generates an allele.
     *

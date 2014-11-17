@@ -15,6 +15,7 @@ package com.htmlism.spawningpool.combinatorics
   *
   */
 
+@deprecated("Chromosome manipulation should happen via evolvers and combinators", "0.0.2")
 trait VariableLengthChromosome[A <: VariableLengthChromosome[A, B], B] extends IndexedChromosome[A, B] {
   import com.htmlism.spawningpool.combinatorics.VariableLengthChromosome._
 
