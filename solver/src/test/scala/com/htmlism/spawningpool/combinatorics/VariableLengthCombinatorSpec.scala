@@ -14,6 +14,8 @@ class VariableLengthCombinatorSpec extends Specification {
     val secondMutation = combinator.mutate(secondChromosome)
     val thirdMutation  = combinator.mutate(thirdChromosome)
 
+    val child = combinator.crossover(secondChromosome, firstChromosome)
+
     "generate chromosomes of differing lengths" in {
       firstChromosome.length  === 1
       secondChromosome.length === 3
@@ -37,6 +39,10 @@ class VariableLengthCombinatorSpec extends Specification {
     "support removal mutation" in {
       firstMutation === Seq.empty
     }
+
+    "support crossover" in {
+      child === Seq('GoGo, 'Fred)
+    }
   }
 }
 
@@ -52,7 +58,8 @@ class VariableTestCombinator
   private val alleleIndexes = Iterable(3, 5, 1, 2, 0, 4, 3, 1, 5, 0, 4).iterator
   def nextAlleleIndex(size: Int) = alleleIndexes.next()
 
-  def nextUseFirstParent: Boolean = ???
+  private val parents = Iterable(false, false, true).iterator
+  def nextUseFirstParent: Boolean = parents.next()
 
   def nextGeneIndex(size: Int): Int = 1
 
