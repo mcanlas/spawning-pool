@@ -21,6 +21,4 @@ trait VariableLengthCombinator[A]
     case AddGene    => ???
     case RemoveGene => ???
   }
-
-  override def crossover(firstParent: B, secondParent: B) = ???
 }
