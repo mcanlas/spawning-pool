@@ -10,7 +10,7 @@ trait VariationProvider {
   /**
    * Returns the next gene index for insertion from this provider
    *
-   * @param size The size of the chromosome to modify
+   * @param size The size of the chromosome to mutate
    * @return An index
    */
 
