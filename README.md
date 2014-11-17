@@ -3,7 +3,7 @@ spawning-pool
 
 A framework for **genetic algorithms** in Scala.
 
-This framework enables the search and generation of solutions encoded as a chromosome over a fitness landscape, all in a generic manner typical of Scala libaries.
+This framework enables the search and generation of solutions encoded as a chromosome over a fitness landscape, all in a generic manner typical of Scala libraries.
 
 Because genetic algorithms are computationally intensive, this framework uses *futures* to perform evolution concurrently.
 
