@@ -49,4 +49,5 @@ class VariableTestCombinator
 
   // variation
   def nextGeneIndexForInsertion(size: Int): Int = 0
+  def nextGeneIndexForRemoval(size: Int): Int = 0
 }

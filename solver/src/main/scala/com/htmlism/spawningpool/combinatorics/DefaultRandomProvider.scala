@@ -25,4 +25,5 @@ trait DefaultRandomProvider extends
 
   // variation
   def nextGeneIndexForInsertion(size: Int) = rng.nextInt(size)
+  def nextGeneIndexForRemoval(size: Int)   = rng.nextInt(size)
 }

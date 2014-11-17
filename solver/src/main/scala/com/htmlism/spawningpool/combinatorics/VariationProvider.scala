@@ -15,4 +15,13 @@ trait VariationProvider {
    */
 
   def nextGeneIndexForInsertion(size: Int): Int
+
+  /**
+   * Returns the next gene index for removal from this provider
+   *
+   * @param size The size of the chromosome to mutate
+   * @return An index
+   */
+
+  def nextGeneIndexForRemoval(size: Int): Int
 }
