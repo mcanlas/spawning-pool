@@ -16,3 +16,5 @@ ReleaseKeys.releaseProcess := Seq(
   setNextVersion,
   commitNextVersion,
   pushChanges)
+
+publishArtifact := false
