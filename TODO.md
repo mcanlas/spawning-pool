@@ -1,3 +1,5 @@
+* consider adding mutation support where mutation is a function of the spot being mutated
+  * allows for more complex alleles to support spot mutation
 * need variable length provider
 * because tsp may have high local sensitivity, consider "twist" (pivot parents around one index) operator. also does not suffer from boundary bias because the solutions are a cycle (i.e. one cycle can be encoded many times ABC BCA CAB all cyclically equal)
 * maybe tsp can be rethought as a list of edges, and fitness is sorted by the longest unbreaking tour (the "power" of the tour)
