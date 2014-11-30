@@ -8,14 +8,14 @@ object Solver {
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexProvider): A = population(rig.randomIndex(population.size))
 
   @tailrec
-  def evolvePopulation[A, B](implicit ctx: SolutionContext[A, B]): SolutionContext[A, B] =
-    if (ctx.generations >= 20)
+  def evolvePopulation[A, B](generations: Int)(implicit ctx: SolutionContext[A, B]): SolutionContext[A, B] =
+    if (ctx.generations >= generations)
       ctx
     else {
       println(s"island ${ctx.islandId} generating children for generation ${ctx.generations}")
       val newPopulation = Vector.fill(ctx.population.size)(bearChild)
 
-      evolvePopulation(ctx.increment(newPopulation))
+      evolvePopulation(generations)(ctx.increment(newPopulation))
     }
 
   def tournamentSelect[A, B](size: Int)(implicit ctx: SolutionContext[A, B]): A =
@@ -49,7 +49,7 @@ object Solver {
   def awaitResult[A](future: Future[A]): A = Await.result(future, Duration.Inf)
 }
 
-class Solver[A, B](fitness: A => B, populationSize: Int = 50, islandCount: Int = 4)(implicit evolver: Evolver[A], ordering: Ordering[B], rig: RandomIndexProvider) {
+class Solver[A, B](fitness: A => B, populationSize: Int = 50, islandCount: Int = 4, generations: Int = 20)(implicit evolver: Evolver[A], ordering: Ordering[B], rig: RandomIndexProvider) {
   import com.htmlism.spawningpool.Solver._
 
   type Population = Vector[A]
@@ -83,7 +83,7 @@ class Solver[A, B](fitness: A => B, populationSize: Int = 50, islandCount: Int =
     val evolvedIslands =
       islands.zipWithIndex.map { case (p, i) =>
         val calc = Future {
-          evolvePopulation(SolutionContext(i, fitness, evolver, p))
+          evolvePopulation(generations)(SolutionContext(i, fitness, evolver, p))
         }
 
         calc.map { ctx =>
