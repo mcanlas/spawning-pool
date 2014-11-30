@@ -32,4 +32,3 @@
 
 ## Next major release
 
-* expose generations count
