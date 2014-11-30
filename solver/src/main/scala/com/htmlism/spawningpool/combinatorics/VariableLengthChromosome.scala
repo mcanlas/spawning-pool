@@ -30,6 +30,7 @@ trait VariableLengthChromosome[A <: VariableLengthChromosome[A, B], B] extends I
   def randomNewGeneIndex = new util.Random().nextInt(genes.size + 1)
 }
 
+@deprecated("Chromosome manipulation should happen via evolvers and combinators", "0.0.2")
 object VariableLengthChromosome {
   val MutateGene = 0
   val AddGene    = 1
