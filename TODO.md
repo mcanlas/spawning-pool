@@ -32,6 +32,4 @@
 
 ## Next major release
 
-* consider adding mutation support where mutation is a function of the spot being mutated
-  * allows for more complex alleles to support spot mutation
 * expose generations count

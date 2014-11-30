@@ -1,3 +1,7 @@
+## 0.100.0
+
+* homogenous mutation is a function of the allele being mutated
+
 ## 0.0.2
 
 * added variation provider
