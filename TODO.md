@@ -2,7 +2,6 @@
 * maybe tsp can be rethought as a list of edges, and fitness is sorted by the longest unbreaking tour (the "power" of the tour)
 * for tsp, free combinatorial spot mutate probably performs very differently than the swap mutator; test both
 * http://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html
-* one discrete set should be able to yield a tuple of (evolver, generator)
 * consider external operators so that value classes need not extend a trait
   * gut chromosome methods
 * explore spontaneous generation and how it links to fixed/variable length homogenous chromosomes
