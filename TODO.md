@@ -7,7 +7,6 @@
 * explore spontaneous generation and how it links to fixed/variable length homogenous chromosomes
 * need drosophilia/helloworld
   * sodoku??
-* document type parameters
 * support arbitrary types?
 * support arbitary fitness?
 * fitness min/maxer (implies ordered?)
