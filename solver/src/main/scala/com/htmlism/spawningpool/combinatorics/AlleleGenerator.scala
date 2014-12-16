@@ -1,6 +1,14 @@
 package com.htmlism.spawningpool.combinatorics
 
 trait AlleleGenerator[A] {
+  /**
+   * Generates an allele.
+   *
+   * This form of generation is used during chromosome generation.
+   *
+   * @return An allele
+   */
+
   def generateAllele: A
 
   /**

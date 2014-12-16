@@ -2,7 +2,7 @@ package com.htmlism.spawningpool.combinatorics
 
 /** The base trait for combinators that create and manipulate chromosomes of a fixed length.
   *
-  * @tparam A The type of each allele in the chromosome
+  * @tparam A The type of each gene in the chromosome
   *
   */
 
