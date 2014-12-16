@@ -1,6 +1,3 @@
-* because tsp may have high local sensitivity, consider "twist" (pivot parents around one index) operator. also does not suffer from boundary bias because the solutions are a cycle (i.e. one cycle can be encoded many times ABC BCA CAB all cyclically equal)
-* maybe tsp can be rethought as a list of edges, and fitness is sorted by the longest unbreaking tour (the "power" of the tour)
-* for tsp, free combinatorial spot mutate probably performs very differently than the swap mutator; test both
 * consider external operators so that value classes need not extend a trait
   * gut chromosome methods
 * explore spontaneous generation and how it links to fixed/variable length homogenous chromosomes
