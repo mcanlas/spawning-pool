@@ -2,6 +2,7 @@
 
 * homogenous mutation is a function of the allele being mutated
 * allowed maximum generations to be dynamic
+* dropped deprecated classes
 
 ## 0.0.2
 
