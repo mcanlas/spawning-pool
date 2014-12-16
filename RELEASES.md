@@ -1,4 +1,4 @@
-## 0.100.0
+## 0.100.0 (snapshot)
 
 * homogenous mutation is a function of the allele being mutated
 * allowed maximum generations to be dynamic
