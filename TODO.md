@@ -23,3 +23,4 @@
     * cross over, spot mutation (requires () => T, or Chromosome => T)
   * variable length homogenous (Stack[T])
 * do termination conditions need operators? 'and' and 'or'
+* scoverage
