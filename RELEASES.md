@@ -1,3 +1,8 @@
+## 0.100.1
+
+* added missng scalaz resolver
+* added scoverage support
+
 ## 0.100.0
 
 * homogenous mutation is a function of the allele being mutated
