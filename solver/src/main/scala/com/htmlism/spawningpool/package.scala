@@ -12,7 +12,7 @@ package object spawningpool {
   implicit object DefaultRandomIndexProvider extends RandomIndexProvider {
     private val rng = new util.Random
 
-    def randomIndex(size: Int) = rng.nextInt(size)
+    def randomIndex(size: Int): Int = rng.nextInt(size)
   }
 
   def memoize[A, B](f: A => B): A => B = {

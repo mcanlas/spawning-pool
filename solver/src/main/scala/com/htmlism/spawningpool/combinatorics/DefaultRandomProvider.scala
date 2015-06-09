@@ -13,17 +13,17 @@ trait DefaultRandomProvider extends
   MutationMethodProvider {
   private val rng = new util.Random
 
-  def nextAlleleIndex(size: Int) = rng.nextInt(size)
+  def nextAlleleIndex(size: Int): Int = rng.nextInt(size)
 
-  def nextGeneIndex(size: Int) = rng.nextInt(size)
+  def nextGeneIndex(size: Int): Int = rng.nextInt(size)
 
-  def nextUseFirstParent = rng.nextBoolean()
+  def nextUseFirstParent: Boolean = rng.nextBoolean()
 
-  def nextMutationMethod = rng.nextInt(3)
+  def nextMutationMethod: Int = rng.nextInt(3)
 
-  def nextLength(size: Int) = rng.nextInt(size)
+  def nextLength(size: Int): Int = rng.nextInt(size)
 
   // variation
-  def nextGeneIndexForInsertion(size: Int) = rng.nextInt(size + 1)
-  def nextGeneIndexForRemoval(size: Int)   = rng.nextInt(size)
+  def nextGeneIndexForInsertion(size: Int): Int = rng.nextInt(size + 1)
+  def nextGeneIndexForRemoval(size: Int): Int   = rng.nextInt(size)
 }
