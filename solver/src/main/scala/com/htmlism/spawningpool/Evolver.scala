@@ -10,7 +10,8 @@ trait Evolver[A] {
   /**
    * Mutates a given chromosome
    *
-   * The intent of mutation is to provide a small, random change to an existing chromosome and yield a new chromosome whose fitness is somewhat similar to the original
+   * The intent of mutation is to provide a small, random change to an existing chromosome and yield a new chromosome
+   * whose fitness is somewhat similar to the original
    *
    * @param chromosome The chromosome to mutate
    * @return A new chromosome
