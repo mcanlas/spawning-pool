@@ -1,3 +1,8 @@
+* add healing period for "invalid" (?) solutions
+  * default value is none/identity
+  * demonstrate with healing salesman (chromosome is sequence with duplicates, heals to unique sequence)
+    * determinisitically with canonical sequence (slower?)
+    * or recklessly with canonical set (faster?)
 * describe base hierarchy
 * describe combinatorics hierarchy
 * doc primary methods and overrides by traits
