@@ -52,8 +52,8 @@ class VariableTestCombinator
   val maximumSize = 11
   val alleles = Seq('Hiro, 'Baymax, 'Fred, 'GoGo, 'Wasabi, 'HoneyLemon)
 
-  private val mutationMethods = Iterable(2, 0, 1).iterator
-  def nextMutationMethod: Int = mutationMethods.next()
+  private val mutationMethods = Iterable(RemoveGene, MutateGene, AddGene).iterator
+  def nextMutationMethod: MutationMethod = mutationMethods.next()
 
   private val alleleIndexes = Iterable(3, 5, 1, 2, 0, 4, 3, 1, 5, 0, 4).iterator
   def nextAlleleIndex(size: Int) = alleleIndexes.next()

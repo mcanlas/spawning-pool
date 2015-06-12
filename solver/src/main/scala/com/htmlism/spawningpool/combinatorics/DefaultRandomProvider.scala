@@ -12,6 +12,7 @@ trait DefaultRandomProvider extends
   VariationProvider with
   MutationMethodProvider {
   private val rng = new util.Random
+  private val mutations = IndexedSeq(MutateGene, AddGene, RemoveGene)
 
   def nextAlleleIndex(size: Int): Int = rng.nextInt(size)
 
@@ -19,7 +20,7 @@ trait DefaultRandomProvider extends
 
   def nextUseFirstParent: Boolean = rng.nextBoolean()
 
-  def nextMutationMethod: Int = rng.nextInt(3)
+  def nextMutationMethod: MutationMethod = mutations(rng.nextInt(mutations.size))
 
   def nextLength(size: Int): Int = rng.nextInt(size)
 

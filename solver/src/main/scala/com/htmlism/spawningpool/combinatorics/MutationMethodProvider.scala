@@ -19,5 +19,5 @@ trait MutationMethodProvider {
    * @return A mutation method, encoded as an integer
    */
 
-  def nextMutationMethod: Int
+  def nextMutationMethod: MutationMethod
 }
