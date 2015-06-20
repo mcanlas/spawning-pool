@@ -12,16 +12,13 @@ object Solver {
 
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexProvider): A = population(rig.randomIndex(population.size))
 
-  @tailrec
-  def evolvePopulation[A, B](generations: Int)(implicit ctx: SolutionContext[A, B]): SolutionContext[A, B] =
-    if (ctx.generations >= generations)
-      ctx
-    else {
-      println(s"island ${ctx.islandId} generating children for generation ${ctx.generations}")
-      val newPopulation = Vector.fill(ctx.population.size)(bearChild)
+  def evolvePopulation[A, B](implicit ctx: SolutionContext[A, B]): SolutionContext[A, B] = {
+    println(s"island ${ctx.islandId} generating children for generation ${ctx.generations}")
 
-      evolvePopulation(generations)(ctx.increment(newPopulation))
-    }
+    val newPopulation = Vector.fill(ctx.population.size)(bearChild)
+
+    ctx.increment(newPopulation)
+  }
 
   def tournamentSelect[A, B](size: Int)(implicit ctx: SolutionContext[A, B]): A =
     if (size > 0)
@@ -107,20 +104,37 @@ class Solver[A, B](
   private def evolveFrom(seeding: => Population)(implicit ec: ExecutionContext) = {
     val islands = generateIslands(seeding)
 
-    val evolvedIslands =
-      islands.zipWithIndex.map { case (p, i) =>
-        val calc = Future {
-          evolvePopulation(generations)(SolutionContext(i, fitness, evolver, mutationRate, p))
-        }
-
-        calc.map { ctx =>
-          val byFitness = ctx.population.groupBy(ctx.fitness)
-
-          byFitness(byFitness.keys.max)
-        }
+    val baseFutures = islands.zipWithIndex.map { case (p, i) =>
+      Future {
+        SolutionContext(i, fitness, evolver, mutationRate, p)
       }
+    }
+
+    val endFutures = evolveIslands(baseFutures, generations)
+
+    val evolvedIslands = endFutures.map { f =>
+      f.map { ctx =>
+        val byFitness = ctx.population.groupBy(ctx.fitness)
+
+        byFitness(byFitness.keys.max)
+      }
+    }
 
     evolvedIslands.foldLeft(Set.empty[A])((acc, sols) => acc ++ awaitResult(sols))
+  }
+
+  @tailrec
+  private def evolveIslands(
+    islands: Iterable[Future[SolutionContext[A, B]]],
+    generations: Int
+  )(implicit ec: ExecutionContext): Iterable[Future[SolutionContext[A, B]]] = generations match {
+    case 0 => islands
+    case n =>
+      val newIslands = islands.map { f =>
+        f.map(evolvePopulation(_)) // type inference with implicits is hard
+      }
+
+      evolveIslands(newIslands, generations - 1)
   }
 
   private def generateIslands(f: => Population) = Iterable.fill(islandCount)(f)
