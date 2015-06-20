@@ -8,6 +8,7 @@ object Solver {
   val DEFAULT_POPULATION_SIZE = 50
   val DEFAULT_ISLAND_COUNT = 4
   val DEFAULT_GENERATION_COUNT = 20
+  val DEFAULT_MUTATION_RATE = .01
 
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexProvider): A = population(rig.randomIndex(population.size))
 
