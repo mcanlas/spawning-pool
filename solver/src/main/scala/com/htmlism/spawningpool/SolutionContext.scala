@@ -7,6 +7,7 @@ object SolutionContext  {
    * @param islandId A nominal identifier
    * @param fitness A fitness function
    * @param evolver An evolver for solutions
+   * @param mutationRate The rate of mutation from 0 to 1
    * @param population A collection of solutions
    * @param ordering An ordering for fitness
    *
@@ -19,8 +20,9 @@ object SolutionContext  {
     islandId: Int,
     fitness: A => B,
     evolver: Evolver[A],
+    mutationRate: Double,
     population: Seq[A])(implicit ordering: Ordering[B]): SolutionContext[A, B] = {
-    new SolutionContext(islandId, memoize(fitness), evolver, population, 0)
+    new SolutionContext(islandId, memoize(fitness), evolver, mutationRate, population, 0)
   }
 }
 
@@ -30,6 +32,7 @@ object SolutionContext  {
  * @param islandId A nominal identifier
  * @param fitness A fitness function
  * @param evolver An evolver for solutions
+ * @param mutationRate The rate of mutation from 0 to 1
  * @param population A collection of solutions
  * @param generations A zero-based ordinal for generations
  * @param ordering An ordering for fitness
@@ -41,6 +44,7 @@ case class SolutionContext[A, B](
   islandId: Int,
   fitness: A => B,
   evolver: Evolver[A],
+  mutationRate: Double,
   population: Seq[A],
   generations: Int)(implicit val ordering: Ordering[B]) {
   def increment(newPopulation: Seq[A]): SolutionContext[A, B] = copy(

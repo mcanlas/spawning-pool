@@ -45,7 +45,7 @@ object Solver {
   def bearChild[A, B](implicit ctx: SolutionContext[A, B]): A = {
     val child = ctx.evolver.crossover(tournamentSelect(2), tournamentSelect(2))
 
-    if ((new scala.util.Random).nextDouble < .01)
+    if ((new scala.util.Random).nextDouble < ctx.mutationRate)
       ctx.evolver.mutate(child)
     else
       child
@@ -59,7 +59,8 @@ object Solver {
  *
  * @param fitness A function for determining the fitness score B of candidate solutions A
  * @param populationSize The number of solutions in each population
- * @param islandCount The number of islands in each generation
+ * @param islandCount The number of islands in each
+ * @param mutationRate The rate of mutation from 0 to 1
  * @param generations The number of generations to evolve
  * @param evolver The mechanism responsible for evolving candidate solutions
  * @param ordering An ordering for values of B
@@ -73,6 +74,7 @@ class Solver[A, B](
   fitness: A => B,
   populationSize: Int = Solver.DEFAULT_POPULATION_SIZE,
   islandCount: Int = Solver.DEFAULT_ISLAND_COUNT,
+  mutationRate: Double = Solver.DEFAULT_MUTATION_RATE,
   generations: Int = Solver.DEFAULT_GENERATION_COUNT)
   (implicit evolver: Evolver[A], ordering: Ordering[B], rig: RandomIndexProvider) {
   import com.htmlism.spawningpool.Solver._
@@ -108,7 +110,7 @@ class Solver[A, B](
     val evolvedIslands =
       islands.zipWithIndex.map { case (p, i) =>
         val calc = Future {
-          evolvePopulation(generations)(SolutionContext(i, fitness, evolver, p))
+          evolvePopulation(generations)(SolutionContext(i, fitness, evolver, mutationRate, p))
         }
 
         calc.map { ctx =>
