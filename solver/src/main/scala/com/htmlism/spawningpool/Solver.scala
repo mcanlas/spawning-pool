@@ -54,6 +54,21 @@ object Solver {
   def awaitResult[A](future: Future[A]): A = Await.result(future, Duration.Inf)
 }
 
+/**
+ * A generator of solutions configured with tuning parameters.
+ *
+ * @param fitness A function for determining the fitness score B of candidate solutions A
+ * @param populationSize The number of solutions in each population
+ * @param islandCount The number of islands in each generation
+ * @param generations The number of generations to evolve
+ * @param evolver The mechanism responsible for evolving candidate solutions
+ * @param ordering An ordering for values of B
+ * @param rig The source of randomness
+ *
+ * @tparam A The type of the candidate solutions
+ * @tparam B The type of the fitness score
+ */
+
 class Solver[A, B](
   fitness: A => B,
   populationSize: Int = Solver.DEFAULT_POPULATION_SIZE,

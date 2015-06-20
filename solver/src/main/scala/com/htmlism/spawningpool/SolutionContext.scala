@@ -1,6 +1,20 @@
 package com.htmlism.spawningpool
 
 object SolutionContext  {
+  /**
+   * A factory method for solution contexts
+   *
+   * @param islandId A nominal identifier
+   * @param fitness A fitness function
+   * @param evolver An evolver for solutions
+   * @param population A collection of solutions
+   * @param ordering An ordering for fitness
+   *
+   * @tparam A The type of candidate solutions
+   * @tparam B The type of fitness score
+   *
+   * @return A solution context
+   */
   def apply[A, B](
     islandId: Int,
     fitness: A => B,
@@ -9,6 +23,19 @@ object SolutionContext  {
     new SolutionContext(islandId, memoize(fitness), evolver, population, 0)
   }
 }
+
+/**
+ * A bundle of parameters and values for evolution
+ *
+ * @param islandId A nominal identifier
+ * @param fitness A fitness function
+ * @param evolver An evolver for solutions
+ * @param population A collection of solutions
+ * @param generations A zero-based ordinal for generations
+ * @param ordering An ordering for fitness
+ * @tparam A The type of candidate solutions
+ * @tparam B The type of fitness score
+ */
 
 case class SolutionContext[A, B](
   islandId: Int,
