@@ -1,5 +1,7 @@
 package com.htmlism
 
+import scala.language.implicitConversions
+
 /**
  * The `spawning-pool` framework enables the search and generation of solutions encoded as a chromosome over a fitness
  * landscape, all in a generic manner typical of Scala libraries.
@@ -14,6 +16,8 @@ package object spawningpool {
 
     def randomIndex(size: Int): Int = rng.nextInt(size)
   }
+
+  implicit def countToInt(count: PositiveCount): Int = count.count
 
   def memoize[A, B](f: A => B): A => B = {
     val cache = collection.mutable.Map[A, B]()

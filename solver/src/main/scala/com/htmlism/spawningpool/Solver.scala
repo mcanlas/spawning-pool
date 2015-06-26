@@ -5,9 +5,9 @@ import scala.concurrent.duration._
 import scala.annotation.tailrec
 
 object Solver {
-  val DEFAULT_POPULATION_SIZE = 50
-  val DEFAULT_ISLAND_COUNT = 4
-  val DEFAULT_GENERATION_COUNT = 20
+  val DEFAULT_POPULATION_SIZE = PositiveCount(50)
+  val DEFAULT_ISLAND_COUNT = PositiveCount(4)
+  val DEFAULT_GENERATION_COUNT = PositiveCount(20)
   val DEFAULT_MUTATION_RATE = .01
 
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexProvider): A = population(rig.randomIndex(population.size))
@@ -69,10 +69,10 @@ object Solver {
 
 class Solver[A, B](
   fitness: A => B,
-  populationSize: Int = Solver.DEFAULT_POPULATION_SIZE,
-  islandCount: Int = Solver.DEFAULT_ISLAND_COUNT,
+  populationSize: PositiveCount = Solver.DEFAULT_POPULATION_SIZE,
+  islandCount: PositiveCount = Solver.DEFAULT_ISLAND_COUNT,
   mutationRate: Double = Solver.DEFAULT_MUTATION_RATE,
-  generations: Int = Solver.DEFAULT_GENERATION_COUNT)
+  generations: PositiveCount = Solver.DEFAULT_GENERATION_COUNT)
   (implicit evolver: Evolver[A], ordering: Ordering[B], rig: RandomIndexProvider) {
   import com.htmlism.spawningpool.Solver._
 
