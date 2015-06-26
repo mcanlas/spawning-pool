@@ -1,3 +1,5 @@
+scalaVersion := "2.11.7"
+
 name := "spawning-pool"
 
 organization := "com.htmlism"
