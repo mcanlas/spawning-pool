@@ -22,7 +22,7 @@ object SolutionContext  {
     evolver: Evolver[A],
     mutationRate: Double,
     population: Seq[A])(implicit ordering: Ordering[B]): SolutionContext[A, B] = {
-    new SolutionContext(islandId, memoize(fitness), evolver, mutationRate, population, 0)
+    new SolutionContext(islandId, fitness, evolver, mutationRate, population, 0)
   }
 }
 
