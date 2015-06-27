@@ -19,10 +19,14 @@ trait VariableLengthCombinator[A]
   with VariationProvider
   with LengthProvider
   with MutationMethodProvider {
+  /**
+   * The initial number of elements for every chromosome generated.
+   *
+   * @return A number
+   */
+  def initialSize: Int
 
-  def maximumSize: Int
-
-  def generateChromosome: B = fill(nextLength(maximumSize))(generateAllele)
+  def generateChromosome: B = fill(nextLength(initialSize))(generateAllele)
 
   override def mutate(chromosome: B): B = nextMutationMethod match {
     case MutateGene => super.mutate(chromosome)

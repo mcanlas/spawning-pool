@@ -49,7 +49,7 @@ class VariableLengthCombinatorSpec extends Specification {
 class VariableTestCombinator
   extends VariableLengthCombinator[Symbol]
   with DiscreteAlleleGenerator[Symbol] {
-  val maximumSize = 11
+  val initialSize = 11
   val alleles = Seq('Hiro, 'Baymax, 'Fred, 'GoGo, 'Wasabi, 'HoneyLemon)
 
   private val mutationMethods = Iterable(RemoveGene, MutateGene, AddGene).iterator
