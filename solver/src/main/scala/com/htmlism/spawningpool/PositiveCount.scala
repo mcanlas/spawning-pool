@@ -1,7 +1,7 @@
 package com.htmlism.spawningpool
 
 object PositiveCount {
-  def apply(count: Int) =
+  def apply(count: Int): PositiveCount =
     if (count > 0)
       new PositiveCount(count)
     else
