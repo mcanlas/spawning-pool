@@ -11,6 +11,11 @@ Because genetic algorithms are computationally intensive, this framework uses *f
 
 This framework also features helper classes for chromosomes that are homogenous collections of some type (e.g. a string of characters or a tour of cities).
 
+Testing
+=======
+
+    sbt clean "project solver" coverage test
+
 References
 ----------
 * [Essentials of Metaheuristics](http://cs.gmu.edu/~sean/book/metaheuristics/) by Sean Luke
