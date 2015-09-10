@@ -1,3 +1,5 @@
+* case class vs Ints/better primitives
+* array vs vector as default Seq implementation
 * add healing period for "invalid" (?) solutions
   * default value is none/identity
   * demonstrate with healing salesman (chromosome is sequence with duplicates, heals to unique sequence)
