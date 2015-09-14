@@ -1,5 +1,11 @@
 package com.htmlism.spawningpool.combinatorics
 
+/**
+ * A base trait for sources that can generate alleles, the individual parts of a chromosome
+ *
+ * @tparam A The type of the allele
+ */
+
 trait AlleleGenerator[A] {
   /**
    * Generates an allele.
