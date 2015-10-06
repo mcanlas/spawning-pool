@@ -4,6 +4,8 @@ scalaVersion := "2.11.7"
 
 lazy val solver = project
 
+lazy val benchmark = project dependsOn solver
+
 crossScalaVersions := Seq("2.10.5", "2.11.7")
 
 releaseSettings
