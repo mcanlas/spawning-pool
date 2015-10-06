@@ -2,6 +2,7 @@
 
 * added missng scalaz resolver
 * added scoverage support
+* added specialized combinators
 
 ## 0.100.0
 
