@@ -21,11 +21,13 @@ object Benchmark {
       .mapValues(toDurations(times))
       .map(identity)
 
-    println("Durations: " + durations)
+    println("Durations:")
+    durations.foreach(println)
 
     val averages = durations
       .mapValues(_.sum / times)
 
-    println("Average duration: " + averages)
+    println("Average duration:")
+    averages.foreach(println)
   }
 }
