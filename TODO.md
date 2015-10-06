@@ -1,3 +1,4 @@
+* callbacks for islands/aggregation
 * case class vs Ints/better primitives
 * array vs vector as default Seq implementation
 * add healing period for "invalid" (?) solutions
