@@ -9,7 +9,7 @@ object Benchmark {
 
       f()
 
-      val duration = start - compat.Platform.currentTime
+      val duration = compat.Platform.currentTime - start
       val duratinInSeconds = duration / 1000
 
       println(s"Duration was $duratinInSeconds seconds")
