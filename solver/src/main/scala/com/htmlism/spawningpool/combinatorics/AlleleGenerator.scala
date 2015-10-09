@@ -18,7 +18,7 @@ trait AlleleGenerator[A] {
   def generateAllele: A
 
   /**
-   * Generates an allele.
+   * Generates an allele given an existing allele.
    *
    * This form of generation is used during mutation.
    *
