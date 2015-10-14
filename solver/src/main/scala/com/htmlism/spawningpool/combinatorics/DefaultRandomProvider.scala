@@ -20,7 +20,7 @@ trait DefaultRandomProvider extends
 
   def nextUseFirstParent: Boolean = rng.nextBoolean()
 
-  def nextMutationMethod: MutationMethod = mutations(safeRandom(mutations.size))
+  def nextMutationMethod: MutationMethod = mutations(rng.nextInt(mutations.size))
 
   def nextLength(size: Int): Int = safeRandom(size)
 
