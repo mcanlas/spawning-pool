@@ -28,11 +28,15 @@ trait VariableLengthCombinator[A]
 
   def generateChromosome: B = fill(nextLength(initialSize))(generateAllele)
 
-  override def mutate(chromosome: B): B = nextMutationMethod match {
-    case MutateGene => super.mutate(chromosome)
-    case AddGene    => addGene(chromosome)
-    case RemoveGene => chromosome.patch(nextGeneIndexForRemoval(chromosome.size), Nil, 1)
-  }
+  override def mutate(chromosome: B): B =
+    if (chromosome.isEmpty)
+      addGene(chromosome)
+    else
+      nextMutationMethod match {
+        case MutateGene => super.mutate(chromosome)
+        case AddGene    => addGene(chromosome)
+        case RemoveGene => chromosome.patch(nextGeneIndexForRemoval(chromosome.size), Nil, 1)
+      }
 
   private def addGene(chromosome: B) = chromosome.patch(nextGeneIndexForInsertion(chromosome.size), Seq(generateAllele), 0)
 }
