@@ -19,12 +19,15 @@ trait HomogenousCombinator[A] extends AlleleGenerator[A]
   /** The type of the chromosome */
   type B = Seq[A]
 
-  def mutate(chromosome: B): B = {
-    val index = nextGeneIndex(chromosome.size)
-    val alleleToUpdate = chromosome(index)
+  def mutate(chromosome: B): B =
+    if (chromosome.isEmpty)
+      chromosome
+    else {
+      val index = nextGeneIndex(chromosome.size)
+      val alleleToUpdate = chromosome(index)
 
-    chromosome.updated(index, generateAllele(alleleToUpdate))
-  }
+      chromosome.updated(index, generateAllele(alleleToUpdate))
+    }
 
   def crossover(firstParent: B, secondParent: B): B = {
     val size = Math.max(firstParent.size, secondParent.size)
