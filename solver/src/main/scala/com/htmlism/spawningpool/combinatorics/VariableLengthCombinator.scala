@@ -30,9 +30,11 @@ trait VariableLengthCombinator[A]
 
   override def mutate(chromosome: B): B = nextMutationMethod match {
     case MutateGene => super.mutate(chromosome)
-    case AddGene    => chromosome.patch(nextGeneIndexForInsertion(chromosome.size), Seq(generateAllele), 0)
+    case AddGene    => addGene(chromosome)
     case RemoveGene => chromosome.patch(nextGeneIndexForRemoval(chromosome.size), Nil, 1)
   }
+
+  private def addGene(chromosome: B) = chromosome.patch(nextGeneIndexForInsertion(chromosome.size), Seq(generateAllele), 0)
 }
 
 /**
