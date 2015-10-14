@@ -29,7 +29,7 @@ trait DefaultRandomProvider extends
   def nextGeneIndexForRemoval(size: Int): Int   = guardedRandom(size)
 
   private def guardedRandom(n: Int) = {
-    assert(n != 0, "a random index cannot be generated for an empty collection")
+    assert(n != 0)
 
     rng.nextInt(n)
   }
