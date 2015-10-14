@@ -22,7 +22,7 @@ trait DefaultRandomProvider extends
 
   def nextMutationMethod: MutationMethod = mutations(rng.nextInt(mutations.size))
 
-  def nextLength(size: Int): Int = guardedRandom(size)
+  def nextLength(size: Int): Int = guardedRandom(size + 1)
 
   // variation
   def nextGeneIndexForInsertion(size: Int): Int = guardedRandom(size + 1)

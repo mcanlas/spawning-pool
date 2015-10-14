@@ -10,7 +10,7 @@ trait LengthProvider {
   /**
    * Returns the next length from this provider
    *
-   * @param maximum The maximum possible length (exclusive)
+   * @param maximum The maximum possible length (inclusive)
    * @return A length
    */
 
