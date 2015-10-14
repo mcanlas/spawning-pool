@@ -14,23 +14,23 @@ trait DefaultRandomProvider extends
   private val rng = new util.Random
   private val mutations = IndexedSeq(MutateGene, AddGene, RemoveGene)
 
-  def nextAlleleIndex(size: Int): Int = safeRandom(size)
+  def nextAlleleIndex(size: Int): Int = guardedRandom(size)
 
-  def nextGeneIndex(size: Int): Int = safeRandom(size)
+  def nextGeneIndex(size: Int): Int = guardedRandom(size)
 
   def nextUseFirstParent: Boolean = rng.nextBoolean()
 
   def nextMutationMethod: MutationMethod = mutations(rng.nextInt(mutations.size))
 
-  def nextLength(size: Int): Int = safeRandom(size)
+  def nextLength(size: Int): Int = guardedRandom(size)
 
   // variation
-  def nextGeneIndexForInsertion(size: Int): Int = safeRandom(size + 1)
-  def nextGeneIndexForRemoval(size: Int): Int   = safeRandom(size)
+  def nextGeneIndexForInsertion(size: Int): Int = guardedRandom(size + 1)
+  def nextGeneIndexForRemoval(size: Int): Int   = guardedRandom(size)
 
-  private def safeRandom(n: Int) =
-    if (n == 0)
-      0
-    else
-      rng.nextInt(n)
+  private def guardedRandom(n: Int) = {
+    assert(n != 0, "a random index cannot be generated for an empty collection")
+
+    rng.nextInt(n)
+  }
 }
