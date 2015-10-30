@@ -79,12 +79,6 @@ class Solver[A, B](
   type Population = Vector[A]
   type Solutions  = Set[A]
 
-  if (populationSize < 1)
-    throw new IllegalArgumentException("must have a population size of one or greater")
-
-  if (islandCount < 1)
-    throw new IllegalArgumentException("must have an island count of one or greater")
-
   def solve(implicit src: ChromosomeGenerator[A], ec: ExecutionContext): Future[Solutions] = Future {
     evolveFrom { Vector.fill(populationSize)(src.generateChromosome) }
   }
