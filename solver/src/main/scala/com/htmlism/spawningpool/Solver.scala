@@ -20,15 +20,12 @@ object Solver {
     ctx.increment(newPopulation)
   }
 
-  def tournamentSelect[A, B](size: Int)(implicit ctx: SolutionContext[A, B]): A =
-    if (size > 0)
-      tournamentSelect(size, randomIndividual(ctx.population))
-    else
-      throw new IllegalArgumentException("tournament size must be at least 1")
+  def tournamentSelect[A, B](size: PositiveCount)(implicit ctx: SolutionContext[A, B]): A =
+    tournamentSelect(size, randomIndividual(ctx.population))
 
   @tailrec
-  private def tournamentSelect[A, B](size: Int, champion: A)(implicit ctx: SolutionContext[A, B]): A =
-    if (size == 1)
+  private def tournamentSelect[A, B](size: PositiveCount, champion: A)(implicit ctx: SolutionContext[A, B]): A =
+    if (size == PositiveCount(1))
       champion
     else {
       val challenger = randomIndividual(ctx.population)
@@ -36,11 +33,11 @@ object Solver {
 
       val nextChampion = if (compare < 0) challenger else champion
 
-      tournamentSelect(size - 1, nextChampion)
+      tournamentSelect(size.minusOne, nextChampion)
     }
 
   def bearChild[A, B](implicit ctx: SolutionContext[A, B]): A = {
-    val child = ctx.evolver.crossover(tournamentSelect(2), tournamentSelect(2))
+    val child = ctx.evolver.crossover(tournamentSelect(PositiveCount(2)), tournamentSelect(PositiveCount(2)))
 
     if ((new scala.util.Random).nextDouble < ctx.mutationRate)
       ctx.evolver.mutate(child)
