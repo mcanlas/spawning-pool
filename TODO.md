@@ -1,4 +1,3 @@
-* infinite blocks are bad
 * callbacks for islands/aggregation
 * case class vs Ints/better primitives
 * array vs vector as default Seq implementation
