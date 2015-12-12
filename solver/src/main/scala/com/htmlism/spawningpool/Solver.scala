@@ -1,8 +1,8 @@
 package com.htmlism.spawningpool
 
+import scala.annotation.tailrec
 import scala.concurrent._
 import scala.concurrent.duration._
-import scala.annotation.tailrec
 
 object Solver {
   val DEFAULT_POPULATION_SIZE = PositiveCount(50)
