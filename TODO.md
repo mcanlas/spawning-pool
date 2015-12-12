@@ -1,3 +1,5 @@
+* describe a population to population evolver
+  * mutation + crossover is slightly prescriptive
 * callbacks for islands/aggregation
 * case class vs Ints/better primitives
 * array vs vector as default Seq implementation
