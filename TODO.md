@@ -30,3 +30,11 @@
   * fixed length homogenous (Seq[T])
     * cross over, spot mutation (requires () => T, or Chromosome => T)
   * variable length homogenous (Stack[T])
+
+## Redesign
+
+population evolver. does not specify mutation or crossover. input Seq[A] output Seq[A]. if A itself is also a Seq, can support by default mutation and popular crossover operations
+
+population manager? used to control islands?
+
+population evolver itself has termination conditions
