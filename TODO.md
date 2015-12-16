@@ -38,3 +38,7 @@ population evolver. does not specify mutation or crossover. input Seq[A] output 
 population manager? used to control islands?
 
 population evolver itself has termination conditions
+
+better, earlier support for Array[Int/Double] as chromosomes
+
+framework for working with Int over discrete collections/as chromosomes
