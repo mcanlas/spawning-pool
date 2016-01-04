@@ -21,11 +21,13 @@ trait Generator[A] {
 }
 
 object Generator {
+  private val DEFAULT_FIXED_ARRAY_LENGTH = 100
+
   implicit val intGenerator    = IntGenerator
   implicit val doubleGenerator = DoubleGenerator
 
-  implicit val intArrayGenerator    = new IntArrayGenerator(100)
-  implicit val doubleArrayGenerator = new DoubleArrayGenerator(100)
+  implicit val intArrayGenerator    = FixedIntArrayGenerator(DEFAULT_FIXED_ARRAY_LENGTH)
+  implicit val doubleArrayGenerator = FixedDoubleArrayGenerator(DEFAULT_FIXED_ARRAY_LENGTH)
 }
 
 object IntGenerator extends Generator[Int] {
@@ -36,18 +38,40 @@ object DoubleGenerator extends Generator[Double] {
   def generate: Double = Random.nextDouble
 }
 
-class IntArrayGenerator(n: Int) extends Generator[Array[Int]] {
-  def generate: Array[Int] = {
-    val length = Random.nextInt(n)
+// int array
 
-    Array.fill(length)(Random.nextInt)
-  }
+trait IntArrayGenerator extends Generator[Array[Int]] {
+  def length: Int
+
+  def generate: Array[Int] = Array.fill(length)(Random.nextInt)
 }
 
-class DoubleArrayGenerator(n: Int) extends Generator[Array[Double]] {
-  def generate: Array[Double] = {
-    val length = Random.nextInt(n)
+case class FixedIntArrayGenerator(length: Int) extends IntArrayGenerator
 
-    Array.fill(length)(Random.nextDouble)
-  }
+class VariableIntArrayGenerator(rng: LengthProvider, maximum: Int) extends IntArrayGenerator {
+  def length: Int = rng.nextLength(maximum)
+}
+
+// double array
+
+trait DoubleArrayGenerator extends Generator[Array[Double]] {
+  def length: Int
+
+  def generate: Array[Double] = Array.fill(length)(Random.nextDouble)
+}
+
+case class FixedDoubleArrayGenerator(length: Int) extends DoubleArrayGenerator
+
+class VariableDoubleArrayGenerator(rng: LengthProvider, maximum: Int) extends DoubleArrayGenerator {
+  def length: Int = rng.nextLength(maximum)
+}
+
+// length providers
+
+trait LengthProvider {
+  def nextLength(maximum: Int): Int
+}
+
+object RandomLengthProvider extends LengthProvider {
+  def nextLength(maximum: Int): Int = Random.nextInt(maximum)
 }
