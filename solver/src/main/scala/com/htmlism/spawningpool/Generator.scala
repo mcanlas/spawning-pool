@@ -21,13 +21,23 @@ trait Generator[A] {
 }
 
 object Generator {
-  private val DEFAULT_FIXED_ARRAY_LENGTH = 100
+  private val DEFAULT_ARRAY_LENGTH = 100
 
-  implicit val intGenerator    = IntGenerator
-  implicit val doubleGenerator = DoubleGenerator
+  private val rngInt    = () => Random.nextInt
+  private val rngDouble = () => Random.nextDouble
 
-  implicit val intArrayGenerator    = FixedIntArrayGenerator(DEFAULT_FIXED_ARRAY_LENGTH)
-  implicit val doubleArrayGenerator = FixedDoubleArrayGenerator(DEFAULT_FIXED_ARRAY_LENGTH)
+  implicit val intGenerator:    Generator[Int]    = IntGenerator
+  implicit val doubleGenerator: Generator[Double] = DoubleGenerator
+
+  implicit val intArrayGenerator:    Generator[Array[Int]]    = new FixedIntArrayGenerator(DEFAULT_ARRAY_LENGTH, rngInt)
+  implicit val doubleArrayGenerator: Generator[Array[Double]] = new FixedDoubleArrayGenerator(DEFAULT_ARRAY_LENGTH, rngDouble)
+
+  object VariableLength {
+    private val rngLength = (max: Int) => Random.nextInt(max)
+
+    implicit val intArrayGenerator:    Generator[Array[Int]]    = new VariableIntArrayGenerator(DEFAULT_ARRAY_LENGTH, rngInt, rngLength)
+    implicit val doubleArrayGenerator: Generator[Array[Double]] = new VariableDoubleArrayGenerator(DEFAULT_ARRAY_LENGTH, rngDouble, rngLength)
+  }
 }
 
 object IntGenerator extends Generator[Int] {
@@ -38,40 +48,22 @@ object DoubleGenerator extends Generator[Double] {
   def generate: Double = Random.nextDouble
 }
 
-// int array
+// fixed
 
-trait IntArrayGenerator extends Generator[Array[Int]] {
-  def length: Int
-
-  def generate: Array[Int] = Array.fill(length)(Random.nextInt)
+class FixedIntArrayGenerator(length: Int, nextGene: () => Int) extends Generator[Array[Int]] {
+  def generate: Array[Int] = Array.fill(length)(nextGene.apply)
 }
 
-case class FixedIntArrayGenerator(length: Int) extends IntArrayGenerator
-
-class VariableIntArrayGenerator(rng: LengthProvider, maximum: Int) extends IntArrayGenerator {
-  def length: Int = rng.nextLength(maximum)
+class FixedDoubleArrayGenerator(length: Int, nextGene: () => Double) extends Generator[Array[Double]] {
+  def generate: Array[Double] = Array.fill(length)(nextGene.apply)
 }
 
-// double array
+// variable
 
-trait DoubleArrayGenerator extends Generator[Array[Double]] {
-  def length: Int
-
-  def generate: Array[Double] = Array.fill(length)(Random.nextDouble)
+class VariableIntArrayGenerator(max: Int, nextGene: () => Int, nextLength: Int => Int) extends Generator[Array[Int]] {
+  def generate: Array[Int] = Array.fill(nextLength(max))(nextGene.apply)
 }
 
-case class FixedDoubleArrayGenerator(length: Int) extends DoubleArrayGenerator
-
-class VariableDoubleArrayGenerator(rng: LengthProvider, maximum: Int) extends DoubleArrayGenerator {
-  def length: Int = rng.nextLength(maximum)
-}
-
-// length providers
-
-trait LengthProvider {
-  def nextLength(maximum: Int): Int
-}
-
-object RandomLengthProvider extends LengthProvider {
-  def nextLength(maximum: Int): Int = Random.nextInt(maximum)
+class VariableDoubleArrayGenerator(max: Int, nextGene: () => Double, nextLength: Int => Int) extends Generator[Array[Double]] {
+  def generate: Array[Double] = Array.fill(nextLength(max))(nextGene.apply)
 }
