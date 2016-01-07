@@ -2,7 +2,7 @@ package com.htmlism.spawningpool
 
 import scala.util.Random
 
-package object default {
+package object generation {
   private val DEFAULT_ARRAY_LENGTH = 100
 
   private val rngInt    = () => Random.nextInt
