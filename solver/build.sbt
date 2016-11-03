@@ -8,8 +8,8 @@ autoAPIMappings := true
 
 resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases" // for specs2
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.8.5" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.8.6" % "test"
 
-libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.13.2" % "test"
+libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.13.4" % "test"
 
 initialCommands in console := "import com.htmlism.spawningpool._"
