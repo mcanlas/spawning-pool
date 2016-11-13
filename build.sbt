@@ -1,12 +1,19 @@
 import sbtrelease.ReleaseStateTransformations._
 
-scalaVersion := "2.l2.0"
+val commonSettings = Seq(
+  scalaVersion := "2.12.0",
+  crossScalaVersions := Seq("2.10.6", "2.11.8", "2.12.0"))
 
 lazy val solver = project
+  .settings(commonSettings: _*)
 
-lazy val benchmark = project dependsOn solver
+lazy val benchmark = project
+  .settings(commonSettings: _*)
+  .dependsOn(solver)
 
-crossScalaVersions := Seq("2.10.6", "2.11.8", "2.12.0")
+lazy val root = (project in file("."))
+  .settings(commonSettings: _*)
+  .aggregate(solver, benchmark)
 
 releaseSettings
 
