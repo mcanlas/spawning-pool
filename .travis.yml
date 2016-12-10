@@ -1,5 +1,18 @@
 language: scala
+
 scala:
   - 2.10.6
   - 2.11.8
   - 2.12.1
+
+env:
+  - JDK=oraclejdk7
+  - JDK=oraclejdk8
+
+before_script:
+  - jdk_switcher use $JDK
+
+matrix:
+  exclude:
+    - scala: 2.12.1
+      env: JDK=oraclejdk7
