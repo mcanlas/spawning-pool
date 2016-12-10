@@ -30,6 +30,12 @@
   * fixed length homogenous (Seq[T])
     * cross over, spot mutation (requires () => T, or Chromosome => T)
   * variable length homogenous (Stack[T])
+* termination conditions
+  * time elapsed
+  * generations elapsed
+  * state fitness improvmeent
+  * target fitness reached
+  * and/or
 
 ## Redesign
 
