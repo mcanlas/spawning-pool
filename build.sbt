@@ -7,13 +7,17 @@ val commonSettings = Seq(
 lazy val core = Project("spawning-pool-core", file("spawning-pool-core"))
   .settings(commonSettings: _*)
 
+lazy val scalaz = Project("spawning-pool-scalaz", file("spawning-pool-scalaz"))
+  .settings(commonSettings: _*)
+  .dependsOn(core)
+
 lazy val benchmark = project
   .settings(commonSettings: _*)
   .dependsOn(core)
 
 lazy val root = (project in file("."))
   .settings(commonSettings: _*)
-  .aggregate(core, benchmark)
+  .aggregate(core, scalaz, benchmark)
 
 releaseSettings
 
