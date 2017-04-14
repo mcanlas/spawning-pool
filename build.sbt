@@ -15,7 +15,7 @@ lazy val benchmark = project
   .settings(commonSettings: _*)
   .dependsOn(core)
 
-lazy val root = (project in file("."))
+lazy val root = Project("spawning-pool", file("."))
   .settings(commonSettings: _*)
   .aggregate(core, scalaz, benchmark)
 
