@@ -1,5 +1,3 @@
-name := "spawning-pool"
-
 organization := "com.htmlism"
 
 autoAPIMappings := true

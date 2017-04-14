@@ -4,16 +4,16 @@ val commonSettings = Seq(
   scalaVersion := "2.12.1",
   crossScalaVersions := Seq("2.10.6", "2.11.10", "2.12.1"))
 
-lazy val solver = project
+lazy val core = Project("spawning-pool-core", file("spawning-pool-core"))
   .settings(commonSettings: _*)
 
 lazy val benchmark = project
   .settings(commonSettings: _*)
-  .dependsOn(solver)
+  .dependsOn(core)
 
 lazy val root = (project in file("."))
   .settings(commonSettings: _*)
-  .aggregate(solver, benchmark)
+  .aggregate(core, benchmark)
 
 releaseSettings
 
