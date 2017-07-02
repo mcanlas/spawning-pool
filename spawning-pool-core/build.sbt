@@ -1,5 +1,3 @@
-organization := "com.htmlism"
-
 autoAPIMappings := true
 
 resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases" // for specs2
