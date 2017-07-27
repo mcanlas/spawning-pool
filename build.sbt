@@ -39,7 +39,7 @@ publishArtifact := false
 
 lazy val specs2 = Seq(
   resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases", // for specs2
-  libraryDependencies += "org.specs2" %% "specs2-core" % "3.9.1" % "test",
+  libraryDependencies += "org.specs2" %% "specs2-core" % "3.9.4" % "test",
   libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.13.5" % "test")
 
 lazy val betterConsole = initialCommands in console := "import com.htmlism.spawningpool._"
