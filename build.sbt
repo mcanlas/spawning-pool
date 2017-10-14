@@ -22,9 +22,7 @@ lazy val root = Project("spawning-pool", file("."))
   .settings(commonSettings: _*)
   .aggregate(core, scalaz, benchmark)
 
-releaseSettings
-
-ReleaseKeys.releaseProcess := Seq(
+releaseProcess := Seq(
   checkSnapshotDependencies,
   inquireVersions,
   runTest,
