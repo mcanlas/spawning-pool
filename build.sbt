@@ -10,6 +10,11 @@ lazy val core = Project("spawning-pool-core", file("spawning-pool-core"))
   .settings(specs2: _*)
   .settings(betterConsole)
 
+lazy val coreAlpha = Project("spawning-pool-core-alpha", file("spawning-pool-core-alpha"))
+  .settings(commonSettings: _*)
+  .settings(specs2: _*)
+  .settings(betterConsole)
+
 lazy val scalaz = Project("spawning-pool-scalaz", file("spawning-pool-scalaz"))
   .settings(commonSettings: _*)
   .dependsOn(core)
