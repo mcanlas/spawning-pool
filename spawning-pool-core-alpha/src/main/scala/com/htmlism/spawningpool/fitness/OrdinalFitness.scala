@@ -12,5 +12,5 @@ class FitnessByOrdering[A : Ordering] extends OrdinalFitness[A] {
 }
 
 class RatioFitness[A, B : Numeric](f: A => B) extends OrdinalFitness[A] {
-  def compare(x: A, y: A): Int = ???
+  def compare(x: A, y: A): Int = implicitly[Numeric[B]].compare(f(x), f(y))
 }
