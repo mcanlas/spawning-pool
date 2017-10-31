@@ -7,9 +7,9 @@ class OrdinalFitnessSpec extends Specification {
     "summon the implicit numeric" in {
       val fitness = new RatioFitness((s: String) => s.length)
 
-      fitness.compare("short", "longest") === -1
-      fitness.compare("equal", "apple") === 0
-      fitness.compare("longest", "short") === 1
+      fitness.compare("short",   "longest") === -1
+      fitness.compare("equal",   "apple")   ===  0
+      fitness.compare("longest", "short")   ===  1
     }
   }
 }
