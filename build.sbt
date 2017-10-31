@@ -25,7 +25,7 @@ lazy val benchmark = project
 
 lazy val root = Project("spawning-pool", file("."))
   .settings(commonSettings: _*)
-  .aggregate(core, scalaz, benchmark)
+  .aggregate(core, scalaz, benchmark, coreAlpha)
 
 releaseProcess := Seq(
   checkSnapshotDependencies,
