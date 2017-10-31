@@ -8,7 +8,7 @@ trait OrdinalFitness[A] {
 }
 
 class FitnessByOrdering[A : Ordering] extends OrdinalFitness[A] {
-  def compare(x: A, y: A): Int = ???
+  def compare(x: A, y: A): Int = implicitly[Ordering[A]].compare(x, y)
 }
 
 class RatioFitness[A, B : Numeric](f: A => B) extends OrdinalFitness[A] {
