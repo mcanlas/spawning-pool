@@ -19,7 +19,9 @@ Testing
 References
 ----------
 * [Essentials of Metaheuristics](http://cs.gmu.edu/~sean/book/metaheuristics/) by Sean Luke
-* [Watchmaker Framework](http://watchmaker.uncommons.org/)
+* [Watchmaker Framework](http://watchmaker.uncommons.org/) (Java)
+* [Jenetics](https://github.com/jenetics/jenetics) (Java)
+* [GeneticSharp](https://github.com/giacomelli/GeneticSharp) (C#)
 
 Colophon
 --------
