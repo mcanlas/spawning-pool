@@ -5,7 +5,7 @@ package com.htmlism.spawningpool.fitness
   *
   * @tparam A The solution type whose fitness is being evaluated
   */
-trait OrdinalFitness[A] {
+trait Fitness[A] {
   /**
     * Given two solutions, find out how they relate.
     *
@@ -26,7 +26,7 @@ trait OrdinalFitness[A] {
   *
   * @tparam A The solution type whose fitness is being evaluated
   */
-class FitnessByOrdering[A : Ordering] extends OrdinalFitness[A] {
+class OrdinalFitness[A : Ordering] extends Fitness[A] {
   def compare(x: A, y: A): Int = implicitly[Ordering[A]].compare(x, y)
 }
 
@@ -40,6 +40,6 @@ class FitnessByOrdering[A : Ordering] extends OrdinalFitness[A] {
   * @tparam A The solution type whose fitness is being evaluated
   * @tparam B A numeric type for scoring
   */
-class RatioFitness[A, B : Numeric](f: A => B) extends OrdinalFitness[A] {
+class RatioFitness[A, B : Numeric](f: A => B) extends Fitness[A] {
   def compare(x: A, y: A): Int = implicitly[Numeric[B]].compare(f(x), f(y))
 }
