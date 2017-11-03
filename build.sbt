@@ -17,7 +17,7 @@ lazy val coreAlpha = Project("spawning-pool-core-alpha", file("spawning-pool-cor
 
 lazy val scalaz = Project("spawning-pool-scalaz", file("spawning-pool-scalaz"))
   .settings(commonSettings: _*)
-  .dependsOn(core)
+  .dependsOn(coreAlpha)
 
 lazy val benchmark = project
   .settings(commonSettings: _*)
