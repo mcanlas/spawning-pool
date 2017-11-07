@@ -22,4 +22,13 @@ class FitnessSpec extends Specification {
       fitness.compare("longest", "short")   ===  1
     }
   }
+
+  "fitness" should {
+    "support minimization" in {
+      val fitness = new OrdinalFitness[Int]
+
+      fitness.compare(123, 45) === 1
+      fitness.minimize.compare(123, 45) === -1
+    }
+  }
 }

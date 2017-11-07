@@ -6,6 +6,8 @@ package com.htmlism.spawningpool.fitness
   * @tparam A The solution type whose fitness is being evaluated
   */
 trait Fitness[A] {
+  self =>
+
   /**
     * Given two solutions, find out how they relate.
     *
@@ -18,6 +20,10 @@ trait Fitness[A] {
     * @return An integer
     */
   def compare(x: A, y: A): Int
+
+  def minimize: Fitness[A] = new Fitness[A] {
+    def compare(x: A, y: A) = self.compare(x, y) * -1
+  }
 }
 
 /**
