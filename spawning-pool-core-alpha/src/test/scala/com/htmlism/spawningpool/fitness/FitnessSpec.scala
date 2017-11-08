@@ -30,5 +30,13 @@ class FitnessSpec extends Specification {
       fitness.compare(123, 45) === 1
       fitness.minimize.compare(123, 45) === -1
     }
+
+    "support chaining" in {
+      val fitness1 = new OrdinalFitness[Int]
+      val fitness2 = new OrdinalFitness[Double]
+      val totalFitness = fitness1 andThen fitness2
+
+      totalFitness.compare((1, 1d), (1, 2d)) === -1
+    }
   }
 }
