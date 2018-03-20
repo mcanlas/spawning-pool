@@ -29,4 +29,12 @@ package object spawningpool {
       cache(key)
     }
   }
+
+  implicit val asdf: Mutation[Int] = IntMutation
+
+  implicit class MutationOps[A : Mutation](x: A) {
+    def mutate: A = implicitly[Mutation[A]].mutate(x)
+  }
+
+  def muz[A : Mutation](x: A): A = implicitly[Mutation[A]].mutate(x)
 }
