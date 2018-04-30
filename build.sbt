@@ -3,7 +3,7 @@ import sbtrelease.ReleaseStateTransformations._
 val commonSettings = Seq(
   organization := "com.htmlism",
   scalaVersion := "2.12.6",
-  crossScalaVersions := Seq("2.10.7", "2.11.12", "2.12.6"))
+  crossScalaVersions := Seq("2.11.12", "2.12.6"))
 
 lazy val core = Project("spawning-pool-core", file("spawning-pool-core"))
   .settings(commonSettings: _*)
@@ -12,12 +12,9 @@ lazy val core = Project("spawning-pool-core", file("spawning-pool-core"))
 
 lazy val coreAlpha = Project("spawning-pool-core-alpha", file("spawning-pool-core-alpha"))
   .settings(commonSettings: _*)
+  .settings(fs2: _*)
   .settings(specs2: _*)
   .settings(betterConsole)
-
-lazy val scalaz = Project("spawning-pool-scalaz", file("spawning-pool-scalaz"))
-  .settings(commonSettings: _*)
-  .dependsOn(coreAlpha)
 
 lazy val shapelessMutation = Project("spawning-pool-shapeless-mutation", file("spawning-pool-shapeless-mutation"))
   .settings(commonSettings: _*)
@@ -30,7 +27,7 @@ lazy val benchmark = project
 
 lazy val root = Project("spawning-pool", file("."))
   .settings(commonSettings: _*)
-  .aggregate(core, scalaz, benchmark, coreAlpha)
+  .aggregate(core, benchmark, coreAlpha)
 
 releaseProcess := Seq(
   checkSnapshotDependencies,
@@ -44,6 +41,9 @@ releaseProcess := Seq(
   pushChanges)
 
 publishArtifact := false
+
+lazy val fs2 = Seq(
+  libraryDependencies += "co.fs2" %% "fs2-core" % "0.10.1")
 
 lazy val shapeless = Seq(
   libraryDependencies ++= Seq("com.chuusai" %% "shapeless" % "2.3.3") ++
