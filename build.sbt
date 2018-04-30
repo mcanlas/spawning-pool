@@ -19,6 +19,11 @@ lazy val scalaz = Project("spawning-pool-scalaz", file("spawning-pool-scalaz"))
   .settings(commonSettings: _*)
   .dependsOn(coreAlpha)
 
+lazy val shapelessMutation = Project("spawning-pool-shapeless-mutation", file("spawning-pool-shapeless-mutation"))
+  .settings(commonSettings: _*)
+  .settings(shapeless)
+  .dependsOn(coreAlpha)
+
 lazy val benchmark = project
   .settings(commonSettings: _*)
   .dependsOn(core)
@@ -39,6 +44,13 @@ releaseProcess := Seq(
   pushChanges)
 
 publishArtifact := false
+
+lazy val shapeless = Seq(
+  libraryDependencies ++= Seq("com.chuusai" %% "shapeless" % "2.3.3") ++
+    (CrossVersion.partialVersion(scalaVersion.value) match {
+      case Some((2, 10)) => Seq(compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full))
+      case _ => Nil
+    }))
 
 lazy val specs2 = Seq(
   resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases", // for specs2
