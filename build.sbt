@@ -18,9 +18,11 @@ lazy val coreAlpha = Project("spawning-pool-core-alpha", file("spawning-pool-cor
 
 lazy val coreCats = Project("spawning-pool-scalaz", file("spawning-pool-scalaz"))
   .settings(commonSettings: _*)
+  .dependsOn(coreAlpha)
 
 lazy val coreScalaz = Project("spawning-pool-cats", file("spawning-pool-cats"))
   .settings(commonSettings: _*)
+  .dependsOn(coreAlpha)
 
 lazy val shapelessMutation = Project("spawning-pool-shapeless-mutation", file("spawning-pool-shapeless-mutation"))
   .settings(commonSettings: _*)
