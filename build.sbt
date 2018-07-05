@@ -16,6 +16,12 @@ lazy val coreAlpha = Project("spawning-pool-core-alpha", file("spawning-pool-cor
   .settings(specs2: _*)
   .settings(betterConsole)
 
+lazy val coreCats = Project("spawning-pool-scalaz", file("spawning-pool-scalaz"))
+  .settings(commonSettings: _*)
+
+lazy val coreScalaz = Project("spawning-pool-cats", file("spawning-pool-cats"))
+  .settings(commonSettings: _*)
+
 lazy val shapelessMutation = Project("spawning-pool-shapeless-mutation", file("spawning-pool-shapeless-mutation"))
   .settings(commonSettings: _*)
   .settings(shapeless)
