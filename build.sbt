@@ -62,7 +62,7 @@ lazy val shapeless = Seq(
 
 lazy val specs2 = Seq(
   resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases", // for specs2
-  libraryDependencies += "org.specs2" %% "specs2-core" % "4.2.0" % "test",
+  libraryDependencies += "org.specs2" %% "specs2-core" % "4.3.2" % "test",
   libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.14.0" % "test")
 
 lazy val betterConsole = initialCommands in console := "import com.htmlism.spawningpool._"
