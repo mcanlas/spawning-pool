@@ -6,7 +6,8 @@ class DiscreteAlleleGeneratorSpec extends Specification {
   "A discrete allele generator" should {
     "return the expected values" in {
 
-      val generator = new DiscreteAlleleGenerator[Symbol] with AlleleIndexProvider {
+      val generator = new DiscreteAlleleGenerator[Symbol]
+      with AlleleIndexProvider {
         private val rng = Iterable(2, 0, 1).iterator
 
         val alleles = Seq('alpha, 'beta, 'gamma)

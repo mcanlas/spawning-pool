@@ -5,13 +5,13 @@ package com.htmlism.spawningpool.combinatorics
   * @tparam A The type of each gene in the chromosome
   *
   */
-
 trait FixedLengthCombinator[A] extends HomogenousCombinator[A] {
+
   /**
-   * The number of elements for every chromosome generated.
-   *
-   * @return A number
-   */
+    * The number of elements for every chromosome generated.
+    *
+    * @return A number
+    */
   def size: Int
 
   def generateChromosome: B = fill(size)(generateAllele)

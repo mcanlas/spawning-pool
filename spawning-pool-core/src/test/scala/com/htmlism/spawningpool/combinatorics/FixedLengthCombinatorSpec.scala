@@ -14,12 +14,12 @@ class FixedLengthCombinatorSpec extends Specification {
     val mutatedChromosome = combinator.mutate(firstChromosome)
 
     "generate chromosomes of a fixed length" in {
-      firstChromosome.length  === size
+      firstChromosome.length === size
       secondChromosome.length === size
     }
 
     "generate the expected values" in {
-      firstChromosome  === Seq('luigi, 'bowser, 'peach)
+      firstChromosome === Seq('luigi, 'bowser, 'peach)
       secondChromosome === Seq('mario, 'luigi, 'bowser)
     }
 
@@ -28,16 +28,18 @@ class FixedLengthCombinatorSpec extends Specification {
     }
 
     "support crossover" in {
-      combinator.crossover(firstChromosome, secondChromosome) === Seq('mario, 'luigi, 'peach)
+      combinator.crossover(firstChromosome, secondChromosome) === Seq('mario,
+                                                                      'luigi,
+                                                                      'peach)
     }
   }
 }
 
 class FixedTestCombinator(val size: Int)
-  extends FixedLengthCombinator[Symbol]
-  with DiscreteAlleleGenerator[Symbol] {
+    extends FixedLengthCombinator[Symbol]
+    with DiscreteAlleleGenerator[Symbol] {
   private val alleleIndexes = Iterable(1, 3, 2, 0, 1, 3, 0).iterator
-  private val parents = Iterable(false, false, true).iterator
+  private val parents       = Iterable(false, false, true).iterator
 
   def alleles: Seq[Symbol] = Seq('mario, 'luigi, 'peach, 'bowser)
 

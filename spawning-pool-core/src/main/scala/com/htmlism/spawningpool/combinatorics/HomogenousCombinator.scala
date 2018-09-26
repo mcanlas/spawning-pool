@@ -1,21 +1,22 @@
 package com.htmlism.spawningpool.combinatorics
 
-import com.htmlism.spawningpool.{ ChromosomeGenerator, Evolver }
+import com.htmlism.spawningpool.{ChromosomeGenerator, Evolver}
 
 /**
- * A trait for combinators that create and manipulate chromosomes backed by a sequence.
- *
- * This trait provides a default implementation for mutation. Mutation occurs by
- * replacing a random gene with a randomly generated allele.
- *
- * @tparam A The type of each gene in the chromosome
- */
+  * A trait for combinators that create and manipulate chromosomes backed by a sequence.
+  *
+  * This trait provides a default implementation for mutation. Mutation occurs by
+  * replacing a random gene with a randomly generated allele.
+  *
+  * @tparam A The type of each gene in the chromosome
+  */
+trait HomogenousCombinator[A]
+    extends AlleleGenerator[A]
+    with ChromosomeGenerator[Seq[A]]
+    with Evolver[Seq[A]]
+    with GeneIndexProvider
+    with CrossoverParentProvider {
 
-trait HomogenousCombinator[A] extends AlleleGenerator[A]
-  with ChromosomeGenerator[Seq[A]]
-  with Evolver[Seq[A]]
-  with GeneIndexProvider
-  with CrossoverParentProvider {
   /** The type of the chromosome */
   type B = Seq[A]
 
@@ -23,7 +24,7 @@ trait HomogenousCombinator[A] extends AlleleGenerator[A]
     if (chromosome.isEmpty)
       chromosome
     else {
-      val index = nextGeneIndex(chromosome.size)
+      val index          = nextGeneIndex(chromosome.size)
       val alleleToUpdate = chromosome(index)
 
       chromosome.updated(index, generateAllele(alleleToUpdate))
@@ -43,11 +44,10 @@ trait HomogenousCombinator[A] extends AlleleGenerator[A]
   }
 
   /**
-   * Generates a chromosome of a given size.
-   *
-   * @param size The number of genes in the chromosome
-   * @return A chromosome
-   */
-
+    * Generates a chromosome of a given size.
+    *
+    * @param size The number of genes in the chromosome
+    * @return A chromosome
+    */
   def fill(size: Int): (=> A) => Seq[A] = Vector.fill[A](size)
 }

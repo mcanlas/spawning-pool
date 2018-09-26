@@ -9,26 +9,28 @@ import com.htmlism.spawningpool.generation._
   *
   * @tparam A The type of the chromosome
   */
-
 trait Generator[A] {
+
   /**
     * Generates a chromosome.
     *
     * @return A chromosome
     */
-
   def generate: A
 }
 
 object Generator {
-  implicit val intGenerator:    Generator[Int]    = IntGenerator
+  implicit val intGenerator: Generator[Int]       = IntGenerator
   implicit val doubleGenerator: Generator[Double] = DoubleGenerator
 
-  implicit val intArrayGenerator:    Generator[Array[Int]]    = FixedIntArrayGenerator
-  implicit val doubleArrayGenerator: Generator[Array[Double]] = FixedDoubleArrayGenerator
+  implicit val intArrayGenerator: Generator[Array[Int]] = FixedIntArrayGenerator
+  implicit val doubleArrayGenerator: Generator[Array[Double]] =
+    FixedDoubleArrayGenerator
 
   object VariableLength {
-    implicit val intArrayGenerator:    Generator[Array[Int]]    = VariableIntArrayGenerator
-    implicit val doubleArrayGenerator: Generator[Array[Double]] = VariableDoubleArrayGenerator
+    implicit val intArrayGenerator: Generator[Array[Int]] =
+      VariableIntArrayGenerator
+    implicit val doubleArrayGenerator: Generator[Array[Double]] =
+      VariableDoubleArrayGenerator
   }
 }

@@ -8,15 +8,14 @@ package com.htmlism.spawningpool
   *
   * @tparam A The type of the chromosomes
   */
-
 trait Crossover[A] {
+
   /**
     * Returns a new chromosome given a collection of parent chromosomes.
     *
     * @param xs The parent chromosomes
     * @return A chromosome
     */
-
   def crossover(xs: TraversableOnce[A]): A
 }
 

@@ -1,6 +1,7 @@
 import sbtrelease.ReleaseStateTransformations._
 
 val commonSettings = Seq(
+  scalafmtOnCompile := true,
   organization := "com.htmlism",
   scalaVersion := "2.12.6",
   crossScalaVersions := Seq("2.11.12", "2.12.6"))
@@ -66,5 +67,3 @@ lazy val specs2 = Seq(
   libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.14.0" % "test")
 
 lazy val betterConsole = initialCommands in console := "import com.htmlism.spawningpool._"
-
-scalafmtOnCompile := true

@@ -43,7 +43,7 @@ trait Fitness[A] {
   *
   * @tparam A The solution type whose fitness is being evaluated
   */
-class OrdinalFitness[A : Ordering] extends Fitness[A] {
+class OrdinalFitness[A: Ordering] extends Fitness[A] {
   def compare(x: A, y: A): Int = implicitly[Ordering[A]].compare(x, y)
 }
 
@@ -57,6 +57,6 @@ class OrdinalFitness[A : Ordering] extends Fitness[A] {
   * @tparam A The solution type whose fitness is being evaluated
   * @tparam B A numeric type for scoring
   */
-class RatioFitness[A, B : Numeric](f: A => B) extends Fitness[A] {
+class RatioFitness[A, B: Numeric](f: A => B) extends Fitness[A] {
   def compare(x: A, y: A): Int = implicitly[Numeric[B]].compare(f(x), f(y))
 }

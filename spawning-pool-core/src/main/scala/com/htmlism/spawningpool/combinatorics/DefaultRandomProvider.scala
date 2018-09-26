@@ -1,17 +1,16 @@
 package com.htmlism.spawningpool.combinatorics
 
 /**
- * This trait implements all of the combinatorial providers using Scala's random number generator.
- */
-
-trait DefaultRandomProvider extends
-  AlleleIndexProvider with
-  CrossoverParentProvider with
-  GeneIndexProvider with
-  LengthProvider with
-  VariationProvider with
-  MutationMethodProvider {
-  private val rng = new util.Random
+  * This trait implements all of the combinatorial providers using Scala's random number generator.
+  */
+trait DefaultRandomProvider
+    extends AlleleIndexProvider
+    with CrossoverParentProvider
+    with GeneIndexProvider
+    with LengthProvider
+    with VariationProvider
+    with MutationMethodProvider {
+  private val rng       = new util.Random
   private val mutations = IndexedSeq(MutateGene, AddGene, RemoveGene)
 
   def nextAlleleIndex(size: Int): Int = guardedRandom(size)
@@ -20,7 +19,8 @@ trait DefaultRandomProvider extends
 
   def nextUseFirstParent: Boolean = rng.nextBoolean()
 
-  def nextMutationMethod: MutationMethod = mutations(rng.nextInt(mutations.size))
+  def nextMutationMethod: MutationMethod =
+    mutations(rng.nextInt(mutations.size))
 
   def nextLength(size: Int): Int = guardedRandom(size + 1)
 

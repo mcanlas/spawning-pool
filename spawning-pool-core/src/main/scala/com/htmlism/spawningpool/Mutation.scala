@@ -10,6 +10,7 @@ import scala.annotation.implicitNotFound
 
 @implicitNotFound("Please define mutation support for type ${A}")
 trait Mutation[A] {
+
   /**
     * Returns a mutated version of a chromosome.
     *
@@ -17,7 +18,6 @@ trait Mutation[A] {
     *
     * @return A chromosome
     */
-
   def mutate(x: A): A
 }
 
