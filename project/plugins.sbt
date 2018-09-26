@@ -1,3 +1,4 @@
+addSbtPlugin("com.geirsson" % "sbt-scalafmt" % "1.5.1")
 resolvers += Resolver.url("scoverage-bintray", url("https://dl.bintray.com/sksamuel/sbt-plugins/"))(Resolver.ivyStylePatterns)
 
 addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.6")
