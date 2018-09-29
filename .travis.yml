@@ -4,15 +4,7 @@ scala:
   - 2.11.12
   - 2.12.7
 
-env:
-  - JDK=oraclejdk7
-  - JDK=oraclejdk8
-  - JDK=oraclejdk9
-
-before_script:
-  - jdk_switcher use $JDK
-
-matrix:
-  exclude:
-    - scala: 2.12.7
-      env: JDK=oraclejdk7
+jdk:
+  - oraclejdk8
+  - oraclejdk9
+  - openjdk8
