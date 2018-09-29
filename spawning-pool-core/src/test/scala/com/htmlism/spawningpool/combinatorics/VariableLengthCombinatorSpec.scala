@@ -33,8 +33,7 @@ class VariableLengthCombinatorSpec extends Specification {
     }
 
     "support insertion mutation" in {
-      thirdMutation === Seq('Wasabi, 'Hiro, 'Wasabi, 'GoGo, 'Baymax,
-        'HoneyLemon)
+      thirdMutation === Seq('Wasabi, 'Hiro, 'Wasabi, 'GoGo, 'Baymax, 'HoneyLemon)
     }
 
     "support removal mutation" in {
@@ -47,9 +46,7 @@ class VariableLengthCombinatorSpec extends Specification {
   }
 }
 
-class VariableTestCombinator
-    extends VariableLengthCombinator[Symbol]
-    with DiscreteAlleleGenerator[Symbol] {
+class VariableTestCombinator extends VariableLengthCombinator[Symbol] with DiscreteAlleleGenerator[Symbol] {
   val initialSize = 11
   val alleles     = Seq('Hiro, 'Baymax, 'Fred, 'GoGo, 'Wasabi, 'HoneyLemon)
 

@@ -10,27 +10,22 @@ object Solver {
   val DEFAULT_GENERATION_COUNT = PositiveCount(20)
   val DEFAULT_MUTATION_RATE    = .01
 
-  def randomIndividual[A](population: Seq[A])(
-      implicit rig: RandomIndexProvider): A =
+  def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexProvider): A =
     population(rig.randomIndex(population.size))
 
-  def evolvePopulation[A, B](
-      implicit ctx: SolutionContext[A, B]): SolutionContext[A, B] = {
-    println(
-      s"island ${ctx.islandId} generating children for generation ${ctx.generations}")
+  def evolvePopulation[A, B](implicit ctx: SolutionContext[A, B]): SolutionContext[A, B] = {
+    println(s"island ${ctx.islandId} generating children for generation ${ctx.generations}")
 
     val newPopulation = Vector.fill(ctx.population.size)(bearChild)
 
     ctx.increment(newPopulation)
   }
 
-  def tournamentSelect[A, B](size: PositiveCount)(
-      implicit ctx: SolutionContext[A, B]): A =
+  def tournamentSelect[A, B](size: PositiveCount)(implicit ctx: SolutionContext[A, B]): A =
     tournamentSelect(size, randomIndividual(ctx.population))
 
   @tailrec
-  private def tournamentSelect[A, B](size: PositiveCount, champion: A)(
-      implicit ctx: SolutionContext[A, B]): A =
+  private def tournamentSelect[A, B](size: PositiveCount, champion: A)(implicit ctx: SolutionContext[A, B]): A =
     if (size == PositiveCount(1))
       champion
     else {
@@ -44,8 +39,7 @@ object Solver {
     }
 
   def bearChild[A, B](implicit ctx: SolutionContext[A, B]): A = {
-    val child = ctx.evolver.crossover(tournamentSelect(PositiveCount(2)),
-                                      tournamentSelect(PositiveCount(2)))
+    val child = ctx.evolver.crossover(tournamentSelect(PositiveCount(2)), tournamentSelect(PositiveCount(2)))
 
     if ((new scala.util.Random).nextDouble < ctx.mutationRate)
       ctx.evolver.mutate(child)
@@ -71,44 +65,37 @@ object Solver {
   * @tparam A The type of the candidate solutions
   * @tparam B The type of the fitness score
   */
-class Solver[A, B](
-    fitness: A => B,
-    populationSize: PositiveCount = Solver.DEFAULT_POPULATION_SIZE,
-    islandCount: PositiveCount = Solver.DEFAULT_ISLAND_COUNT,
-    mutationRate: Double = Solver.DEFAULT_MUTATION_RATE,
-    generations: PositiveCount = Solver.DEFAULT_GENERATION_COUNT)(
-    implicit evolver: Evolver[A],
-    ordering: Ordering[B],
-    rig: RandomIndexProvider) {
+class Solver[A, B](fitness: A => B,
+                   populationSize: PositiveCount = Solver.DEFAULT_POPULATION_SIZE,
+                   islandCount: PositiveCount = Solver.DEFAULT_ISLAND_COUNT,
+                   mutationRate: Double = Solver.DEFAULT_MUTATION_RATE,
+                   generations: PositiveCount = Solver.DEFAULT_GENERATION_COUNT)(implicit evolver: Evolver[A],
+                                                                                 ordering: Ordering[B],
+                                                                                 rig: RandomIndexProvider) {
   import com.htmlism.spawningpool.Solver._
 
   type Population = Vector[A]
   type Solutions  = Set[A]
 
-  def solve(implicit src: ChromosomeGenerator[A],
-            ec: ExecutionContext): Future[Solutions] = Future {
+  def solve(implicit src: ChromosomeGenerator[A], ec: ExecutionContext): Future[Solutions] = Future {
     evolveFrom { Vector.fill(populationSize)(src.generateChromosome) }
   }
 
-  def solve(seed: Traversable[A])(
-      implicit ec: ExecutionContext): Future[Solutions] = Future {
+  def solve(seed: Traversable[A])(implicit ec: ExecutionContext): Future[Solutions] = Future {
     if (seed.isEmpty)
-      throw new IllegalArgumentException(
-        "must provide a non-empty collection as a seed")
+      throw new IllegalArgumentException("must provide a non-empty collection as a seed")
     else
       evolveFrom {
         seed.toVector
       }
   }
 
-  def solveNow(implicit src: ChromosomeGenerator[A],
-               ec: ExecutionContext): Solutions = awaitResult(solve)
+  def solveNow(implicit src: ChromosomeGenerator[A], ec: ExecutionContext): Solutions = awaitResult(solve)
 
   def solveNow(seed: Traversable[A])(implicit ec: ExecutionContext): Solutions =
     awaitResult(solve(seed))
 
-  private def evolveFrom(seeding: => Population)(
-      implicit ec: ExecutionContext) = {
+  private def evolveFrom(seeding: => Population)(implicit ec: ExecutionContext) = {
     val islands = generateIslands(seeding)
 
     val baseFutures = islands.zipWithIndex.map {
@@ -128,8 +115,7 @@ class Solver[A, B](
       }
     }
 
-    evolvedIslands.foldLeft(Set.empty[A])((acc, sols) =>
-      acc ++ awaitResult(sols))
+    evolvedIslands.foldLeft(Set.empty[A])((acc, sols) => acc ++ awaitResult(sols))
   }
 
   @tailrec

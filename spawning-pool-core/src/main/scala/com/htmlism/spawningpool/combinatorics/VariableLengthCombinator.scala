@@ -40,9 +40,7 @@ trait VariableLengthCombinator[A]
       }
 
   private def addGene(chromosome: B) =
-    chromosome.patch(nextGeneIndexForInsertion(chromosome.size),
-                     Seq(generateAllele),
-                     0)
+    chromosome.patch(nextGeneIndexForInsertion(chromosome.size), Seq(generateAllele), 0)
 }
 
 /**
