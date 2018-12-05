@@ -2,8 +2,8 @@ import sbtrelease.ReleaseStateTransformations._
 
 val commonSettings = Seq(scalafmtOnCompile := true,
                          organization := "com.htmlism",
-                         scalaVersion := "2.12.7",
-                         crossScalaVersions := Seq("2.11.12", "2.12.7"))
+                         scalaVersion := "2.12.8",
+                         crossScalaVersions := Seq("2.11.12", "2.12.8"))
 
 lazy val core = Project("spawning-pool-core", file("spawning-pool-core"))
   .settings(commonSettings: _*)
