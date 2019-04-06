@@ -18,7 +18,7 @@ object VectorVsArray extends App {
       util.Random.nextInt()
     }, islandCount = PositiveCount(15), populationSize = PositiveCount(1000), generations = PositiveCount(40))
 
-    solver.solveNow
+    val _ = solver.solveNow
   }
 
   def withArrayInt(): Unit = {
@@ -29,7 +29,7 @@ object VectorVsArray extends App {
       util.Random.nextInt()
     }, islandCount = PositiveCount(15), populationSize = PositiveCount(1000), generations = PositiveCount(40))
 
-    solver.solveNow
+    val _ = solver.solveNow
   }
 
   def withVector(): Unit = {
@@ -40,7 +40,7 @@ object VectorVsArray extends App {
       util.Random.nextInt()
     }, islandCount = PositiveCount(15), populationSize = PositiveCount(1000), generations = PositiveCount(40))
 
-    solver.solveNow
+    val _ = solver.solveNow
   }
 
   def withArray(): Unit = {
@@ -50,7 +50,7 @@ object VectorVsArray extends App {
       util.Random.nextInt()
     }, islandCount = PositiveCount(15), populationSize = PositiveCount(1000), generations = PositiveCount(40))
 
-    solver.solveNow
+    val _ = solver.solveNow
   }
 }
 
