@@ -125,7 +125,7 @@ class Solver[A, B](fitness: A => B,
   )(implicit ec: ExecutionContext): Iterable[Future[SolutionContext[A, B]]] =
     generations match {
       case 0 => islands
-      case n =>
+      case _ =>
         val newIslands = islands.map { f =>
           f.map(evolvePopulation(_)) // type inference with implicits is hard
         }
