@@ -24,5 +24,8 @@ trait AlleleGenerator[A] {
     * @param allele The current allele being replaced
     * @return An allele
     */
-  def generateAllele(allele: A): A = generateAllele
+  def generateAllele(allele: A): A = {
+    val _ = allele
+    generateAllele
+  }
 }
