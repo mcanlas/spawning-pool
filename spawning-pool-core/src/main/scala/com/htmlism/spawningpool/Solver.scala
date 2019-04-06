@@ -65,13 +65,12 @@ object Solver {
   * @tparam A The type of the candidate solutions
   * @tparam B The type of the fitness score
   */
-class Solver[A, B](fitness: A => B,
-                   populationSize: PositiveCount = Solver.DEFAULT_POPULATION_SIZE,
-                   islandCount: PositiveCount = Solver.DEFAULT_ISLAND_COUNT,
-                   mutationRate: Double = Solver.DEFAULT_MUTATION_RATE,
-                   generations: PositiveCount = Solver.DEFAULT_GENERATION_COUNT)(implicit evolver: Evolver[A],
-                                                                                 ordering: Ordering[B],
-                                                                                 rig: RandomIndexProvider) {
+class Solver[A, B](
+    fitness: A => B,
+    populationSize: PositiveCount = Solver.DEFAULT_POPULATION_SIZE,
+    islandCount: PositiveCount = Solver.DEFAULT_ISLAND_COUNT,
+    mutationRate: Double = Solver.DEFAULT_MUTATION_RATE,
+    generations: PositiveCount = Solver.DEFAULT_GENERATION_COUNT)(implicit evolver: Evolver[A], ordering: Ordering[B]) {
   import com.htmlism.spawningpool.Solver._
 
   type Population = Vector[A]
