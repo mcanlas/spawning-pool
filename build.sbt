@@ -52,7 +52,7 @@ releaseProcess := Seq(checkSnapshotDependencies,
 
 publishArtifact := false
 
-lazy val fs2 = Seq(libraryDependencies += "co.fs2" %% "fs2-core" % "1.1.0-M1")
+lazy val fs2 = Seq(libraryDependencies += "co.fs2" %% "fs2-core" % "1.1.0-M2")
 
 lazy val shapeless = Seq(
   libraryDependencies ++= Seq("com.chuusai" %% "shapeless" % "2.3.3") ++
