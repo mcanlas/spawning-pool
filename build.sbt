@@ -68,7 +68,7 @@ lazy val shapeless = Seq(
 
 lazy val specs2 = Seq(
   resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases", // for specs2
-  libraryDependencies += "org.specs2"     %% "specs2-core" % "4.6.0"  % "test",
+  libraryDependencies += "org.specs2"     %% "specs2-core" % "4.8.1"  % "test",
   libraryDependencies += "org.scalacheck" %% "scalacheck"  % "1.14.2" % "test"
 )
 
