@@ -70,7 +70,8 @@ class Solver[A, B](
     populationSize: PositiveCount = Solver.DEFAULT_POPULATION_SIZE,
     islandCount: PositiveCount = Solver.DEFAULT_ISLAND_COUNT,
     mutationRate: Double = Solver.DEFAULT_MUTATION_RATE,
-    generations: PositiveCount = Solver.DEFAULT_GENERATION_COUNT)(implicit evolver: Evolver[A], ordering: Ordering[B]) {
+    generations: PositiveCount = Solver.DEFAULT_GENERATION_COUNT
+)(implicit evolver: Evolver[A], ordering: Ordering[B]) {
   import com.htmlism.spawningpool.Solver._
 
   type Population = Vector[A]

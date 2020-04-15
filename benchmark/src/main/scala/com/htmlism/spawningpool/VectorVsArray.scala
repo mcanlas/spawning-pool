@@ -5,11 +5,15 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import com.htmlism.spawningpool.combinatorics._
 
 object VectorVsArray extends App {
-  Benchmark(Map("vector of ref" -> withVector _,
-                "vector of int" -> withVectorInt _,
-                "array of ref"  -> withArray _,
-                "array of int"  -> withArrayInt _),
-            10)
+  Benchmark(
+    Map(
+      "vector of ref" -> withVector _,
+      "vector of int" -> withVectorInt _,
+      "array of ref"  -> withArray _,
+      "array of int"  -> withArrayInt _
+    ),
+    10
+  )
 
   def withVectorInt(): Unit = {
     implicit val combinator = new DiscreteFixedLengthCombinator(1 to 100, 100)
