@@ -24,10 +24,6 @@ lazy val coreCats =
     .settings(commonSettings: _*)
     .dependsOn(coreAlpha)
 
-lazy val coreScalaz = Project("spawning-pool-cats", file("spawning-pool-cats"))
-  .settings(commonSettings: _*)
-  .dependsOn(coreAlpha)
-
 lazy val shapelessMutation = Project("spawning-pool-shapeless-mutation", file("spawning-pool-shapeless-mutation"))
   .settings(commonSettings: _*)
   .settings(shapeless)
