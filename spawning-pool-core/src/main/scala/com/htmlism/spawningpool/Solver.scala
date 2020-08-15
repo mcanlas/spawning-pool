@@ -77,18 +77,20 @@ class Solver[A, B](
   type Population = Vector[A]
   type Solutions  = Set[A]
 
-  def solve(implicit src: ChromosomeGenerator[A], ec: ExecutionContext): Future[Solutions] = Future {
-    evolveFrom { Vector.fill(populationSize)(src.generateChromosome) }
-  }
+  def solve(implicit src: ChromosomeGenerator[A], ec: ExecutionContext): Future[Solutions] =
+    Future {
+      evolveFrom { Vector.fill(populationSize)(src.generateChromosome) }
+    }
 
-  def solve(seed: Traversable[A])(implicit ec: ExecutionContext): Future[Solutions] = Future {
-    if (seed.isEmpty)
-      throw new IllegalArgumentException("must provide a non-empty collection as a seed")
-    else
-      evolveFrom {
-        seed.toVector
-      }
-  }
+  def solve(seed: Traversable[A])(implicit ec: ExecutionContext): Future[Solutions] =
+    Future {
+      if (seed.isEmpty)
+        throw new IllegalArgumentException("must provide a non-empty collection as a seed")
+      else
+        evolveFrom {
+          seed.toVector
+        }
+    }
 
   def solveNow(implicit src: ChromosomeGenerator[A], ec: ExecutionContext): Solutions = awaitResult(solve)
 

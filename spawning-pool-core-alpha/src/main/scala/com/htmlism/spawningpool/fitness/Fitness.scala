@@ -21,20 +21,22 @@ trait Fitness[A] {
     */
   def compare(x: A, y: A): Int
 
-  def minimize: Fitness[A] = new Fitness[A] {
-    def compare(x: A, y: A) = self.compare(x, y) * -1
-  }
-
-  def andThen[B](that: Fitness[B]): Fitness[(A, B)] = new Fitness[(A, B)] {
-    def compare(x: (A, B), y: (A, B)): Int = {
-      val score = self.compare(x._1, y._1)
-
-      if (score == 0)
-        that.compare(x._2, y._2)
-      else
-        score
+  def minimize: Fitness[A] =
+    new Fitness[A] {
+      def compare(x: A, y: A) = self.compare(x, y) * -1
     }
-  }
+
+  def andThen[B](that: Fitness[B]): Fitness[(A, B)] =
+    new Fitness[(A, B)] {
+      def compare(x: (A, B), y: (A, B)): Int = {
+        val score = self.compare(x._1, y._1)
+
+        if (score == 0)
+          that.compare(x._2, y._2)
+        else
+          score
+      }
+    }
 }
 
 /**
