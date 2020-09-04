@@ -1,6 +1,7 @@
 package com.htmlism.spawningpool.combinatorics
 
-import com.htmlism.spawningpool.{ChromosomeGenerator, Evolver}
+import com.htmlism.spawningpool.ChromosomeGenerator
+import com.htmlism.spawningpool.Evolver
 
 /**
   * A trait for combinators that create and manipulate chromosomes backed by a sequence.
