@@ -100,11 +100,10 @@ class Solver[A, B](
   private def evolveFrom(seeding: => Population)(implicit ec: ExecutionContext) = {
     val islands = generateIslands(seeding)
 
-    val baseFutures = islands.zipWithIndex.map {
-      case (p, i) =>
-        Future {
-          SolutionContext(i, fitness, evolver, mutationRate, p)
-        }
+    val baseFutures = islands.zipWithIndex.map { case (p, i) =>
+      Future {
+        SolutionContext(i, fitness, evolver, mutationRate, p)
+      }
     }
 
     val endFutures = evolveIslands(baseFutures, generations)
