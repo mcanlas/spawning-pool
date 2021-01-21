@@ -10,9 +10,11 @@ object LintingPlugin extends AutoPlugin {
       addCommandAlias("fix", "scalafixAll")
 
   override val projectSettings =
-    Seq(
-      ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.0",
-      semanticdbEnabled := true,
-      semanticdbVersion := scalafixSemanticdb.revision
+    inThisBuild(
+      Seq(
+        scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.4",
+        semanticdbEnabled := true,
+        semanticdbVersion := scalafixSemanticdb.revision
+      )
     )
 }
