@@ -12,7 +12,7 @@ object LintingPlugin extends AutoPlugin {
   override val projectSettings =
     inThisBuild(
       Seq(
-        scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.4",
+        scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0",
         semanticdbEnabled := true,
         semanticdbVersion := scalafixSemanticdb.revision
       )
