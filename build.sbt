@@ -67,4 +67,4 @@ lazy val specs2 = Seq(
   libraryDependencies += "org.scalacheck" %% "scalacheck"  % "1.14.3" % "test"
 )
 
-lazy val betterConsole = initialCommands in console := "import com.htmlism.spawningpool._"
+lazy val betterConsole = console / initialCommands := "import com.htmlism.spawningpool._"
