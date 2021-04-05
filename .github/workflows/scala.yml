@@ -18,7 +18,7 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
-        
+
     - name: Cache sbt
       uses: actions/cache@v2
       with:
@@ -26,6 +26,6 @@ jobs:
           ~/.sbt
           ~/.cache/coursier/v1
         key: scala
-        
+
     - name: Run tests
       run: sbt "+scalafixAll --check" +scalafmtCheck "+test"
