@@ -8,9 +8,11 @@ package com.htmlism.spawningpool.combinatorics
 trait MutationMethodProvider {
 
   /**
-    * Returns the next mutation method from this provider. The value will be one of `MutateGene`, `AddGene`, and `RemoveGene`.
+    * Returns the next mutation method from this provider. The value will be one of `MutateGene`, `AddGene`, and
+    * `RemoveGene`.
     *
-    * @return A mutation method
+    * @return
+    *   A mutation method
     */
   def nextMutationMethod: MutationMethod
 }

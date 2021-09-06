@@ -10,8 +10,10 @@ trait GeneIndexProvider {
   /**
     * Returns the next gene index from this provider
     *
-    * @param size The length of the chromosome where this index will be used
-    * @return An index
+    * @param size
+    *   The length of the chromosome where this index will be used
+    * @return
+    *   An index
     */
   def nextGeneIndex(size: Int): Int
 }

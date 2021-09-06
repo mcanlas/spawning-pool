@@ -5,10 +5,10 @@ import scala.concurrent._
 import scala.concurrent.duration._
 
 object Solver {
-  val DEFAULT_POPULATION_SIZE  = PositiveCount(50)
-  val DEFAULT_ISLAND_COUNT     = PositiveCount(4)
+  val DEFAULT_POPULATION_SIZE = PositiveCount(50)
+  val DEFAULT_ISLAND_COUNT = PositiveCount(4)
   val DEFAULT_GENERATION_COUNT = PositiveCount(20)
-  val DEFAULT_MUTATION_RATE    = .01
+  val DEFAULT_MUTATION_RATE = .01
 
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexProvider): A =
     population(rig.randomIndex(population.size))
@@ -53,17 +53,27 @@ object Solver {
 /**
   * A generator of solutions configured with tuning parameters.
   *
-  * @param fitness A function for determining the fitness score B of candidate solutions A
-  * @param populationSize The number of solutions in each population
-  * @param islandCount The number of islands in each
-  * @param mutationRate The rate of mutation from 0 to 1
-  * @param generations The number of generations to evolve
-  * @param evolver The mechanism responsible for evolving candidate solutions
-  * @param ordering An ordering for values of B
-  * @param rig The source of randomness
+  * @param fitness
+  *   A function for determining the fitness score B of candidate solutions A
+  * @param populationSize
+  *   The number of solutions in each population
+  * @param islandCount
+  *   The number of islands in each
+  * @param mutationRate
+  *   The rate of mutation from 0 to 1
+  * @param generations
+  *   The number of generations to evolve
+  * @param evolver
+  *   The mechanism responsible for evolving candidate solutions
+  * @param ordering
+  *   An ordering for values of B
+  * @param rig
+  *   The source of randomness
   *
-  * @tparam A The type of the candidate solutions
-  * @tparam B The type of the fitness score
+  * @tparam A
+  *   The type of the candidate solutions
+  * @tparam B
+  *   The type of the fitness score
   */
 class Solver[A, B](
     fitness: A => B,
@@ -75,7 +85,7 @@ class Solver[A, B](
   import com.htmlism.spawningpool.Solver._
 
   type Population = Vector[A]
-  type Solutions  = Set[A]
+  type Solutions = Set[A]
 
   def solve(implicit src: ChromosomeGenerator[A], ec: ExecutionContext): Future[Solutions] =
     Future {

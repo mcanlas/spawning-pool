@@ -5,7 +5,8 @@ import scala.annotation.implicitNotFound
 /**
   * A typeclass that represents a unary mutation operation for a chromosome.
   *
-  * @tparam A The type of the chromosome
+  * @tparam A
+  *   The type of the chromosome
   */
 
 @implicitNotFound("Please define mutation support for type ${A}")
@@ -14,9 +15,11 @@ trait Mutation[A] {
   /**
     * Returns a mutated version of a chromosome.
     *
-    * @param x A chromosome
+    * @param x
+    *   A chromosome
     *
-    * @return A chromosome
+    * @return
+    *   A chromosome
     */
   def mutate(x: A): A
 }

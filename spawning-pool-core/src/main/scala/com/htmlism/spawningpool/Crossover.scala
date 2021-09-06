@@ -6,15 +6,18 @@ package com.htmlism.spawningpool
   * This operation can accept an arbitrary number of chromosomes, though genetic crossover typically involves only two
   * parents.
   *
-  * @tparam A The type of the chromosomes
+  * @tparam A
+  *   The type of the chromosomes
   */
 trait Crossover[A] {
 
   /**
     * Returns a new chromosome given a collection of parent chromosomes.
     *
-    * @param xs The parent chromosomes
-    * @return A chromosome
+    * @param xs
+    *   The parent chromosomes
+    * @return
+    *   A chromosome
     */
   def crossover(xs: TraversableOnce[A]): A
 }

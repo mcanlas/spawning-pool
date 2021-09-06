@@ -9,8 +9,8 @@ object VectorVsArray extends App {
     Map(
       "vector of ref" -> withVector _,
       "vector of int" -> withVectorInt _,
-      "array of ref"  -> withArray _,
-      "array of int"  -> withArrayInt _
+      "array of ref" -> withArray _,
+      "array of int" -> withArrayInt _
     ),
     10
   )

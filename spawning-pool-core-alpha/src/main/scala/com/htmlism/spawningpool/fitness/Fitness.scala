@@ -3,7 +3,8 @@ package com.htmlism.spawningpool.fitness
 /**
   * A typeclass for describing fitness for some type of solution
   *
-  * @tparam A The solution type whose fitness is being evaluated
+  * @tparam A
+  *   The solution type whose fitness is being evaluated
   */
 trait Fitness[A] {
   self =>
@@ -11,13 +12,16 @@ trait Fitness[A] {
   /**
     * Given two solutions, find out how they relate.
     *
-    * - negative if x is less than (worse than) y
-    * - positive if x is greater than (better than) y
-    * - zero if x equals y
+    *   - negative if x is less than (worse than) y
+    *   - positive if x is greater than (better than) y
+    *   - zero if x equals y
     *
-    * @param x The first solution
-    * @param y The second solution
-    * @return An integer
+    * @param x
+    *   The first solution
+    * @param y
+    *   The second solution
+    * @return
+    *   An integer
     */
   def compare(x: A, y: A): Int
 
@@ -43,7 +47,8 @@ trait Fitness[A] {
   * Fitness that is satisfied using an implicit ordering in the solution space. Scala already provides ordering for
   * common types like `Int` and `Double` as well as tuples of those types
   *
-  * @tparam A The solution type whose fitness is being evaluated
+  * @tparam A
+  *   The solution type whose fitness is being evaluated
   */
 class OrdinalFitness[A: Ordering] extends Fitness[A] {
   def compare(x: A, y: A): Int = implicitly[Ordering[A]].compare(x, y)
@@ -54,10 +59,13 @@ class OrdinalFitness[A: Ordering] extends Fitness[A] {
   *
   * This is the most common way to provide fitness to a genetic algorithm.
   *
-  * @param f A function for converting a solution to a fitness score. This score type must support numeric operations.
-  *          Scala already provides numeric support for common types like `Int` and `Double`
-  * @tparam A The solution type whose fitness is being evaluated
-  * @tparam B A numeric type for scoring
+  * @param f
+  *   A function for converting a solution to a fitness score. This score type must support numeric operations. Scala
+  *   already provides numeric support for common types like `Int` and `Double`
+  * @tparam A
+  *   The solution type whose fitness is being evaluated
+  * @tparam B
+  *   A numeric type for scoring
   */
 class RatioFitness[A, B: Numeric](f: A => B) extends Fitness[A] {
   def compare(x: A, y: A): Int = implicitly[Numeric[B]].compare(f(x), f(y))

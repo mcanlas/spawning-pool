@@ -6,10 +6,11 @@ import com.htmlism.spawningpool.Evolver
 /**
   * A trait for combinators that create and manipulate chromosomes backed by a sequence.
   *
-  * This trait provides a default implementation for mutation. Mutation occurs by
-  * replacing a random gene with a randomly generated allele.
+  * This trait provides a default implementation for mutation. Mutation occurs by replacing a random gene with a
+  * randomly generated allele.
   *
-  * @tparam A The type of each gene in the chromosome
+  * @tparam A
+  *   The type of each gene in the chromosome
   */
 trait HomogenousCombinator[A]
     extends AlleleGenerator[A]
@@ -25,7 +26,7 @@ trait HomogenousCombinator[A]
     if (chromosome.isEmpty)
       chromosome
     else {
-      val index          = nextGeneIndex(chromosome.size)
+      val index = nextGeneIndex(chromosome.size)
       val alleleToUpdate = chromosome(index)
 
       chromosome.updated(index, generateAllele(alleleToUpdate))
@@ -47,8 +48,10 @@ trait HomogenousCombinator[A]
   /**
     * Generates a chromosome of a given size.
     *
-    * @param size The number of genes in the chromosome
-    * @return A chromosome
+    * @param size
+    *   The number of genes in the chromosome
+    * @return
+    *   A chromosome
     */
   def fill(size: Int): (=> A) => Seq[A] = Vector.fill[A](size)
 }

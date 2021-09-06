@@ -10,8 +10,10 @@ trait AlleleIndexProvider {
   /**
     * Returns the next allele index from this provider
     *
-    * @param size The size of the collection where the index will be used
-    * @return An index
+    * @param size
+    *   The size of the collection where the index will be used
+    * @return
+    *   An index
     */
   def nextAlleleIndex(size: Int): Int
 }
