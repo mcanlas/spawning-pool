@@ -16,7 +16,7 @@ object GitHubActionsSettings extends AutoPlugin {
     GitHubActionsPlugin
 
   override val buildSettings: Seq[Setting[_]] = Seq(
-    githubWorkflowBuild := Seq(WorkflowStep.Sbt(List("scalafmtCheck", "test"))),
+    githubWorkflowBuild := Seq(WorkflowStep.Sbt(List("scalafixAll --check", "scalafmtCheck", "test"))),
     githubWorkflowEnv := Map.empty,
     githubWorkflowPublishTargetBranches := Nil,
     githubWorkflowIncludeClean := false
