@@ -1,7 +1,6 @@
 import sbtrelease.ReleaseStateTransformations._
 
 val commonSettings = Seq(
-  scalafmtOnCompile := true,
   organization := "com.htmlism",
   scalaVersion := "2.12.17",
   crossScalaVersions := Seq("2.11.12", "2.12.17")
