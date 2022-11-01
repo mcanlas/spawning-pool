@@ -63,7 +63,7 @@ lazy val shapeless = Seq(
 
 lazy val specs2 = Seq(
   libraryDependencies += "org.specs2"     %% "specs2-core" % "4.9.4"  % "test",
-  libraryDependencies += "org.scalacheck" %% "scalacheck"  % "1.14.3" % "test"
+  libraryDependencies += "org.scalacheck" %% "scalacheck"  % "1.15.3" % "test"
 )
 
 lazy val betterConsole = console / initialCommands := "import com.htmlism.spawningpool._"
