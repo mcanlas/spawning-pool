@@ -9,12 +9,10 @@ object LintingPlugin extends AutoPlugin {
     addCommandAlias("fmt", "; scalafmtSbt; scalafmtAll") ++
       addCommandAlias("fix", "scalafixAll")
 
-  override val projectSettings =
-    inThisBuild(
-      Seq(
-        scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0",
-        semanticdbEnabled := true,
-        semanticdbVersion := scalafixSemanticdb.revision
-      )
-    )
+  override val buildSettings =
+    Seq(
+      scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0",
+      semanticdbEnabled := true,
+      semanticdbVersion := scalafixSemanticdb.revision
+  )
 }
