@@ -8,7 +8,7 @@ class FixedLengthCombinatorSpec extends Specification {
 
     val combinator = new FixedTestCombinator(size)
 
-    val firstChromosome = combinator.generateChromosome
+    val firstChromosome  = combinator.generateChromosome
     val secondChromosome = combinator.generateChromosome
 
     val mutatedChromosome = combinator.mutate(firstChromosome)
@@ -35,7 +35,7 @@ class FixedLengthCombinatorSpec extends Specification {
 
 class FixedTestCombinator(val size: Int) extends FixedLengthCombinator[Symbol] with DiscreteAlleleGenerator[Symbol] {
   private val alleleIndexes = Iterable(1, 3, 2, 0, 1, 3, 0).iterator
-  private val parents = Iterable(false, false, true).iterator
+  private val parents       = Iterable(false, false, true).iterator
 
   def alleles: Seq[Symbol] = Seq('mario, 'luigi, 'peach, 'bowser)
 

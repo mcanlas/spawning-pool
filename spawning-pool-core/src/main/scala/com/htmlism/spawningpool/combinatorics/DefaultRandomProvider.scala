@@ -10,7 +10,7 @@ trait DefaultRandomProvider
     with LengthProvider
     with VariationProvider
     with MutationMethodProvider {
-  private val rng = new util.Random
+  private val rng       = new util.Random
   private val mutations = IndexedSeq(MutateGene, AddGene, RemoveGene)
 
   def nextAlleleIndex(size: Int): Int = guardedRandom(size)
@@ -26,7 +26,7 @@ trait DefaultRandomProvider
 
   // variation
   def nextGeneIndexForInsertion(size: Int): Int = guardedRandom(size + 1)
-  def nextGeneIndexForRemoval(size: Int): Int = guardedRandom(size)
+  def nextGeneIndexForRemoval(size: Int): Int   = guardedRandom(size)
 
   private def guardedRandom(n: Int) = {
     assert(n != 0)

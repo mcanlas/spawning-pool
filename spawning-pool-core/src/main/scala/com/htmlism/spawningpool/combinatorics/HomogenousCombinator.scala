@@ -26,7 +26,7 @@ trait HomogenousCombinator[A]
     if (chromosome.isEmpty)
       chromosome
     else {
-      val index = nextGeneIndex(chromosome.size)
+      val index          = nextGeneIndex(chromosome.size)
       val alleleToUpdate = chromosome(index)
 
       chromosome.updated(index, generateAllele(alleleToUpdate))

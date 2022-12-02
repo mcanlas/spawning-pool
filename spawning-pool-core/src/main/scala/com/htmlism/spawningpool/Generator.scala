@@ -22,15 +22,15 @@ trait Generator[A] {
 }
 
 object Generator {
-  implicit val intGenerator: Generator[Int] = IntGenerator
+  implicit val intGenerator: Generator[Int]       = IntGenerator
   implicit val doubleGenerator: Generator[Double] = DoubleGenerator
 
-  implicit val intArrayGenerator: Generator[Array[Int]] = FixedIntArrayGenerator
+  implicit val intArrayGenerator: Generator[Array[Int]]       = FixedIntArrayGenerator
   implicit val doubleArrayGenerator: Generator[Array[Double]] =
     FixedDoubleArrayGenerator
 
   object VariableLength {
-    implicit val intArrayGenerator: Generator[Array[Int]] =
+    implicit val intArrayGenerator: Generator[Array[Int]]       =
       VariableIntArrayGenerator
     implicit val doubleArrayGenerator: Generator[Array[Double]] =
       VariableDoubleArrayGenerator

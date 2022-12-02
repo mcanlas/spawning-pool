@@ -35,7 +35,7 @@ trait VariableLengthCombinator[A]
     else
       nextMutationMethod match {
         case MutateGene => super.mutate(chromosome)
-        case AddGene => addGene(chromosome)
+        case AddGene    => addGene(chromosome)
         case RemoveGene =>
           chromosome.patch(nextGeneIndexForRemoval(chromosome.size), Nil, 1)
       }
@@ -50,5 +50,5 @@ trait VariableLengthCombinator[A]
 sealed trait MutationMethod
 
 case object MutateGene extends MutationMethod
-case object AddGene extends MutationMethod
+case object AddGene    extends MutationMethod
 case object RemoveGene extends MutationMethod

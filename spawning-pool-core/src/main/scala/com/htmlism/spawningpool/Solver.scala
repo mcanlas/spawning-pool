@@ -5,10 +5,10 @@ import scala.concurrent._
 import scala.concurrent.duration._
 
 object Solver {
-  val DEFAULT_POPULATION_SIZE = PositiveCount(50)
-  val DEFAULT_ISLAND_COUNT = PositiveCount(4)
+  val DEFAULT_POPULATION_SIZE  = PositiveCount(50)
+  val DEFAULT_ISLAND_COUNT     = PositiveCount(4)
   val DEFAULT_GENERATION_COUNT = PositiveCount(20)
-  val DEFAULT_MUTATION_RATE = .01
+  val DEFAULT_MUTATION_RATE    = .01
 
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexProvider): A =
     population(rig.randomIndex(population.size))
@@ -30,7 +30,7 @@ object Solver {
       champion
     else {
       val challenger = randomIndividual(ctx.population)
-      val compare =
+      val compare    =
         ctx.ordering.compare(ctx.fitness(champion), ctx.fitness(challenger))
 
       val nextChampion = if (compare < 0) challenger else champion
@@ -85,7 +85,7 @@ class Solver[A, B](
   import com.htmlism.spawningpool.Solver._
 
   type Population = Vector[A]
-  type Solutions = Set[A]
+  type Solutions  = Set[A]
 
   def solve(implicit src: ChromosomeGenerator[A], ec: ExecutionContext): Future[Solutions] =
     Future {

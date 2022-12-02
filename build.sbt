@@ -1,8 +1,8 @@
 import sbtrelease.ReleaseStateTransformations._
 
 val commonSettings = Seq(
-  organization := "com.htmlism",
-  scalaVersion := "2.12.17",
+  organization       := "com.htmlism",
+  scalaVersion       := "2.12.17",
   crossScalaVersions := Seq("2.11.12", "2.12.17")
 )
 
@@ -57,7 +57,7 @@ lazy val shapeless = Seq(
     (CrossVersion.partialVersion(scalaVersion.value) match {
       case Some((2, 10)) =>
         Seq(compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full))
-      case _ => Nil
+      case _             => Nil
     })
 )
 

@@ -11,9 +11,9 @@ object DoubleGenerator extends Generator[Double] {
   def generate: Double = Random.nextDouble
 }
 
-object FixedIntArrayGenerator extends FixedIntArrayGenerator(DEFAULT_ARRAY_LENGTH, rngInt)
-object FixedDoubleArrayGenerator extends FixedDoubleArrayGenerator(DEFAULT_ARRAY_LENGTH, rngDouble)
-object VariableIntArrayGenerator extends VariableIntArrayGenerator(DEFAULT_ARRAY_LENGTH, rngInt, rngLength)
+object FixedIntArrayGenerator       extends FixedIntArrayGenerator(DEFAULT_ARRAY_LENGTH, rngInt)
+object FixedDoubleArrayGenerator    extends FixedDoubleArrayGenerator(DEFAULT_ARRAY_LENGTH, rngDouble)
+object VariableIntArrayGenerator    extends VariableIntArrayGenerator(DEFAULT_ARRAY_LENGTH, rngInt, rngLength)
 object VariableDoubleArrayGenerator extends VariableDoubleArrayGenerator(DEFAULT_ARRAY_LENGTH, rngDouble, rngLength)
 
 // fixed
