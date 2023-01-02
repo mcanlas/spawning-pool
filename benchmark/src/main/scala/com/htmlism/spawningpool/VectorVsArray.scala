@@ -22,9 +22,9 @@ object VectorVsArray extends App {
       { _ =>
         util.Random.nextInt()
       },
-      islandCount = PositiveCount(15),
+      islandCount    = PositiveCount(15),
       populationSize = PositiveCount(1000),
-      generations = PositiveCount(40)
+      generations    = PositiveCount(40)
     )
 
     val _ = solver.solveNow
@@ -38,9 +38,9 @@ object VectorVsArray extends App {
       { _ =>
         util.Random.nextInt()
       },
-      islandCount = PositiveCount(15),
+      islandCount    = PositiveCount(15),
       populationSize = PositiveCount(1000),
-      generations = PositiveCount(40)
+      generations    = PositiveCount(40)
     )
 
     val _ = solver.solveNow
@@ -54,9 +54,9 @@ object VectorVsArray extends App {
       { _ =>
         util.Random.nextInt()
       },
-      islandCount = PositiveCount(15),
+      islandCount    = PositiveCount(15),
       populationSize = PositiveCount(1000),
-      generations = PositiveCount(40)
+      generations    = PositiveCount(40)
     )
 
     val _ = solver.solveNow
@@ -69,9 +69,9 @@ object VectorVsArray extends App {
       { _ =>
         util.Random.nextInt()
       },
-      islandCount = PositiveCount(15),
+      islandCount    = PositiveCount(15),
       populationSize = PositiveCount(1000),
-      generations = PositiveCount(40)
+      generations    = PositiveCount(40)
     )
 
     val _ = solver.solveNow

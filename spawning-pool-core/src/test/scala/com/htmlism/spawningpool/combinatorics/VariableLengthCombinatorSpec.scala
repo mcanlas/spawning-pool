@@ -50,7 +50,7 @@ class VariableTestCombinator extends VariableLengthCombinator[Symbol] with Discr
   val initialSize = 11
   val alleles     = Seq('Hiro, 'Baymax, 'Fred, 'GoGo, 'Wasabi, 'HoneyLemon)
 
-  private val mutationMethods            =
+  private val mutationMethods =
     Iterable(RemoveGene, MutateGene, AddGene).iterator
   def nextMutationMethod: MutationMethod = mutationMethods.next()
 

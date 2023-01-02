@@ -30,7 +30,7 @@ object Solver {
       champion
     else {
       val challenger = randomIndividual(ctx.population)
-      val compare    =
+      val compare =
         ctx.ordering.compare(ctx.fitness(champion), ctx.fitness(challenger))
 
       val nextChampion = if (compare < 0) challenger else champion
@@ -78,9 +78,9 @@ object Solver {
 class Solver[A, B](
     fitness: A => B,
     populationSize: PositiveCount = Solver.DEFAULT_POPULATION_SIZE,
-    islandCount: PositiveCount = Solver.DEFAULT_ISLAND_COUNT,
-    mutationRate: Double = Solver.DEFAULT_MUTATION_RATE,
-    generations: PositiveCount = Solver.DEFAULT_GENERATION_COUNT
+    islandCount: PositiveCount    = Solver.DEFAULT_ISLAND_COUNT,
+    mutationRate: Double          = Solver.DEFAULT_MUTATION_RATE,
+    generations: PositiveCount    = Solver.DEFAULT_GENERATION_COUNT
 )(implicit evolver: Evolver[A], ordering: Ordering[B]) {
   import com.htmlism.spawningpool.Solver._
 
