@@ -1,3 +1,4 @@
+* use fs2
 * describe a population to population evolver
   * mutation + crossover is slightly prescriptive
 * callbacks for islands/aggregation
