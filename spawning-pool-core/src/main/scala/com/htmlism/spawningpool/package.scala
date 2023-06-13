@@ -1,6 +1,6 @@
 package com.htmlism
 
-import scala.language.implicitConversions
+
 
 /**
   * The `spawning-pool` framework enables the search and generation of solutions encoded as a chromosome over a fitness
