@@ -6,7 +6,7 @@ on:
 
 jobs:
   lint-and-test:
-    name: Continuous integration
+    name: Unit test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
