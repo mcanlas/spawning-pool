@@ -1,7 +1,5 @@
 package com.htmlism
 
-
-
 /**
   * The `spawning-pool` framework enables the search and generation of solutions encoded as a chromosome over a fitness
   * landscape, all in a generic manner typical of Scala libraries.
