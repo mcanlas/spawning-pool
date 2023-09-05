@@ -41,7 +41,7 @@ object Solver {
   def bearChild[A, B](implicit ctx: SolutionContext[A, B]): A = {
     val child = ctx.evolver.crossover(tournamentSelect(PositiveCount(2)), tournamentSelect(PositiveCount(2)))
 
-    if ((new scala.util.Random).nextDouble < ctx.mutationRate)
+    if ((new scala.util.Random).nextDouble() < ctx.mutationRate)
       ctx.evolver.mutate(child)
     else
       child

@@ -4,11 +4,11 @@ package generation
 import scala.util.Random
 
 object IntGenerator extends Generator[Int] {
-  def generate: Int = Random.nextInt
+  def generate: Int = Random.nextInt()
 }
 
 object DoubleGenerator extends Generator[Double] {
-  def generate: Double = Random.nextDouble
+  def generate: Double = Random.nextDouble()
 }
 
 object FixedIntArrayGenerator       extends FixedIntArrayGenerator(DEFAULT_ARRAY_LENGTH, rngInt)
