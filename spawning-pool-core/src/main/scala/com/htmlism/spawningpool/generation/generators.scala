@@ -19,20 +19,20 @@ object VariableDoubleArrayGenerator extends VariableDoubleArrayGenerator(DEFAULT
 // fixed
 
 class FixedIntArrayGenerator(length: Int, nextGene: () => Int) extends Generator[Array[Int]] {
-  def generate: Array[Int] = Array.fill(length)(nextGene.apply)
+  def generate: Array[Int] = Array.fill(length)(nextGene())
 }
 
 class FixedDoubleArrayGenerator(length: Int, nextGene: () => Double) extends Generator[Array[Double]] {
-  def generate: Array[Double] = Array.fill(length)(nextGene.apply)
+  def generate: Array[Double] = Array.fill(length)(nextGene())
 }
 
 // variable
 
 class VariableIntArrayGenerator(max: Int, nextGene: () => Int, nextLength: Int => Int) extends Generator[Array[Int]] {
-  def generate: Array[Int] = Array.fill(nextLength(max))(nextGene.apply)
+  def generate: Array[Int] = Array.fill(nextLength(max))(nextGene())
 }
 
 class VariableDoubleArrayGenerator(max: Int, nextGene: () => Double, nextLength: Int => Int)
     extends Generator[Array[Double]] {
-  def generate: Array[Double] = Array.fill(nextLength(max))(nextGene.apply)
+  def generate: Array[Double] = Array.fill(nextLength(max))(nextGene())
 }
