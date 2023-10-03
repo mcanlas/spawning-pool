@@ -14,7 +14,7 @@ object CatsEffectForkPlugin extends AutoPlugin {
 
   // cats-effect prefers to run in its own main thread
   // https://github.com/typelevel/cats-effect/pull/3774
-  override val buildSettings: Seq[Setting[_]] = Seq(
+  override val buildSettings: Seq[Setting[?]] = Seq(
     fork := true
   )
 }

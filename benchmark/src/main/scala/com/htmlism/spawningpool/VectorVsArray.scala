@@ -2,7 +2,7 @@ package com.htmlism.spawningpool
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-import com.htmlism.spawningpool.combinatorics._
+import com.htmlism.spawningpool.combinatorics.*
 
 object VectorVsArray extends App {
   Benchmark(

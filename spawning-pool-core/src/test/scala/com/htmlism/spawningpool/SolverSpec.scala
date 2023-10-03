@@ -2,7 +2,7 @@ package com.htmlism.spawningpool
 
 import org.specs2.mutable.Specification
 
-import com.htmlism.spawningpool.Solver._
+import com.htmlism.spawningpool.Solver.*
 
 class SolverSpec extends Specification {
   "The solver" should {

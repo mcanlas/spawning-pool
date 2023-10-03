@@ -1,4 +1,4 @@
-import sbtrelease.ReleaseStateTransformations._
+import sbtrelease.ReleaseStateTransformations.*
 
 val commonSettings = Seq(
   organization       := "com.htmlism",
@@ -7,33 +7,33 @@ val commonSettings = Seq(
 )
 
 lazy val core = Project("spawning-pool-core", file("spawning-pool-core"))
-  .settings(commonSettings: _*)
-  .settings(specs2: _*)
+  .settings(commonSettings*)
+  .settings(specs2*)
   .settings(betterConsole)
 
 lazy val coreAlpha =
   Project("spawning-pool-core-alpha", file("spawning-pool-core-alpha"))
-    .settings(commonSettings: _*)
-    .settings(fs2: _*)
-    .settings(specs2: _*)
+    .settings(commonSettings*)
+    .settings(fs2*)
+    .settings(specs2*)
     .settings(betterConsole)
 
 lazy val coreCats =
   Project("spawning-pool-scalaz", file("spawning-pool-scalaz"))
-    .settings(commonSettings: _*)
+    .settings(commonSettings*)
     .dependsOn(coreAlpha)
 
 lazy val shapelessMutation = Project("spawning-pool-shapeless-mutation", file("spawning-pool-shapeless-mutation"))
-  .settings(commonSettings: _*)
+  .settings(commonSettings*)
   .settings(shapeless)
   .dependsOn(coreAlpha)
 
 lazy val benchmark = project
-  .settings(commonSettings: _*)
+  .settings(commonSettings*)
   .dependsOn(core)
 
 lazy val root = Project("spawning-pool", file("."))
-  .settings(commonSettings: _*)
+  .settings(commonSettings*)
   .aggregate(core, benchmark, coreAlpha)
 
 releaseProcess := Seq(

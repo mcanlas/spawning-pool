@@ -1,6 +1,6 @@
 package com.htmlism.spawningpool
 
-import com.htmlism.spawningpool.generation._
+import com.htmlism.spawningpool.generation.*
 
 /**
   * A trait that represents a nullary operation for generating chromosomes of `A`.

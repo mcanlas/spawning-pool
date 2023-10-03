@@ -1,6 +1,6 @@
-import sbt.Keys._
-import sbt._
-import scalafix.sbt.ScalafixPlugin.autoImport._
+import sbt.Keys.*
+import sbt.*
+import scalafix.sbt.ScalafixPlugin.autoImport.*
 
 object LintingPlugin extends AutoPlugin {
   override def trigger =

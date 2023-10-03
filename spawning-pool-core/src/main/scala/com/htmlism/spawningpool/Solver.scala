@@ -1,8 +1,8 @@
 package com.htmlism.spawningpool
 
 import scala.annotation.tailrec
-import scala.concurrent._
-import scala.concurrent.duration._
+import scala.concurrent.*
+import scala.concurrent.duration.*
 
 object Solver {
   val DEFAULT_POPULATION_SIZE  = PositiveCount(50)
@@ -82,7 +82,7 @@ class Solver[A, B](
     mutationRate: Double          = Solver.DEFAULT_MUTATION_RATE,
     generations: PositiveCount    = Solver.DEFAULT_GENERATION_COUNT
 )(implicit evolver: Evolver[A], ordering: Ordering[B]) {
-  import com.htmlism.spawningpool.Solver._
+  import com.htmlism.spawningpool.Solver.*
 
   type Population = Vector[A]
   type Solutions  = Set[A]
