@@ -1,5 +1,3 @@
-import sbtrelease.ReleaseStateTransformations.*
-
 val commonSettings = Seq(
   organization       := "com.htmlism",
   scalaVersion       := "2.13.12",
@@ -41,18 +39,6 @@ lazy val storage =
 lazy val root = Project("spawning-pool", file("."))
   .settings(commonSettings*)
   .aggregate(core, benchmark, coreAlpha, storage)
-
-releaseProcess := Seq(
-  checkSnapshotDependencies,
-  inquireVersions,
-  runTest,
-  setReleaseVersion,
-  commitReleaseVersion,
-  tagRelease,
-  setNextVersion,
-  commitNextVersion,
-  pushChanges
-)
 
 publishArtifact := false
 
