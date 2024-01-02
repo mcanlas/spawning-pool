@@ -32,9 +32,15 @@ lazy val benchmark = project
   .settings(commonSettings*)
   .dependsOn(core)
 
+lazy val storage =
+  module("storage")
+    .settings(description := "Support for persisting populations")
+    .withEffectMonad
+    .withYaml
+
 lazy val root = Project("spawning-pool", file("."))
   .settings(commonSettings*)
-  .aggregate(core, benchmark, coreAlpha)
+  .aggregate(core, benchmark, coreAlpha, storage)
 
 releaseProcess := Seq(
   checkSnapshotDependencies,
