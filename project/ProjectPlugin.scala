@@ -34,7 +34,7 @@ object ProjectPlugin extends AutoPlugin {
 
       def withTesting: Project = {
         val weaverVersion =
-          "0.8.3"
+          "0.8.4"
 
         p.settings(
           testFrameworks += new TestFramework("weaver.framework.CatsEffect"),
