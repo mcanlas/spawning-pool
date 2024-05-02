@@ -1,7 +1,7 @@
 val commonSettings = Seq(
   organization       := "com.htmlism",
-  scalaVersion       := "2.13.13",
-  crossScalaVersions := Seq("2.12.19", "2.13.13")
+  scalaVersion       := "2.13.14",
+  crossScalaVersions := Seq("2.12.19", "2.13.14")
 )
 
 lazy val core = Project("spawning-pool-core", file("spawning-pool-core"))
