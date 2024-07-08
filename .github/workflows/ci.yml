@@ -17,6 +17,8 @@ jobs:
           java-version: '22'
           cache: sbt
 
-      - run: sbt 'scalafixAll --check' scalafmtSbtCheck scalafmtCheck
+      - name: Check linting and formatting
+        run: sbt 'scalafixAll --check' scalafmtSbtCheck scalafmtCheck
 
-      - run: sbt +test
+      - name: Unit test
+        run: sbt +test
