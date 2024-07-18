@@ -45,5 +45,6 @@ class FixedTestCombinator(val size: Int) extends FixedLengthCombinator[String] w
 
   def nextUseFirstParent = parents.next()
 
-  override def fill(unused: Int) = List.fill(size)
+  override def fill(unused: Int): String => List[String] =
+    List.fill(size)(_)
 }
