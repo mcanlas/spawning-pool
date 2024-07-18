@@ -92,7 +92,7 @@ class Solver[A, B](
       evolveFrom { Vector.fill(populationSize)(src.generateChromosome) }
     }
 
-  def solve(seed: Traversable[A])(implicit ec: ExecutionContext): Future[Solutions] =
+  def solve(seed: List[A])(implicit ec: ExecutionContext): Future[Solutions] =
     Future {
       if (seed.isEmpty)
         throw new IllegalArgumentException("must provide a non-empty collection as a seed")
@@ -104,7 +104,7 @@ class Solver[A, B](
 
   def solveNow(implicit src: ChromosomeGenerator[A], ec: ExecutionContext): Solutions = awaitResult(solve)
 
-  def solveNow(seed: Traversable[A])(implicit ec: ExecutionContext): Solutions =
+  def solveNow(seed: List[A])(implicit ec: ExecutionContext): Solutions =
     awaitResult(solve(seed))
 
   private def evolveFrom(seeding: => Population)(implicit ec: ExecutionContext) = {
