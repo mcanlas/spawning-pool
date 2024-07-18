@@ -19,13 +19,13 @@ trait Crossover[A] {
     * @return
     *   A chromosome
     */
-  def crossover(xs: IterableOnce[A]): A
+  def crossover(xs: List[A]): A
 }
 
 object IntUniformCrossover extends Crossover[Int] {
-  def crossover(xs: IterableOnce[Int]): Int = ???
+  def crossover(xs: List[Int]): Int = ???
 }
 
 object DoubleUniformCrossover extends Crossover[Double] {
-  def crossover(xs: IterableOnce[Double]): Double = ???
+  def crossover(xs: List[Double]): Double = ???
 }
