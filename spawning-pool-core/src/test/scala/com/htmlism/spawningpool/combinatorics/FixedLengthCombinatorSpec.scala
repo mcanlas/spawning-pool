@@ -19,25 +19,25 @@ class FixedLengthCombinatorSpec extends Specification {
     }
 
     "generate the expected values" in {
-      firstChromosome === Seq('luigi, 'bowser, 'peach)
-      secondChromosome === Seq('mario, 'luigi, 'bowser)
+      firstChromosome === Seq("luigi", "bowser", "peach")
+      secondChromosome === Seq("mario", "luigi", "bowser")
     }
 
     "support spot mutation" in {
-      mutatedChromosome === Seq('luigi, 'mario, 'peach)
+      mutatedChromosome === Seq("luigi", "mario", "peach")
     }
 
     "support crossover" in {
-      combinator.crossover(firstChromosome, secondChromosome) === Seq('mario, 'luigi, 'peach)
+      combinator.crossover(firstChromosome, secondChromosome) === Seq("mario", "luigi", "peach")
     }
   }
 }
 
-class FixedTestCombinator(val size: Int) extends FixedLengthCombinator[Symbol] with DiscreteAlleleGenerator[Symbol] {
+class FixedTestCombinator(val size: Int) extends FixedLengthCombinator[String] with DiscreteAlleleGenerator[String] {
   private val alleleIndexes = Iterable(1, 3, 2, 0, 1, 3, 0).iterator
   private val parents       = Iterable(false, false, true).iterator
 
-  def alleles: Seq[Symbol] = Seq('mario, 'luigi, 'peach, 'bowser)
+  def alleles: Seq[String] = Seq("mario", "luigi", "peach", "bowser")
 
   def nextAlleleIndex(size: Int) = alleleIndexes.next()
 

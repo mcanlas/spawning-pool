@@ -23,17 +23,17 @@ class VariableLengthCombinatorSpec extends Specification {
     }
 
     "generate chromosomes of the provided alleles" in {
-      firstChromosome === Seq('GoGo)
-      secondChromosome === Seq('HoneyLemon, 'Baymax, 'Fred)
-      thirdChromosome === Seq('Hiro, 'Wasabi, 'GoGo, 'Baymax, 'HoneyLemon)
+      firstChromosome === Seq("GoGo")
+      secondChromosome === Seq("HoneyLemon", "Baymax", "Fred")
+      thirdChromosome === Seq("Hiro", "Wasabi", "GoGo", "Baymax", "HoneyLemon")
     }
 
     "support spot mutation" in {
-      secondMutation === Seq('HoneyLemon, 'Hiro, 'Fred)
+      secondMutation === Seq("HoneyLemon", "Hiro", "Fred")
     }
 
     "support insertion mutation" in {
-      thirdMutation === Seq('Wasabi, 'Hiro, 'Wasabi, 'GoGo, 'Baymax, 'HoneyLemon)
+      thirdMutation === Seq("Wasabi", "Hiro", "Wasabi", "GoGo", "Baymax", "HoneyLemon")
     }
 
     "support removal mutation" in {
@@ -41,14 +41,14 @@ class VariableLengthCombinatorSpec extends Specification {
     }
 
     "support crossover" in {
-      child === Seq('GoGo, 'Fred)
+      child === Seq("GoGo", "Fred")
     }
   }
 }
 
-class VariableTestCombinator extends VariableLengthCombinator[Symbol] with DiscreteAlleleGenerator[Symbol] {
+class VariableTestCombinator extends VariableLengthCombinator[String] with DiscreteAlleleGenerator[String] {
   val initialSize = 11
-  val alleles     = Seq('Hiro, 'Baymax, 'Fred, 'GoGo, 'Wasabi, 'HoneyLemon)
+  val alleles     = Seq("Hiro", "Baymax", "Fred", "GoGo", "Wasabi", "HoneyLemon")
 
   private val mutationMethods =
     Iterable(RemoveGene, MutateGene, AddGene).iterator

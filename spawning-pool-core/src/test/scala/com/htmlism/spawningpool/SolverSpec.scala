@@ -13,7 +13,7 @@ class SolverSpec extends Specification {
         def randomIndex(size: Int) = iterator.next()
       }
 
-      randomIndividual(Seq('arthas))(rig) === 'arthas
+      randomIndividual(Seq("arthas"))(rig) === "arthas"
     }
   }
 }
