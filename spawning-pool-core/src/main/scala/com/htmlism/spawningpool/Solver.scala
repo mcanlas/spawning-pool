@@ -89,7 +89,7 @@ class Solver[A, B](
 
   def solve(implicit src: ChromosomeGenerator[A], ec: ExecutionContext): Future[Solutions] =
     Future {
-      evolveFrom { Vector.fill(populationSize)(src.generateChromosome) }
+      evolveFrom(Vector.fill(populationSize)(src.generateChromosome))
     }
 
   def solve(seed: List[A])(implicit ec: ExecutionContext): Future[Solutions] =

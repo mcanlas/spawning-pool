@@ -28,9 +28,8 @@ object SolutionContext {
     */
   def apply[A, B](islandId: Int, fitness: A => B, evolver: Evolver[A], mutationRate: Double, population: Seq[A])(
       implicit ordering: Ordering[B]
-  ): SolutionContext[A, B] = {
+  ): SolutionContext[A, B] =
     new SolutionContext(islandId, fitness, evolver, mutationRate, population, 0)
-  }
 }
 
 /**
