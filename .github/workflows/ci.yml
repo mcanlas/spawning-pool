@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '22'
+          java-version: '23'
           cache: sbt
 
       - name: Check linting and formatting
