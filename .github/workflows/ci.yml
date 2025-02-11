@@ -17,6 +17,8 @@ jobs:
           java-version: '23'
           cache: sbt
 
+      - uses: sbt/setup-sbt@v1
+
       - name: Check linting and formatting
         run: sbt 'scalafixAll --check' scalafmtSbtCheck scalafmtCheck
 
