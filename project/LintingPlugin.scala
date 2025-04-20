@@ -1,6 +1,8 @@
 import sbt.Keys.*
 import sbt.*
 import scalafix.sbt.ScalafixPlugin.autoImport.*
+import wartremover.Wart
+import wartremover.WartRemover.autoImport.*
 
 object LintingPlugin extends AutoPlugin {
   override def trigger =
@@ -12,6 +14,7 @@ object LintingPlugin extends AutoPlugin {
 
   override val buildSettings =
     Seq(
+      wartremoverErrors ++= Warts.unsafe diff List(Wart.Any),
       semanticdbEnabled := true,
       semanticdbVersion := scalafixSemanticdb.revision
     )
