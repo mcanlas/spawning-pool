@@ -1,6 +1,8 @@
 import sbt.Keys.*
 import sbt.*
 import scalafix.sbt.ScalafixPlugin.autoImport.*
+import org.typelevel.sbt.tpolecat.TpolecatPlugin.autoImport.tpolecatExcludeOptions
+import org.typelevel.scalacoptions.ScalacOptions
 import wartremover.Wart
 import wartremover.WartRemover.autoImport.*
 
@@ -14,6 +16,7 @@ object LintingPlugin extends AutoPlugin {
 
   override val buildSettings =
     Seq(
+      tpolecatExcludeOptions += ScalacOptions.fatalWarnings,
       wartremoverWarnings ++= Warts.unsafe diff List(Wart.Any),
       semanticdbEnabled := true,
       semanticdbVersion := scalafixSemanticdb.revision
