@@ -1,7 +1,7 @@
 val commonSettings = Seq(
   organization       := "com.htmlism",
-  scalaVersion       := "2.13.16",
-  crossScalaVersions := Seq("2.12.20", "2.13.16"),
+  scalaVersion       := "2.13.18",
+  crossScalaVersions := Seq("2.12.20", "2.13.18"),
   scalacOptions += "-Xsource:3"
 )
 
