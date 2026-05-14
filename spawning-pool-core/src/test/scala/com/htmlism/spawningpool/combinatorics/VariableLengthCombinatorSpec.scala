@@ -28,21 +28,17 @@ class VariableLengthCombinatorSpec extends Specification {
       thirdChromosome === Seq("Hiro", "Wasabi", "GoGo", "Baymax", "HoneyLemon")
     }
 
-    "support spot mutation" in {
+    "support spot mutation" in
       secondMutation === Seq("HoneyLemon", "Hiro", "Fred")
-    }
 
-    "support insertion mutation" in {
+    "support insertion mutation" in
       thirdMutation === Seq("Wasabi", "Hiro", "Wasabi", "GoGo", "Baymax", "HoneyLemon")
-    }
 
-    "support removal mutation" in {
+    "support removal mutation" in
       firstMutation === Seq.empty
-    }
 
-    "support crossover" in {
+    "support crossover" in
       child === Seq("GoGo", "Fred")
-    }
   }
 }
 

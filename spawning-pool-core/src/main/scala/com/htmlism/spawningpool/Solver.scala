@@ -30,7 +30,7 @@ object Solver {
       champion
     else {
       val challenger = randomIndividual(ctx.population)
-      val compare =
+      val compare    =
         ctx.ordering.compare(ctx.fitness(champion), ctx.fitness(challenger))
 
       val nextChampion = if (compare < 0) challenger else champion

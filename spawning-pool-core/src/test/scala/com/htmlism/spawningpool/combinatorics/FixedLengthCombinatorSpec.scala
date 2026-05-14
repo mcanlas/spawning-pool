@@ -23,13 +23,11 @@ class FixedLengthCombinatorSpec extends Specification {
       secondChromosome === Seq("mario", "luigi", "bowser")
     }
 
-    "support spot mutation" in {
+    "support spot mutation" in
       mutatedChromosome === Seq("luigi", "mario", "peach")
-    }
 
-    "support crossover" in {
+    "support crossover" in
       combinator.crossover(firstChromosome, secondChromosome) === Seq("mario", "luigi", "peach")
-    }
   }
 }
 
