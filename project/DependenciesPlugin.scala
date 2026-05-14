@@ -14,7 +14,7 @@ object DependenciesPlugin extends AutoPlugin {
           .settings(libraryDependencies += "org.typelevel" %% "cats-core" % "2.13.0")
 
       def withEffectMonad: Project =
-        p.settings(libraryDependencies += "org.typelevel" %% "cats-effect" % "3.7.0")
+        p.settings(libraryDependencies += "org.typelevel" %% "cats-effect" % Versions.catsEffect)
 
       def withTesting: Project = {
         val weaverVersion =
