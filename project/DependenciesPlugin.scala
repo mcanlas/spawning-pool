@@ -6,9 +6,6 @@ object DependenciesPlugin extends AutoPlugin {
 
   object autoImport {
     implicit class DependencyOps(p: Project) {
-      val circeYamlVersion =
-        "0.16.1"
-
       def withCats: Project =
         p
           .settings(libraryDependencies += "org.typelevel" %% "cats-core" % Versions.catsCore)
@@ -17,13 +14,10 @@ object DependenciesPlugin extends AutoPlugin {
         p.settings(libraryDependencies += "org.typelevel" %% "cats-effect" % Versions.catsEffect)
 
       def withTesting: Project = {
-        val weaverVersion =
-          "0.10.1"
-
         p.settings(
           libraryDependencies ++= Seq(
-            "org.typelevel" %% "weaver-cats"       % weaverVersion % Test,
-            "org.typelevel" %% "weaver-scalacheck" % weaverVersion % Test
+            "org.typelevel" %% "weaver-cats"       % Versions.weaver % Test,
+            "org.typelevel" %% "weaver-scalacheck" % Versions.weaver % Test
           )
         )
       }
@@ -31,7 +25,7 @@ object DependenciesPlugin extends AutoPlugin {
       def withYaml: Project =
         p.settings(
           libraryDependencies ++= Seq(
-            "io.circe" %% "circe-yaml" % circeYamlVersion
+            "io.circe" %% "circe-yaml" % Versions.circeYaml
           )
         )
     }
