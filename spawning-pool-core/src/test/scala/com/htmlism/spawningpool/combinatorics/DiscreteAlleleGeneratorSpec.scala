@@ -1,7 +1,13 @@
 package com.htmlism.spawningpool.combinatorics
 
+import scala.annotation.nowarn
+
 import org.specs2.mutable.Specification
 
+@nowarn("msg=unused value")
+@SuppressWarnings(
+  Array("org.wartremover.warts.NonUnitStatements", "org.wartremover.warts.Product", "org.wartremover.warts.Unused")
+)
 class DiscreteAlleleGeneratorSpec extends Specification {
   "A discrete allele generator" should {
     "return the expected values" in {

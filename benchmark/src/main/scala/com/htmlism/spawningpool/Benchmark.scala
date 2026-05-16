@@ -6,11 +6,11 @@ object Benchmark {
       println()
       println(s"Running $n...")
 
-      val start = compat.Platform.currentTime
+      val start = System.currentTimeMillis()
 
       f()
 
-      val duration         = compat.Platform.currentTime - start
+      val duration         = System.currentTimeMillis() - start
       val duratinInSeconds = duration / 1000
 
       duratinInSeconds
@@ -18,14 +18,13 @@ object Benchmark {
 
   def apply[A](fs: Map[A, () => Unit], times: Int): Unit = {
     val durations = fs
-      .mapValues(toDurations(times))
-      .map(identity)
+      .map { case (k, v) => (k, toDurations(times)(v)) }
 
     println("Durations:")
     durations.foreach(println)
 
     val averages = durations
-      .mapValues(_.sum / times)
+      .map { case (k, v) => (k, v.sum / times) }
 
     println("Average duration:")
     averages.foreach(println)

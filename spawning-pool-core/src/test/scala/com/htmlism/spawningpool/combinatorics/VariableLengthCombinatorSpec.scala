@@ -1,7 +1,13 @@
 package com.htmlism.spawningpool.combinatorics
 
+import scala.annotation.nowarn
+
 import org.specs2.mutable.Specification
 
+@nowarn("msg=unused value")
+@SuppressWarnings(
+  Array("org.wartremover.warts.NonUnitStatements", "org.wartremover.warts.Product", "org.wartremover.warts.Unused")
+)
 class VariableLengthCombinatorSpec extends Specification {
   "A variable-length generator" should {
     val combinator = new VariableTestCombinator
@@ -46,8 +52,8 @@ class VariableTestCombinator extends VariableLengthCombinator[String] with Discr
   val initialSize = 11
   val alleles     = Seq("Hiro", "Baymax", "Fred", "GoGo", "Wasabi", "HoneyLemon")
 
-  private val mutationMethods =
-    Iterable(RemoveGene, MutateGene, AddGene).iterator
+  private val mutationMethods: Iterator[MutationMethod] =
+    VariableTestCombinator.buildMutationMethods
   def nextMutationMethod: MutationMethod = mutationMethods.next()
 
   private val alleleIndexes      = Iterable(3, 5, 1, 2, 0, 4, 3, 1, 5, 0, 4).iterator
@@ -64,4 +70,10 @@ class VariableTestCombinator extends VariableLengthCombinator[String] with Discr
   // variation
   def nextGeneIndexForInsertion(size: Int): Int = 0
   def nextGeneIndexForRemoval(size: Int): Int   = 0
+}
+
+object VariableTestCombinator {
+  @SuppressWarnings(Array("org.wartremover.warts.Product", "org.wartremover.warts.Serializable"))
+  def buildMutationMethods: Iterator[MutationMethod] =
+    Iterable(RemoveGene, MutateGene, AddGene).iterator
 }

@@ -1,7 +1,11 @@
 package com.htmlism.spawningpool.combinatorics
 
+import scala.annotation.nowarn
+
 import org.specs2.mutable.Specification
 
+@nowarn("msg=unused value")
+@SuppressWarnings(Array("org.wartremover.warts.NonUnitStatements", "org.wartremover.warts.Unused"))
 class FixedLengthCombinatorSpec extends Specification {
   "A fixed-length combinator" should {
     val size = 3
@@ -43,6 +47,5 @@ class FixedTestCombinator(val size: Int) extends FixedLengthCombinator[String] w
 
   def nextUseFirstParent = parents.next()
 
-  override def fill(unused: Int): String => List[String] =
-    List.fill(size)(_)
+  override def fill(unused: Int): (=> String) => Seq[String] = Vector.fill[String](size)
 }

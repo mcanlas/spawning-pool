@@ -10,6 +10,11 @@ object Solver {
   val DEFAULT_GENERATION_COUNT = PositiveCount(20)
   val DEFAULT_MUTATION_RATE    = .01
 
+  def apply[A, B](
+      fitness: A => B
+  )(implicit evolver: Evolver[A], ordering: Ordering[B]): Solver[A, B] =
+    new Solver(fitness, DEFAULT_POPULATION_SIZE, DEFAULT_ISLAND_COUNT, DEFAULT_MUTATION_RATE, DEFAULT_GENERATION_COUNT)
+
   def randomIndividual[A](population: Seq[A])(implicit rig: RandomIndexProvider): A =
     population(rig.randomIndex(population.size))
 
@@ -77,10 +82,10 @@ object Solver {
   */
 class Solver[A, B](
     fitness: A => B,
-    populationSize: PositiveCount = Solver.DEFAULT_POPULATION_SIZE,
-    islandCount: PositiveCount    = Solver.DEFAULT_ISLAND_COUNT,
-    mutationRate: Double          = Solver.DEFAULT_MUTATION_RATE,
-    generations: PositiveCount    = Solver.DEFAULT_GENERATION_COUNT
+    populationSize: PositiveCount,
+    islandCount: PositiveCount,
+    mutationRate: Double,
+    generations: PositiveCount
 )(implicit evolver: Evolver[A], ordering: Ordering[B]) {
   import com.htmlism.spawningpool.Solver.*
 
@@ -95,7 +100,7 @@ class Solver[A, B](
   def solve(seed: List[A])(implicit ec: ExecutionContext): Future[Solutions] =
     Future {
       if (seed.isEmpty)
-        throw new IllegalArgumentException("must provide a non-empty collection as a seed")
+        sys.error("must provide a non-empty collection as a seed")
       else
         evolveFrom {
           seed.toVector
@@ -122,7 +127,13 @@ class Solver[A, B](
       f.map { ctx =>
         val byFitness = ctx.population.groupBy(ctx.fitness)
 
-        byFitness(byFitness.keys.max)
+        val maxKey = byFitness
+          .keys
+          .headOption
+          .fold(sys.error("empty population"))(head =>
+            byFitness.keys.foldLeft(head)((a, b) => if (ctx.ordering.compare(a, b) >= 0) a else b)
+          )
+        byFitness(maxKey)
       }
     }
 

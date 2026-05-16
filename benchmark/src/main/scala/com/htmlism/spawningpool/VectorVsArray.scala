@@ -22,8 +22,9 @@ object VectorVsArray extends App {
       { _ =>
         util.Random.nextInt()
       },
-      islandCount    = PositiveCount(15),
       populationSize = PositiveCount(1000),
+      islandCount    = PositiveCount(15),
+      mutationRate   = Solver.DEFAULT_MUTATION_RATE,
       generations    = PositiveCount(40)
     )
 
@@ -38,8 +39,9 @@ object VectorVsArray extends App {
       { _ =>
         util.Random.nextInt()
       },
-      islandCount    = PositiveCount(15),
       populationSize = PositiveCount(1000),
+      islandCount    = PositiveCount(15),
+      mutationRate   = Solver.DEFAULT_MUTATION_RATE,
       generations    = PositiveCount(40)
     )
 
@@ -48,14 +50,15 @@ object VectorVsArray extends App {
 
   def withVector(): Unit = {
     implicit val combinator =
-      new DiscreteFixedLengthCombinator((1 to 100).map(WrappedInt), 100)
+      new DiscreteFixedLengthCombinator((1 to 100).map(WrappedInt.apply), 100)
 
     val solver = new Solver[Seq[WrappedInt], Int](
       { _ =>
         util.Random.nextInt()
       },
-      islandCount    = PositiveCount(15),
       populationSize = PositiveCount(1000),
+      islandCount    = PositiveCount(15),
+      mutationRate   = Solver.DEFAULT_MUTATION_RATE,
       generations    = PositiveCount(40)
     )
 
@@ -63,14 +66,15 @@ object VectorVsArray extends App {
   }
 
   def withArray(): Unit = {
-    implicit val combinator = new specialized.DiscreteFixedLengthCombinator((1 to 100).map(WrappedInt), 100)
+    implicit val combinator = new specialized.DiscreteFixedLengthCombinator((1 to 100).map(WrappedInt.apply), 100)
 
     val solver = new Solver[Seq[WrappedInt], Int](
       { _ =>
         util.Random.nextInt()
       },
-      islandCount    = PositiveCount(15),
       populationSize = PositiveCount(1000),
+      islandCount    = PositiveCount(15),
+      mutationRate   = Solver.DEFAULT_MUTATION_RATE,
       generations    = PositiveCount(40)
     )
 

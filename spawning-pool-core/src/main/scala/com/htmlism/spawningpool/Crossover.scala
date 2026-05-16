@@ -23,9 +23,9 @@ trait Crossover[A] {
 }
 
 object IntUniformCrossover extends Crossover[Int] {
-  def crossover(xs: List[Int]): Int = ???
+  def crossover(xs: List[Int]): Int = sys.error("crossover not implemented")
 }
 
 object DoubleUniformCrossover extends Crossover[Double] {
-  def crossover(xs: List[Double]): Double = ???
+  def crossover(xs: List[Double]): Double = sys.error("crossover not implemented")
 }

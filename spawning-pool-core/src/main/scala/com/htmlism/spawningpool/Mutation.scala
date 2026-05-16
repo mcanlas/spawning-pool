@@ -29,13 +29,13 @@ object IntMutation extends Mutation[Int] {
 }
 
 object DoubleMutation extends Mutation[Double] {
-  def mutate(x: Double): Double = ???
+  def mutate(x: Double): Double = sys.error("mutate not implemented")
 }
 
 object FixedArrayIntMutation extends Mutation[Array[Int]] {
-  def mutate(x: Array[Int]): Array[Int] = ???
+  def mutate(x: Array[Int]): Array[Int] = sys.error("mutate not implemented")
 }
 
 object FixedDoubleMutation extends Mutation[Array[Double]] {
-  def mutate(x: Array[Double]): Array[Double] = ???
+  def mutate(x: Array[Double]): Array[Double] = sys.error("mutate not implemented")
 }

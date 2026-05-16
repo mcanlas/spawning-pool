@@ -1,9 +1,13 @@
 package com.htmlism.spawningpool
 
+import scala.annotation.nowarn
+
 import org.specs2.mutable.Specification
 
-import com.htmlism.spawningpool.Solver.*
+import com.htmlism.spawningpool.Solver.randomIndividual
 
+@nowarn("msg=unused value")
+@SuppressWarnings(Array("org.wartremover.warts.NonUnitStatements", "org.wartremover.warts.Unused"))
 class SolverSpec extends Specification {
   "The solver" should {
     "select individuals at random" in {

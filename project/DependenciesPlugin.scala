@@ -13,14 +13,13 @@ object DependenciesPlugin extends AutoPlugin {
       def withEffectMonad: Project =
         p.settings(libraryDependencies += "org.typelevel" %% "cats-effect" % Versions.catsEffect)
 
-      def withTesting: Project = {
+      def withTesting: Project =
         p.settings(
           libraryDependencies ++= Seq(
             "org.typelevel" %% "weaver-cats"       % Versions.weaver % Test,
             "org.typelevel" %% "weaver-scalacheck" % Versions.weaver % Test
           )
         )
-      }
 
       def withYaml: Project =
         p.settings(

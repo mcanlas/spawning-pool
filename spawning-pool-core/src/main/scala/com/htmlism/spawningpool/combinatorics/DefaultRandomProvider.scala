@@ -10,7 +10,7 @@ trait DefaultRandomProvider
     with LengthProvider
     with VariationProvider
     with MutationMethodProvider {
-  private val rng       = new util.Random
+  private val rng                                   = new util.Random
   private val mutations: IndexedSeq[MutationMethod] =
     IndexedSeq[MutationMethod](MutateGene, AddGene, RemoveGene)
 
