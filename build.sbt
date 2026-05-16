@@ -22,11 +22,6 @@ lazy val coreCats =
     .settings(commonSettings*)
     .dependsOn(coreAlpha)
 
-lazy val shapelessMutation = Project("spawning-pool-shapeless-mutation", file("spawning-pool-shapeless-mutation"))
-  .settings(commonSettings*)
-  .settings(shapeless)
-  .dependsOn(coreAlpha)
-
 lazy val benchmark = project
   .settings(commonSettings*)
   .dependsOn(core)
@@ -44,15 +39,6 @@ lazy val root = Project("spawning-pool", file("."))
 publishArtifact := false
 
 lazy val fs2 = Seq(libraryDependencies += "co.fs2" %% "fs2-core" % "2.0.0")
-
-lazy val shapeless = Seq(
-  libraryDependencies ++= Seq("com.chuusai" %% "shapeless" % "2.3.3") ++
-    (CrossVersion.partialVersion(scalaVersion.value) match {
-      case Some((2, 10)) =>
-        Seq(compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full))
-      case _ => Nil
-    })
-)
 
 lazy val specs2 = Seq(
   libraryDependencies += "org.specs2"     %% "specs2-core" % "4.10.6" % "test",
