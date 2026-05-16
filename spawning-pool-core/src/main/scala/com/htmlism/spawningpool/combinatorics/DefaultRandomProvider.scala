@@ -11,7 +11,8 @@ trait DefaultRandomProvider
     with VariationProvider
     with MutationMethodProvider {
   private val rng       = new util.Random
-  private val mutations = IndexedSeq(MutateGene, AddGene, RemoveGene)
+  private val mutations: IndexedSeq[MutationMethod] =
+    IndexedSeq[MutationMethod](MutateGene, AddGene, RemoveGene)
 
   def nextAlleleIndex(size: Int): Int = guardedRandom(size)
 
