@@ -16,6 +16,10 @@ object ProjectPlugin extends AutoPlugin {
     */
   override def trigger: PluginTrigger = AllRequirements
 
+  override val buildSettings: Seq[Setting[?]] = Seq(
+    organization := "com.htmlism"
+  )
+
   object ThingsToAutoImport {
     private def jarName(s: String) =
       "spawning-pool-" + s

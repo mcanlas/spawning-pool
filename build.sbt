@@ -1,29 +1,18 @@
-val commonSettings = Seq(
-  organization       := "com.htmlism",
-  scalaVersion       := "2.13.18",
-  crossScalaVersions := Seq("2.13.18"),
-  scalacOptions += "-Xsource:3"
-)
-
 lazy val core = Project("spawning-pool-core", file("spawning-pool-core"))
-  .settings(commonSettings*)
   .settings(specs2*)
   .settings(betterConsole)
 
 lazy val coreAlpha =
   Project("spawning-pool-core-alpha", file("spawning-pool-core-alpha"))
-    .settings(commonSettings*)
     .settings(fs2*)
     .settings(specs2*)
     .settings(betterConsole)
 
 lazy val coreCats =
   Project("spawning-pool-scalaz", file("spawning-pool-scalaz"))
-    .settings(commonSettings*)
     .dependsOn(coreAlpha)
 
 lazy val benchmark = project
-  .settings(commonSettings*)
   .dependsOn(core)
 
 lazy val storage =
@@ -33,7 +22,6 @@ lazy val storage =
     .withYaml
 
 lazy val root = Project("spawning-pool", file("."))
-  .settings(commonSettings*)
   .aggregate(core, benchmark, coreAlpha, storage)
 
 publishArtifact := false
