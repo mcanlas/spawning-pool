@@ -1,5 +1,5 @@
 addSbtPlugin("org.scalameta"    % "sbt-scalafmt"              % "2.6.2")
-addSbtPlugin("org.typelevel"    % "sbt-tpolecat"              % "0.5.3")
+addSbtPlugin("org.typelevel"    % "sbt-tpolecat"              % "0.5.7")
 addSbtPlugin("org.wartremover"  % "sbt-wartremover"           % "3.6.1")
 addSbtPlugin("org.scoverage"    % "sbt-scoverage"             % "2.3.1")
 addSbtPlugin("ch.epfl.scala"    % "sbt-scalafix"              % "0.14.6")
